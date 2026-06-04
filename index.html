@@ -52,7 +52,6 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
                 <div class="flex items-center space-x-3">
-                    <!-- Assumes CFLN.png is uploaded to the same folder in GitHub -->
                     <img src="CFLN.png" alt="CFLN Logo" class="h-16 w-auto object-contain" onerror="this.style.display='none'">
                     <div class="font-bold text-xl leading-tight text-craneDark">
                         <span class="block text-craneRed">Crane</span>
@@ -150,21 +149,16 @@
             <div class="p-6 overflow-y-auto">
                 <p class="text-sm text-gray-600 mb-6">Tell us a little about yourself so we can prepare for our conversation. Your information is strictly confidential.</p>
                 
-                <!-- 
-                    FORM ACTION: Uses FormSubmit.co. 
-                    It sends the email to your address. 
-                    To get an SMS, you have two options later:
-                    1. Set up a Zapier webhook with Formsubmit.
-                    2. Add a hidden input like: <input type="hidden" name="_cc" value="9494452323@vtext.com"> (if you use Verizon, or the equivalent AT&T/T-mobile email-to-sms gateway).
-                -->
                 <form action="https://formsubmit.co/crane_avi@aipfinancial.net" method="POST" id="fiduciaryForm" class="space-y-4">
                     
                     <!-- FormSubmit Configuration -->
                     <input type="hidden" name="_subject" value="New Fiduciary Request - CFLN Website">
                     <input type="hidden" name="_captcha" value="false">
-                    <!-- Replace the value below with your actual live URL once connected so it redirects back here -->
-                    <input type="hidden" name="_next" value="https://cranea.github.io/CFLN/">
+                    <!-- Redirects user back to your custom domain after submitting -->
+                    <input type="hidden" name="_next" value="https://www.craneandassociates.net/">
                     <input type="hidden" name="_template" value="table">
+                    <!-- Sends SMS alert via Verizon -->
+                    <input type="hidden" name="_cc" value="9494452323@vtext.com">
 
                     <div>
                         <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Full Name *</label>
