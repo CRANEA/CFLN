@@ -3,114 +3,401 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alpha Innovation Partners | Advanced Wealth Strategies</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Crane Financial Literacy Network | CFLN</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        craneRed: '#C8102E',    // Matches the pomegranate
+                        craneGreen: '#4F7942',  // Matches the leaf text
+                        craneDark: '#1A202C',
+                        craneLight: '#F7FAFC',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Smooth scrolling and modal transitions */
+        html { scroll-behavior: smooth; }
+        .modal-enter { opacity: 0; transform: scale(0.95); }
+        .modal-enter-active { opacity: 1; transform: scale(1); transition: opacity 0.3s ease-out, transform 0.3s ease-out; }
+        .modal-leave { opacity: 1; transform: scale(1); }
+        .modal-leave-active { opacity: 0; transform: scale(0.95); transition: opacity 0.2s ease-in, transform 0.2s ease-in; }
+        .hide-scroll { overflow: hidden; }
+        
+        /* Card Hover Effects */
+        .category-card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); border-color: #C8102E; }
+        .category-card { transition: all 0.3s ease; border: 2px solid transparent; }
+    </style>
 </head>
-<body>
+<body class="bg-craneLight text-gray-800 font-sans antialiased">
 
     <!-- Navigation -->
-    <header>
-        <div class="logo">Alpha Innovation Partners</div>
-        <nav>
-            <ul>
-                <li><a href="#audiences">Who We Serve</a></li>
-                <li><a href="#solutions">Solutions</a></li>
-                <li><a href="#difference">Our Difference</a></li>
-            </ul>
-        </nav>
-        <a href="#interactive-lead" class="cta-button">Client Portal</a>
+    <nav class="bg-white shadow-md sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex items-center space-x-3">
+                    <!-- Assumes CFLN.png is uploaded to the same folder in GitHub -->
+                    <img src="CFLN.png" alt="CFLN Logo" class="h-16 w-auto object-contain" onerror="this.style.display='none'">
+                    <div class="font-bold text-xl leading-tight text-craneDark">
+                        <span class="block text-craneRed">Crane</span>
+                        <span class="block text-sm text-craneGreen">Financial Literacy Network</span>
+                    </div>
+                </div>
+                <div class="hidden md:flex">
+                    <button onclick="openFiduciaryModal()" class="bg-craneRed hover:bg-red-800 text-white font-semibold py-2 px-6 rounded-full transition-colors shadow-lg flex items-center gap-2">
+                        <i class="fa-solid fa-handshake"></i> Connect with a Fiduciary
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="bg-gradient-to-br from-craneDark to-gray-800 text-white py-16 md:py-24 text-center px-4">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">Financial Clarity for Every Stage of Life</h1>
+            <p class="text-lg md:text-xl text-gray-300 mb-10">Access free tools, resources, and expert fiduciary guidance tailored to exactly where you are on your financial journey.</p>
+            <button onclick="openFiduciaryModal()" class="bg-craneGreen hover:bg-green-700 text-white text-lg font-bold py-4 px-8 rounded-full shadow-xl transition-transform hover:scale-105 flex items-center gap-3 mx-auto">
+                <i class="fa-solid fa-user-tie text-xl"></i> Talk to a Financial Fiduciary Today
+            </button>
+        </div>
     </header>
 
-    <!-- 1. Hero Section (Above the Fold) -->
-    <section id="hero">
-        <div class="hero-content">
-            <h1>Expanding Your Wealth Through Advanced Strategies</h1>
-            <p>We empower high-income clients and business owners to legally shift six figures out of their taxable income each year, preserve capital, and architect a multi-generational legacy.</p>
-            <a href="#interactive-lead" class="cta-button primary-cta">Schedule Your Advanced Tax Strategy Session</a>
+    <!-- Interactive Categories Grid -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-craneDark mb-4">Where are you on your journey?</h2>
+            <p class="text-gray-600">Select your current life stage to access specialized tools and resources.</p>
         </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="category-container">
+            <!-- Cards will be injected here by JavaScript -->
+        </div>
+    </main>
+
+    <!-- CTA Banner -->
+    <section class="bg-white border-t border-b border-gray-200 py-16 px-4 text-center">
+        <h3 class="text-2xl font-bold text-craneDark mb-4">Need personalized guidance?</h3>
+        <p class="text-gray-600 mb-8 max-w-2xl mx-auto">As fiduciaries, we are legally obligated to act in your best interest. No sales pitches, just objective strategies.</p>
+        <button onclick="openFiduciaryModal()" class="bg-craneRed hover:bg-red-800 text-white font-bold py-3 px-8 rounded-full transition-colors shadow-md text-lg">
+            Connect with a Financial Fiduciary
+        </button>
     </section>
 
-    <!-- 2. Who We Serve -->
-    <section id="audiences">
-        <h2>Who We Serve</h2>
-        <div class="grid-container">
-            <div class="card">
-                <h3>Pre-Retirees</h3>
-                <p>Personalized strategies for retirement planning and long-term financial peace of mind.</p>
-            </div>
-            <div class="card">
-                <h3>Business Owners</h3>
-                <p>Smart solutions for employee retention, business exits, and comprehensive benefits planning.</p>
-            </div>
-            <div class="card">
-                <h3>High-Income Executives</h3>
-                <p>Advanced compensation design and private, tax-advantaged income strategies.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 3. Our Core Solutions -->
-    <section id="solutions" class="bg-light">
-        <h2>Our Core Solutions</h2>
-        <div class="grid-container">
-            <div class="card">
-                <h3>Taxable Income Reduction</h3>
-                <p>Leveraging advanced retirement designs like Defined Benefit Plans, 412(e)(3) structures, Cost Segregation, and Section 831(a) Captive Insurance to maximize deductions.</p>
-            </div>
-            <div class="card">
-                <h3>Capital Gains Mitigation</h3>
-                <p>Turning large tax bills into income streams through specialized trusts and structured installment sales.</p>
-            </div>
-            <div class="card">
-                <h3>Advanced Estate & Wealth Planning</h3>
-                <p>Designing robust structures that preserve wealth across generations, including family legacy design and philanthropic planning.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 4. The Alpha Innovation Difference -->
-    <section id="difference">
-        <div class="difference-content">
-            <h2>The Alpha Innovation Difference</h2>
-            <p>We shift your mindset from viewing taxes as a mandatory bill to viewing them as a strategic opportunity for reinvestment. All of our advanced mitigation strategies are supported by coordinated investment management, comprehensive business planning, and ongoing advisory oversight.</p>
-        </div>
-    </section>
-
-    <!-- 5. Interactive Lead Generation -->
-    <section id="interactive-lead" class="bg-light">
-        <div class="lead-box">
-            <h2>Discover How Much You Could Be Keeping</h2>
-            <p>Take our 2-minute Advanced Tax Savings Assessment to uncover potential tax inefficiencies in your current financial structure.</p>
-            <a href="#" class="cta-button secondary-cta">Start My Assessment</a>
-        </div>
-    </section>
-
-    <!-- 6. Footer & Compliance -->
-    <footer>
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h4>Alpha Innovation Partners</h4>
-                <p>A fiduciary wealth management firm dedicated to advanced tax mitigation and intelligent wealth planning.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Contact</h4>
-                <p>Phone: (555) 123-4567</p>
-                <p>Email: info@alphainnovation.com</p>
-            </div>
-            <div class="footer-col">
-                <h4>Compliance & Trust</h4>
-                <ul>
-                    <li><a href="#">Form ADV</a></li>
-                    <li><a href="#">Client Relationship Summary (Form CRS)</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Fiduciary Disclosure</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Alpha Innovation Partners. All Rights Reserved.</p>
-        </div>
+    <!-- Footer -->
+    <footer class="bg-craneDark text-gray-400 py-8 text-center text-sm">
+        <p>&copy; <span id="year"></span> Crane Financial Literacy Network. All rights reserved.</p>
+        <p class="mt-2 text-xs max-w-4xl mx-auto px-4">Investment advisory services offered through Alpha Innovation Partners. This site is designed for educational purposes only and does not constitute legal, tax, or specific financial advice.</p>
     </footer>
 
+    <!-- ========================================== -->
+    <!-- MODAL 1: Category Resources (Lead Magnet)  -->
+    <!-- ========================================== -->
+    <div id="resourceModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-gray-900 bg-opacity-75 backdrop-blur-sm px-4">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl overflow-hidden flex flex-col max-h-[90vh]">
+            <!-- Header -->
+            <div id="modalHeader" class="px-6 py-4 flex justify-between items-center text-white">
+                <h3 id="modalTitle" class="text-2xl font-bold flex items-center gap-3">
+                    <i id="modalIcon" class="fa-solid fa-star"></i>
+                    <span>Title</span>
+                </h3>
+                <button onclick="closeResourceModal()" class="text-white hover:text-gray-200 focus:outline-none text-2xl leading-none">&times;</button>
+            </div>
+            <!-- Body -->
+            <div class="p-6 overflow-y-auto">
+                <p id="modalDesc" class="text-gray-600 mb-6 text-lg"></p>
+                <h4 class="font-bold text-craneDark mb-4 border-b pb-2">Available Free Resources:</h4>
+                <ul id="modalResources" class="space-y-3 mb-8">
+                    <!-- List items injected by JS -->
+                </ul>
+                
+                <div class="bg-blue-50 border border-blue-100 rounded-xl p-6 text-center">
+                    <h5 class="font-bold text-craneDark mb-2">Want to apply these tools to your specific situation?</h5>
+                    <p class="text-sm text-gray-600 mb-4">Get professional, objective advice tailored to your goals.</p>
+                    <button onclick="swapToFiduciaryModal()" class="w-full bg-craneGreen hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg transition-colors shadow-sm flex justify-center items-center gap-2">
+                        <i class="fa-solid fa-user-check"></i> Connect with a Financial Fiduciary
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- MODAL 2: Fiduciary Questionnaire Form      -->
+    <!-- ========================================== -->
+    <div id="fiduciaryModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-gray-900 bg-opacity-75 backdrop-blur-sm px-4">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-xl overflow-hidden flex flex-col max-h-[95vh]">
+            <div class="bg-craneRed px-6 py-4 flex justify-between items-center text-white">
+                <h3 class="text-xl font-bold">Connect with a Fiduciary</h3>
+                <button onclick="closeFiduciaryModal()" class="text-white hover:text-gray-200 focus:outline-none text-2xl leading-none">&times;</button>
+            </div>
+            <div class="p-6 overflow-y-auto">
+                <p class="text-sm text-gray-600 mb-6">Tell us a little about yourself so we can prepare for our conversation. Your information is strictly confidential.</p>
+                
+                <!-- 
+                    FORM ACTION: Uses FormSubmit.co. 
+                    It sends the email to your address. 
+                    To get an SMS, you have two options later:
+                    1. Set up a Zapier webhook with Formsubmit.
+                    2. Add a hidden input like: <input type="hidden" name="_cc" value="9494452323@vtext.com"> (if you use Verizon, or the equivalent AT&T/T-mobile email-to-sms gateway).
+                -->
+                <form action="https://formsubmit.co/crane_avi@aipfinancial.net" method="POST" id="fiduciaryForm" class="space-y-4">
+                    
+                    <!-- FormSubmit Configuration -->
+                    <input type="hidden" name="_subject" value="New Fiduciary Request - CFLN Website">
+                    <input type="hidden" name="_captcha" value="false">
+                    <!-- Replace the value below with your actual live URL once connected so it redirects back here -->
+                    <input type="hidden" name="_next" value="https://cranea.github.io/CFLN/">
+                    <input type="hidden" name="_template" value="table">
+
+                    <div>
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Full Name *</label>
+                        <input class="shadow-sm appearance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-craneRed" id="name" name="Name" type="text" required placeholder="Jane Doe">
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Email Address *</label>
+                            <input class="shadow-sm appearance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-craneRed" id="email" name="Email" type="email" required placeholder="jane@example.com">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="phone">Phone Number *</label>
+                            <input class="shadow-sm appearance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-craneRed" id="phone" name="Phone" type="tel" required placeholder="(949) 555-0123">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="stage">Which stage best describes you?</label>
+                        <select class="shadow-sm border border-gray-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-craneRed bg-white" id="stage" name="Life_Stage">
+                            <option value="Starting Out (Young Adult)">Starting Out (Young Adult)</option>
+                            <option value="Growing Roots (Young Family)">Growing Roots (Young Family)</option>
+                            <option value="Peak Earning (Mid Career)">Peak Earning (Mid Career)</option>
+                            <option value="Enterprise Builder (Business Owner)">Enterprise Builder (Business Owner)</option>
+                            <option value="Nearing the Finish Line (Pre-Retirement)">Nearing the Finish Line (Pre-Retirement)</option>
+                            <option value="Enjoying the Reward (Retired)">Enjoying the Reward (Retired)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="goal">What is your primary financial goal right now?</label>
+                        <textarea class="shadow-sm appearance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-craneRed" id="goal" name="Primary_Goal" rows="3" placeholder="E.g., I want to lower my tax burden, or I need help planning for retirement..."></textarea>
+                    </div>
+
+                    <div class="pt-4">
+                        <button type="submit" class="w-full bg-craneRed hover:bg-red-800 text-white font-bold py-3 px-4 rounded-lg transition-colors shadow-md flex justify-center items-center gap-2">
+                            <i class="fa-solid fa-paper-plane"></i> Send Request securely
+                        </button>
+                        <p class="text-xs text-gray-400 text-center mt-3"><i class="fa-solid fa-lock"></i> 100% Secure & Confidential.</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for Interactivity -->
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Data for the 6 target audience categories
+        const categories = [
+            {
+                id: 'young-adults',
+                title: 'Starting Out',
+                subtitle: 'Young Adults',
+                icon: 'fa-rocket',
+                color: 'bg-blue-500',
+                desc: 'Build a rock-solid foundation for your future by mastering cash flow, tackling early debt, and starting the engine of compound interest.',
+                resources: [
+                    { name: 'CFLN Interactive Budget Spreadsheet', icon: 'fa-file-excel' },
+                    { name: 'Student Loan Repayment Optimizer', icon: 'fa-graduation-cap' },
+                    { name: 'First-Time Investor Blueprint', icon: 'fa-chart-line' }
+                ]
+            },
+            {
+                id: 'young-families',
+                title: 'Growing Roots',
+                subtitle: 'Young Families',
+                icon: 'fa-house-chimney-window',
+                color: 'bg-teal-500',
+                desc: 'Protect what matters most while balancing new expenses, saving for education, and upgrading your lifestyle responsibly.',
+                resources: [
+                    { name: 'Family Expense Tracking Template', icon: 'fa-calculator' },
+                    { name: 'College Savings (529) Projection Tool', icon: 'fa-children' },
+                    { name: 'Life Insurance Needs Checklist', icon: 'fa-shield-heart' }
+                ]
+            },
+            {
+                id: 'mid-career',
+                title: 'Peak Earning Years',
+                subtitle: 'Mid Career',
+                icon: 'fa-briefcase',
+                color: 'bg-indigo-500',
+                desc: 'You are making great money. Now it is time to optimize taxes, maximize employer benefits, and aggressively grow your net worth.',
+                resources: [
+                    { name: 'Tax Bracket Optimization Guide', icon: 'fa-scale-balanced' },
+                    { name: '401(k) & Mega-Backdoor Roth Checklist', icon: 'fa-piggy-bank' },
+                    { name: 'Net Worth Tracking Dashboard', icon: 'fa-map-location-dot' }
+                ]
+            },
+            {
+                id: 'business-owners',
+                title: 'Enterprise Builders',
+                subtitle: 'Business Owners',
+                icon: 'fa-store',
+                color: 'bg-craneRed',
+                desc: 'Separate your personal wealth from your business risk. Discover advanced tax strategies and seamless succession planning.',
+                resources: [
+                    { name: 'Tax-Advantaged Corporate Structure Guide', icon: 'fa-sitemap' },
+                    { name: 'Business Valuation & Succession Planner', icon: 'fa-handshake-angle' },
+                    { name: 'Executive Compensation Optimization', icon: 'fa-chart-pie' }
+                ]
+            },
+            {
+                id: 'pre-retirement',
+                title: 'Nearing the Finish Line',
+                subtitle: 'Pre-Retirement',
+                icon: 'fa-target-arrow',
+                color: 'bg-orange-500',
+                desc: 'The transition from saving to spending is critical. Solidify your timeline, optimize Social Security, and mitigate market risk.',
+                resources: [
+                    { name: 'Retirement Readiness Stress-Test', icon: 'fa-clipboard-check' },
+                    { name: 'Social Security Timing Calculator', icon: 'fa-clock' },
+                    { name: 'Catch-Up Contribution Roadmap', icon: 'fa-forward-fast' }
+                ]
+            },
+            {
+                id: 'retired',
+                title: 'Enjoying the Reward',
+                subtitle: 'Retired',
+                icon: 'fa-umbrella-beach',
+                color: 'bg-craneGreen',
+                desc: 'Ensure your money outlives you. Focus on safe withdrawal rates, efficient wealth transfer, and building a multi-generational legacy.',
+                resources: [
+                    { name: 'Safe Withdrawal Rate (SWR) Calculator', icon: 'fa-money-bill-trend-up' },
+                    { name: 'Estate Planning & Trust Checklist', icon: 'fa-file-signature' },
+                    { name: 'Generational Legacy Guide', icon: 'fa-tree' }
+                ]
+            }
+        ];
+
+        // Render category cards
+        const container = document.getElementById('category-container');
+        categories.forEach(cat => {
+            const card = document.createElement('div');
+            card.className = 'category-card bg-white rounded-2xl shadow-lg p-8 cursor-pointer relative overflow-hidden group';
+            card.onclick = () => openResourceModal(cat.id);
+            
+            card.innerHTML = `
+                <div class="absolute top-0 right-0 w-24 h-24 bg-gray-50 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110 z-0"></div>
+                <div class="relative z-10">
+                    <div class="w-16 h-16 rounded-2xl ${cat.color} text-white flex items-center justify-center text-3xl mb-6 shadow-md">
+                        <i class="fa-solid ${cat.icon}"></i>
+                    </div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-1 block">${cat.subtitle}</span>
+                    <h3 class="text-2xl font-bold text-craneDark mb-3 group-hover:text-craneRed transition-colors">${cat.title}</h3>
+                    <p class="text-gray-600 mb-6 line-clamp-2">${cat.desc}</p>
+                    <div class="text-craneRed font-semibold flex items-center gap-2 group-hover:translate-x-2 transition-transform">
+                        View Resources <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+
+        // Modals Logic
+        const resModal = document.getElementById('resourceModal');
+        const fidModal = document.getElementById('fiduciaryModal');
+        const body = document.body;
+
+        function openResourceModal(categoryId) {
+            const cat = categories.find(c => c.id === categoryId);
+            if(!cat) return;
+
+            document.getElementById('modalHeader').className = `px-6 py-4 flex justify-between items-center text-white ${cat.color}`;
+            document.getElementById('modalTitle').innerHTML = `<i class="fa-solid ${cat.icon}"></i> <span>${cat.title} Resources</span>`;
+            document.getElementById('modalDesc').textContent = cat.desc;
+            
+            const resList = document.getElementById('modalResources');
+            resList.innerHTML = '';
+            cat.resources.forEach(res => {
+                const li = document.createElement('li');
+                li.className = "flex items-center gap-4 p-4 bg-gray-50 rounded-lg border border-gray-100";
+                li.innerHTML = `
+                    <div class="bg-white p-3 rounded-full shadow-sm text-${cat.color.replace('bg-', '')}">
+                        <i class="fa-solid ${res.icon} text-xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <span class="font-semibold text-craneDark">${res.name}</span>
+                        <div class="text-xs text-craneRed mt-1 font-medium cursor-pointer"><i class="fa-solid fa-lock"></i> Requires Fiduciary Access</div>
+                    </div>
+                `;
+                resList.appendChild(li);
+            });
+
+            // Pre-fill the dropdown in the contact form to match the category they clicked
+            const stageSelect = document.getElementById('stage');
+            for(let i=0; i<stageSelect.options.length; i++) {
+                if(stageSelect.options[i].value.includes(cat.subtitle)) {
+                    stageSelect.selectedIndex = i;
+                    break;
+                }
+            }
+
+            resModal.classList.remove('hidden');
+            resModal.classList.add('flex');
+            body.classList.add('hide-scroll');
+        }
+
+        function closeResourceModal() {
+            resModal.classList.add('hidden');
+            resModal.classList.remove('flex');
+            body.classList.remove('hide-scroll');
+        }
+
+        function openFiduciaryModal() {
+            fidModal.classList.remove('hidden');
+            fidModal.classList.add('flex');
+            body.classList.add('hide-scroll');
+        }
+
+        function closeFiduciaryModal() {
+            fidModal.classList.add('hidden');
+            fidModal.classList.remove('flex');
+            // Only remove hide-scroll if the resource modal is also closed
+            if(resModal.classList.contains('hidden')) {
+                body.classList.remove('hide-scroll');
+            }
+        }
+
+        function swapToFiduciaryModal() {
+            closeResourceModal();
+            setTimeout(openFiduciaryModal, 150); // slight delay for smooth transition
+        }
+
+        // Close modals on clicking outside
+        resModal.addEventListener('click', (e) => {
+            if (e.target === resModal) closeResourceModal();
+        });
+        fidModal.addEventListener('click', (e) => {
+            if (e.target === fidModal) closeFiduciaryModal();
+        });
+
+    </script>
 </body>
 </html>
