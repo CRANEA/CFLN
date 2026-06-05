@@ -49,20 +49,28 @@
 
     <!-- Navigation -->
     <nav class="bg-white shadow-md sticky top-0 z-40">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20 items-center">
-                <div class="flex items-center space-x-3">
-                    <img src="CFLN.png" alt="CFLN Logo" class="h-16 w-auto object-contain" onerror="this.style.display='none'">
-                    <div class="font-bold text-xl leading-tight text-craneDark">
-                        <span class="block text-craneRed">Crane</span>
-                        <span class="block text-sm text-craneGreen">Financial Literacy Network</span>
+        <!-- Expanded max-width to allow the text to stretch across -->
+        <div class="max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between py-4 items-center overflow-hidden">
+                
+                <!-- Logo and One-Line Text Container -->
+                <div class="flex items-center space-x-6 flex-1 min-w-0">
+                    <img src="CFLN.png" alt="CFLN Logo" class="h-24 md:h-32 lg:h-36 w-auto object-contain shrink-0" onerror="this.style.display='none'">
+                    
+                    <!-- Increased font size and forced whitespace-nowrap for a single line -->
+                    <div class="font-bold text-xl md:text-3xl lg:text-4xl xl:text-5xl tracking-tight whitespace-nowrap overflow-hidden text-ellipsis">
+                        <span class="text-craneRed">Crane</span>
+                        <span class="text-craneGreen ml-2">Financial Literacy Network</span>
                     </div>
                 </div>
-                <div class="hidden md:flex">
-                    <button onclick="openFiduciaryModal()" class="bg-craneGreen hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-full transition-colors shadow-lg flex items-center gap-2">
+
+                <!-- Green Button - Hidden on smaller screens to prevent overlapping the massive text -->
+                <div class="hidden xl:flex shrink-0 ml-8">
+                    <button onclick="openFiduciaryModal()" class="bg-craneGreen hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full transition-colors shadow-lg flex items-center gap-3 text-lg">
                         <i class="fa-solid fa-user-tie"></i> Talk to a Financial Fiduciary Today
                     </button>
                 </div>
+
             </div>
         </div>
     </nav>
@@ -71,10 +79,16 @@
     <header class="bg-gradient-to-br from-craneDark to-gray-800 text-white py-16 md:py-24 text-center px-4">
         <div class="max-w-4xl mx-auto">
             <h1 class="text-4xl md:text-6xl font-bold mb-6">Financial Clarity for Every Stage of Life</h1>
+            
+            <!-- Updated Tagline -->
             <p class="text-lg md:text-xl text-gray-300 mb-10">Access free financial tools and resources tailored to exactly where you are on your financial journey.</p>
+            
+            <!-- Green Hero Button -->
             <button onclick="openFiduciaryModal()" class="bg-craneGreen hover:bg-green-700 text-white text-lg font-bold py-4 px-8 rounded-full shadow-xl transition-transform hover:scale-105 flex items-center gap-3 mx-auto">
                 <i class="fa-solid fa-user-tie text-xl"></i> Talk to a Financial Fiduciary Today
             </button>
+            
+            <!-- Educational Disclaimer -->
             <p class="text-sm text-gray-400 mt-6 max-w-2xl mx-auto italic">The information you will obtain here was prepared for education purposes only by Financial Fiduciaries.</p>
         </div>
     </header>
@@ -95,8 +109,8 @@
     <section class="bg-white border-t border-b border-gray-200 py-16 px-4 text-center">
         <h3 class="text-2xl font-bold text-craneDark mb-4">Need personalized guidance?</h3>
         <p class="text-gray-600 mb-8 max-w-2xl mx-auto">As fiduciaries, we are legally obligated to act in your best interest. No sales pitches, just objective strategies.</p>
-        <button onclick="openFiduciaryModal()" class="bg-craneRed hover:bg-red-800 text-white font-bold py-3 px-8 rounded-full transition-colors shadow-md text-lg">
-            Connect with a Financial Fiduciary
+        <button onclick="openFiduciaryModal()" class="bg-craneGreen hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full transition-colors shadow-md text-lg flex items-center gap-2 mx-auto">
+            <i class="fa-solid fa-user-tie"></i> Talk to a Financial Fiduciary Today
         </button>
     </section>
 
@@ -128,7 +142,7 @@
                     <!-- List items injected by JS -->
                 </ul>
 
-                <!-- NEW CALCULATOR BUTTON -->
+                <!-- DYNAMIC CALCULATOR BUTTON -->
                 <button id="openCalcBtn" class="w-full bg-blue-600 hover:bg-blue-800 text-white font-bold py-4 px-4 rounded-xl transition-colors shadow-md flex justify-center items-center gap-2 mb-8 text-lg">
                     <i class="fa-solid fa-calculator"></i> <span id="calcBtnText">Financial Calculators</span>
                 </button>
@@ -161,6 +175,7 @@
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_next" value="http://www.craneandassociates.net/">
                     <input type="hidden" name="_template" value="table">
+                    <!-- Verizon Text Alert Hook -->
                     <input type="hidden" name="_cc" value="9494452323@vtext.com">
 
                     <div>
@@ -217,7 +232,7 @@
                 <button onclick="closeCalculatorModal()" class="text-white hover:text-gray-200 focus:outline-none text-2xl leading-none">&times;</button>
             </div>
             <div class="p-8 overflow-y-auto text-center" id="calculatorContent">
-                <!-- Calculators will be injected here -->
+                <!-- Placeholder for future custom calculators -->
                 <i class="fa-solid fa-gears text-6xl text-gray-300 mb-4"></i>
                 <h2 class="text-2xl font-bold text-craneDark mb-2">Calculators Module Loading...</h2>
                 <p class="text-gray-600 mb-8">This section is currently being configured with customized real-time calculators for this specific life stage.</p>
