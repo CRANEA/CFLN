@@ -6,7 +6,7 @@
     <title>Crane Financial Literacy Network | CFLN</title>
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -21,8 +21,8 @@
                         sans: ['Poppins', 'sans-serif'],
                     },
                     colors: {
-                        craneRed: '#C8102E',    // Matches the pomegranate
-                        craneGreen: '#4F7942',  // Matches the leaf text
+                        craneRed: '#C8102E',    
+                        craneGreen: '#4F7942',  
                         craneDark: '#1A202C',
                         craneLight: '#F7FAFC',
                     }
@@ -32,7 +32,6 @@
     </script>
 
     <style>
-        /* Smooth scrolling and modal transitions */
         html { scroll-behavior: smooth; }
         .modal-enter { opacity: 0; transform: scale(0.95); }
         .modal-enter-active { opacity: 1; transform: scale(1); transition: opacity 0.3s ease-out, transform 0.3s ease-out; }
@@ -40,31 +39,106 @@
         .modal-leave-active { opacity: 0; transform: scale(0.95); transition: opacity 0.2s ease-in, transform 0.2s ease-in; }
         .hide-scroll { overflow: hidden; }
         
-        /* Card Hover Effects */
         .category-card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); border-color: #C8102E; }
         .category-card { transition: all 0.3s ease; border: 2px solid transparent; }
+        
+        .spreadsheet-container {
+            width: 100%;
+            overflow-x: auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .spreadsheet-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            min-width: 100%;
+        }
+        .spreadsheet-table th, .spreadsheet-table td {
+            border: 1px solid #e2e8f0;
+            padding: 6px 12px;
+            font-size: 0.85rem;
+        }
+        .spreadsheet-table th {
+            background-color: #f8fafc;
+            font-weight: 600;
+            color: #475569;
+        }
+        .spreadsheet-table input[type="number"] {
+            width: 100%;
+            border: none;
+            outline: none;
+            background: transparent;
+            text-align: right;
+            font-family: monospace;
+            padding: 4px;
+            color: #1e293b;
+        }
+        .spreadsheet-table input[type="number"]:focus {
+            background-color: #f1f5f9;
+            border-bottom: 2px solid #C8102E;
+        }
+        .spreadsheet-total-row {
+            font-weight: bold;
+            background-color: #f1f5f9;
+        }
+        .spreadsheet-total-val {
+            text-align: right;
+            font-family: monospace;
+            font-size: 0.95rem;
+        }
+        /* Chrome, Safari, Edge, Opera - Hide arrows on number inputs */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+
+        @media print {
+            body * { visibility: hidden; }
+            #calculatorModal, #calculatorModal * { visibility: visible; }
+            #calculatorModal {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                background: white !important;
+                display: block !important;
+                padding: 0 !important;
+            }
+            .hide-on-print { display: none !important; }
+            /* Adjust layout for paper */
+            .grid { display: block !important; }
+            .grid > div { margin-bottom: 20px; page-break-inside: avoid; }
+            .spreadsheet-container { box-shadow: none !important; border: 1px solid #ccc !important; }
+            input[type="number"] { border: none !important; border-bottom: 1px solid #ccc !important; padding: 0 !important; }
+            /* Invert dark summary box for printers to save ink */
+            .bg-gray-800 { background-color: #f8fafc !important; color: #1e293b !important; border: 2px solid #ccc !important; }
+            .text-white, .text-gray-300 { color: #1e293b !important; }
+            .border-gray-600 { border-color: #ccc !important; }
+        }
     </style>
 </head>
 <body class="bg-craneLight text-gray-800 font-sans antialiased">
 
-    <!-- Navigation (Reduced vertical padding) -->
     <nav class="bg-white shadow-md sticky top-0 z-40">
-        <!-- Expanded max-width to allow the text to stretch across -->
         <div class="max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between py-2 items-center">
                 
                 <!-- Logo and One-Line Text Container -->
                 <div class="flex items-center space-x-4 flex-1 min-w-0">
                     <img src="CFLN.png" alt="CFLN Logo" class="h-20 md:h-28 lg:h-32 w-auto object-contain shrink-0" onerror="this.style.display='none'">
-                    
-                    <!-- Adjusted font size and removed ellipsis to fit allocated space -->
                     <div class="font-bold text-lg md:text-xl lg:text-3xl xl:text-4xl tracking-tight whitespace-nowrap shrink">
                         <span class="text-craneRed">Crane</span>
                         <span class="text-craneGreen ml-1">Financial Literacy Network</span>
                     </div>
                 </div>
 
-                <!-- Green Button - Made smaller -->
+                <!-- Green Button -->
                 <div class="hidden xl:flex shrink-0 ml-4">
                     <button onclick="openFiduciaryModal()" class="bg-craneGreen hover:bg-green-700 text-white font-bold py-2 px-5 rounded-full transition-colors shadow-md flex items-center gap-2 text-sm md:text-base">
                         <i class="fa-solid fa-user-tie"></i> Talk to a Financial Fiduciary Today
@@ -75,7 +149,6 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <header class="bg-gradient-to-r from-blue-500 via-teal-400 to-green-400 text-white py-8 md:py-12 text-center px-4">
         <div class="max-w-4xl mx-auto">
             <h1 class="text-4xl md:text-5xl font-bold mb-4 drop-shadow-md">
@@ -83,15 +156,14 @@
                 <span class="block">for Every Stage of Life</span>
             </h1>
             
-            <!-- Updated Tagline -->
+            <!-- Tagline -->
             <p class="text-lg md:text-xl text-white font-medium mb-6 drop-shadow-sm">Access free financial tools and resources tailored to exactly where you are on your financial journey.</p>
             
-            <!-- Educational Disclaimer (Larger Font) -->
+            <!-- Educational Disclaimer -->
             <p class="text-base md:text-lg text-gray-100 max-w-3xl mx-auto italic drop-shadow-sm">The information you will obtain here was prepared for education purposes only by Financial Fiduciaries.</p>
         </div>
     </header>
 
-    <!-- Interactive Categories Grid (Reduced top padding) -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <div class="text-center mb-8">
             <h2 class="text-3xl font-bold text-craneDark mb-2">Where are you on your journey?</h2>
@@ -103,7 +175,6 @@
         </div>
     </main>
 
-    <!-- CTA Banner (Updated with new text) -->
     <section class="bg-white border-t border-b border-gray-200 py-16 px-4 text-center">
         <h3 class="text-2xl font-bold text-craneDark mb-4">Need personalized guidance?</h3>
         <p class="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">
@@ -117,12 +188,8 @@
         <p class="mt-2 text-xs max-w-4xl mx-auto px-4">Investment advisory services offered through Alpha Innovation Partners. This site is designed for educational purposes only and does not constitute legal, tax, or specific financial advice.</p>
     </footer>
 
-    <!-- ========================================== -->
-    <!-- MODAL 1: Category Resources (Lead Magnet)  -->
-    <!-- ========================================== -->
     <div id="resourceModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-gray-900 bg-opacity-75 backdrop-blur-sm px-4">
         <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl overflow-hidden flex flex-col max-h-[90vh]">
-            <!-- Header -->
             <div id="modalHeader" class="px-6 py-4 flex justify-between items-center text-white">
                 <h3 id="modalTitle" class="text-2xl font-bold flex items-center gap-3">
                     <i id="modalIcon" class="fa-solid fa-star"></i>
@@ -130,21 +197,20 @@
                 </h3>
                 <button onclick="closeResourceModal()" class="text-white hover:text-gray-200 focus:outline-none text-2xl leading-none">&times;</button>
             </div>
-            <!-- Body -->
             <div class="p-6 overflow-y-auto">
                 <p id="modalDesc" class="text-gray-600 mb-6 text-lg"></p>
                 
-                <h4 class="font-bold text-craneDark mb-4 border-b pb-2">Available Free Resources:</h4>
-                <ul id="modalResources" class="space-y-3 mb-6">
+                <!-- Dynamic Interactive Tools Button -->
+                <div id="toolsButtonContainer" class="mb-8">
+                    <!-- Injected by JS -->
+                </div>
+
+                <h4 class="font-bold text-craneDark mb-4 border-b pb-2">Available PDF Resources:</h4>
+                <ul id="modalResources" class="space-y-3 mb-8">
                     <!-- List items injected by JS -->
                 </ul>
-
-                <!-- DYNAMIC CALCULATOR BUTTON -->
-                <button id="openCalcBtn" class="w-full bg-blue-600 hover:bg-blue-800 text-white font-bold py-4 px-4 rounded-xl transition-colors shadow-md flex justify-center items-center gap-2 mb-8 text-lg">
-                    <i class="fa-solid fa-calculator"></i> <span id="calcBtnText">Financial Calculators</span>
-                </button>
                 
-                <div class="bg-craneLight border border-gray-200 rounded-xl p-6 text-center">
+                <div class="bg-blue-50 border border-blue-100 rounded-xl p-6 text-center">
                     <h5 class="font-bold text-craneDark mb-2">Want to apply these tools to your specific situation?</h5>
                     <p class="text-sm text-gray-600 mb-4">Get professional, objective advice tailored to your goals.</p>
                     <button onclick="swapToFiduciaryModal()" class="w-full bg-craneGreen hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg transition-colors shadow-sm flex justify-center items-center gap-2">
@@ -155,9 +221,6 @@
         </div>
     </div>
 
-    <!-- ========================================== -->
-    <!-- MODAL 2: Fiduciary Questionnaire Form      -->
-    <!-- ========================================== -->
     <div id="fiduciaryModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-gray-900 bg-opacity-75 backdrop-blur-sm px-4">
         <div class="bg-white rounded-2xl shadow-2xl w-full max-w-xl overflow-hidden flex flex-col max-h-[95vh]">
             <div class="bg-craneRed px-6 py-4 flex justify-between items-center text-white">
@@ -172,7 +235,7 @@
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_next" value="http://www.craneandassociates.net/">
                     <input type="hidden" name="_template" value="table">
-                    <!-- Verizon Text Alert Hook -->
+                    <!-- Verizon Text Alert -->
                     <input type="hidden" name="_cc" value="9494452323@vtext.com">
 
                     <div>
@@ -219,28 +282,32 @@
         </div>
     </div>
 
-    <!-- ========================================== -->
-    <!-- MODAL 3: Interactive Calculators Shell     -->
-    <!-- ========================================== -->
     <div id="calculatorModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-gray-900 bg-opacity-75 backdrop-blur-sm px-4">
-        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-4xl overflow-hidden flex flex-col max-h-[95vh]">
-            <div class="bg-blue-600 px-6 py-4 flex justify-between items-center text-white">
-                <h3 id="calcModalTitle" class="text-xl font-bold flex items-center gap-2"><i class="fa-solid fa-calculator"></i> Financial Calculators</h3>
+        <!-- Made this modal much wider for the spreadsheet -->
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-6xl overflow-hidden flex flex-col max-h-[95vh]">
+            <div class="bg-blue-600 px-6 py-4 flex justify-between items-center text-white hide-on-print">
+                <h3 id="calcModalTitle" class="text-xl font-bold flex items-center gap-2"><i class="fa-solid fa-calculator"></i> Interactive Tools</h3>
                 <button onclick="closeCalculatorModal()" class="text-white hover:text-gray-200 focus:outline-none text-2xl leading-none">&times;</button>
             </div>
-            <div class="p-8 overflow-y-auto text-center" id="calculatorContent">
-                <!-- Placeholder for future custom calculators -->
-                <i class="fa-solid fa-gears text-6xl text-gray-300 mb-4"></i>
-                <h2 class="text-2xl font-bold text-craneDark mb-2">Calculators Module Loading...</h2>
-                <p class="text-gray-600 mb-8">This section is currently being configured with customized real-time calculators for this specific life stage.</p>
-                <button onclick="closeCalculatorModal()" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-6 rounded-full transition-colors">
-                    Go Back
-                </button>
+            
+            <div class="p-6 md:p-8 overflow-y-auto bg-gray-50" id="calculatorContent">
+                
+                <!-- Dynamic Content Area -->
+                <div id="calcDynamicArea">
+                    <!-- Calculator HTML injected here -->
+                </div>
+
+                <div class="mt-8 bg-white border border-gray-200 shadow-sm p-6 text-center rounded-xl hide-on-print">
+                    <h5 class="font-bold text-craneDark mb-2">Have questions about your numbers?</h5>
+                    <p class="text-sm text-gray-600 mb-4">Let's review your worksheet and map out your financial trajectory together.</p>
+                    <button onclick="swapToFiduciaryFromCalc()" class="bg-craneGreen hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg transition-colors shadow-sm inline-flex items-center gap-2">
+                        <i class="fa-solid fa-comments"></i> Talk to a Fiduciary
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- JavaScript for Interactivity -->
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -253,8 +320,8 @@
                 icon: 'fa-rocket',
                 color: 'bg-blue-500',
                 desc: 'Build a rock-solid foundation for your future by mastering cash flow, tackling early debt, and starting the engine of compound interest.',
+                tools: ['budget'],
                 resources: [
-                    { name: 'CFLN Interactive Budget Spreadsheet', icon: 'fa-file-excel' },
                     { name: 'Student Loan Repayment Optimizer', icon: 'fa-graduation-cap' },
                     { name: 'First-Time Investor Blueprint', icon: 'fa-chart-line' }
                 ]
@@ -266,9 +333,9 @@
                 icon: 'fa-house-chimney-window',
                 color: 'bg-teal-500',
                 desc: 'Protect what matters most while balancing new expenses, saving for education, and upgrading your lifestyle responsibly.',
+                tools: ['budget'],
                 resources: [
-                    { name: 'Family Expense Tracking Template', icon: 'fa-calculator' },
-                    { name: 'College Savings (529) Projection Tool', icon: 'fa-children' },
+                    { name: 'College Savings (529) Projection', icon: 'fa-children' },
                     { name: 'Life Insurance Needs Checklist', icon: 'fa-shield-heart' }
                 ]
             },
@@ -279,10 +346,10 @@
                 icon: 'fa-briefcase',
                 color: 'bg-indigo-500',
                 desc: 'You are making great money. Now it is time to optimize taxes, maximize employer benefits, and aggressively grow your net worth.',
+                tools: ['budget'],
                 resources: [
                     { name: 'Tax Bracket Optimization Guide', icon: 'fa-scale-balanced' },
-                    { name: '401(k) & Mega-Backdoor Roth Checklist', icon: 'fa-piggy-bank' },
-                    { name: 'Net Worth Tracking Dashboard', icon: 'fa-map-location-dot' }
+                    { name: '401(k) & Mega-Backdoor Roth Checklist', icon: 'fa-piggy-bank' }
                 ]
             },
             {
@@ -292,6 +359,7 @@
                 icon: 'fa-store',
                 color: 'bg-craneRed',
                 desc: 'Separate your personal wealth from your business risk. Discover advanced tax strategies and seamless succession planning.',
+                tools: [], // No budget tool for Business Owners per request
                 resources: [
                     { name: 'Tax-Advantaged Corporate Structure Guide', icon: 'fa-sitemap' },
                     { name: 'Business Valuation & Succession Planner', icon: 'fa-handshake-angle' },
@@ -302,12 +370,12 @@
                 id: 'pre-retirement',
                 title: 'Nearing the Finish Line',
                 subtitle: 'Pre-Retirement',
-                icon: 'fa-bullseye', // Changed to standard bullseye for better compatibility
+                icon: 'fa-bullseye', // Updated to target icon
                 color: 'bg-orange-500',
                 desc: 'The transition from saving to spending is critical. Solidify your timeline, optimize Social Security, and mitigate market risk.',
+                tools: ['budget'],
                 resources: [
                     { name: 'Retirement Readiness Stress-Test', icon: 'fa-clipboard-check' },
-                    { name: 'Social Security Timing Calculator', icon: 'fa-clock' },
                     { name: 'Catch-Up Contribution Roadmap', icon: 'fa-forward-fast' }
                 ]
             },
@@ -318,22 +386,21 @@
                 icon: 'fa-umbrella-beach',
                 color: 'bg-craneGreen',
                 desc: 'Ensure your money outlives you. Focus on safe withdrawal rates, efficient wealth transfer, and building a multi-generational legacy.',
+                tools: ['budget'],
                 resources: [
-                    { name: 'Safe Withdrawal Rate (SWR) Calculator', icon: 'fa-money-bill-trend-up' },
-                    { name: 'Estate Planning & Trust Checklist', icon: 'fa-file-signature' },
-                    { name: 'Generational Legacy Guide', icon: 'fa-tree' }
+                    { name: 'Safe Withdrawal Rate (SWR) Guide', icon: 'fa-money-bill-trend-up' },
+                    { name: 'Estate Planning & Trust Checklist', icon: 'fa-file-signature' }
                 ]
             }
         ];
 
-        // Render category cards
+        // Render Cards
         const container = document.getElementById('category-container');
         categories.forEach(cat => {
             const card = document.createElement('div');
             card.className = 'category-card bg-white rounded-2xl shadow-lg p-8 cursor-pointer relative overflow-hidden group';
             card.onclick = () => openResourceModal(cat.id);
             
-            // Re-structured for larger/darker subtitles, full descriptions, and an alternative pre-retirement icon
             card.innerHTML = `
                 <div class="absolute top-0 right-0 w-24 h-24 bg-gray-50 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110 z-0"></div>
                 <div class="relative z-10">
@@ -351,7 +418,6 @@
             container.appendChild(card);
         });
 
-        // Modals Logic
         const resModal = document.getElementById('resourceModal');
         const fidModal = document.getElementById('fiduciaryModal');
         const calcModal = document.getElementById('calculatorModal');
@@ -365,10 +431,19 @@
             document.getElementById('modalTitle').innerHTML = `<i class="fa-solid ${cat.icon}"></i> <span>${cat.title} Resources</span>`;
             document.getElementById('modalDesc').textContent = cat.desc;
             
-            // Set dynamic text and function for the calculator button
-            document.getElementById('calcBtnText').textContent = `Financial Calculators for ${cat.subtitle}`;
-            document.getElementById('openCalcBtn').onclick = () => openCalculatorModal(cat);
-            
+            // Check if tools exist for this category, if so, show the button
+            const toolsBtnContainer = document.getElementById('toolsButtonContainer');
+            if(cat.tools && cat.tools.length > 0) {
+                toolsBtnContainer.innerHTML = `
+                    <button onclick="openCalculatorModal('${categoryId}')" class="w-full bg-blue-600 hover:bg-blue-800 text-white font-bold py-4 px-4 rounded-xl transition-colors shadow-md flex justify-center items-center gap-2 text-lg border-2 border-blue-400 border-opacity-50">
+                        <i class="fa-solid fa-calculator text-2xl"></i> Open Interactive Tools for ${cat.subtitle}
+                    </button>
+                `;
+            } else {
+                 toolsBtnContainer.innerHTML = '';
+            }
+
+            // Populate PDF Resources
             const resList = document.getElementById('modalResources');
             resList.innerHTML = '';
             cat.resources.forEach(res => {
@@ -386,6 +461,7 @@
                 resList.appendChild(li);
             });
 
+            // Pre-fill Fiduciary form dropdown
             const stageSelect = document.getElementById('stage');
             for(let i=0; i<stageSelect.options.length; i++) {
                 if(stageSelect.options[i].value.includes(cat.subtitle)) {
@@ -421,20 +497,12 @@
 
         function swapToFiduciaryModal() {
             closeResourceModal();
+            setTimeout(openFiduciaryModal, 150); 
+        }
+        
+        function swapToFiduciaryFromCalc() {
             closeCalculatorModal();
             setTimeout(openFiduciaryModal, 150);
-        }
-
-        // Calculator Modal Logic
-        function openCalculatorModal(cat) {
-            closeResourceModal();
-            document.getElementById('calcModalTitle').innerHTML = `<i class="fa-solid fa-calculator"></i> Calculators: ${cat.subtitle}`;
-            
-            setTimeout(() => {
-                calcModal.classList.remove('hidden');
-                calcModal.classList.add('flex');
-                body.classList.add('hide-scroll');
-            }, 150);
         }
 
         function closeCalculatorModal() {
@@ -445,7 +513,251 @@
             }
         }
 
-        // Close modals on clicking outside
+        function openCalculatorModal(categoryId) {
+            closeResourceModal();
+            const cat = categories.find(c => c.id === categoryId);
+            document.getElementById('calcModalTitle').innerHTML = `<i class="fa-solid fa-wrench"></i> Interactive Tools: ${cat.subtitle}`;
+            
+            const dynamicArea = document.getElementById('calcDynamicArea');
+            dynamicArea.innerHTML = ''; 
+            
+            if(cat.tools.includes('budget')) {
+                dynamicArea.innerHTML += generateBudgetSpreadsheetHTML();
+                setTimeout(attachBudgetListeners, 100); 
+            }
+
+            setTimeout(() => {
+                calcModal.classList.remove('hidden');
+                calcModal.classList.add('flex');
+                body.classList.add('hide-scroll');
+            }, 150);
+        }
+        
+        function generateBudgetSpreadsheetHTML() {
+            return `
+                <div class="bg-white rounded-xl shadow-md p-6 md:p-8">
+                    <div class="flex justify-between items-start mb-6 border-b pb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold text-craneDark flex items-center gap-2"><i class="fa-solid fa-file-invoice-dollar text-green-600"></i> Personal Budget Worksheet</h3>
+                            <p class="text-gray-500 mt-1 hide-on-print">Enter your estimated figures below. Totals will calculate automatically. Data is never saved to our servers.</p>
+                        </div>
+                        <button onclick="window.print()" class="hide-on-print bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-lg transition-colors flex items-center gap-2 text-sm shadow-sm shrink-0 h-10">
+                            <i class="fa-solid fa-print"></i> Print
+                        </button>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        
+                        <!-- Left Column: Income & Living -->
+                        <div>
+                            <!-- Income Table -->
+                            <div class="spreadsheet-container mb-6">
+                                <table class="spreadsheet-table">
+                                    <thead>
+                                        <tr><th colspan="2" class="text-left bg-green-50 text-green-800"><i class="fa-solid fa-money-bill-wave mr-2"></i> Monthly Income</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>Take-Home Income #1</td><td><input type="number" class="inc-input" placeholder="0.00"></td></tr>
+                                        <tr><td>Take-Home Income #2</td><td><input type="number" class="inc-input" placeholder="0.00"></td></tr>
+                                        <tr><td>Bonuses / Other</td><td><input type="number" class="inc-input" placeholder="0.00"></td></tr>
+                                        <tr><td>Average Tax Refund</td><td><input type="number" class="inc-input" placeholder="0.00"></td></tr>
+                                        <tr class="spreadsheet-total-row">
+                                            <td>Total Monthly Income</td>
+                                            <td class="spreadsheet-total-val text-green-700" id="total-income">$0.00</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- Living Expenses Table -->
+                            <div class="spreadsheet-container mb-6">
+                                <table class="spreadsheet-table">
+                                    <thead>
+                                        <tr><th colspan="2" class="text-left bg-blue-50 text-blue-800"><i class="fa-solid fa-house mr-2"></i> Monthly Living Expenses</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>Mortgage or Rent</td><td><input type="number" class="exp-living-input" placeholder="0.00"></td></tr>
+                                        <tr><td>2nd Mortgage or Rent</td><td><input type="number" class="exp-living-input" placeholder="0.00"></td></tr>
+                                        <tr><td>Office Rent</td><td><input type="number" class="exp-living-input" placeholder="0.00"></td></tr>
+                                        <tr><td>Electricity</td><td><input type="number" class="exp-living-input" placeholder="0.00"></td></tr>
+                                        <tr><td>Gas</td><td><input type="number" class="exp-living-input" placeholder="0.00"></td></tr>
+                                        <tr><td>Water & Sewer</td><td><input type="number" class="exp-living-input" placeholder="0.00"></td></tr>
+                                        <tr><td>Garbage/Recycling</td><td><input type="number" class="exp-living-input" placeholder="0.00"></td></tr>
+                                        <tr><td>Home/Cell Phone</td><td><input type="number" class="exp-living-input" placeholder="0.00"></td></tr>
+                                        <tr><td>Cable/Internet</td><td><input type="number" class="exp-living-input" placeholder="0.00"></td></tr>
+                                        <tr><td>Alarm System</td><td><input type="number" class="exp-living-input" placeholder="0.00"></td></tr>
+                                        <tr><td>Maintenance</td><td><input type="number" class="exp-living-input" placeholder="0.00"></td></tr>
+                                        <tr><td>Groceries/Supplies</td><td><input type="number" class="exp-living-input" placeholder="0.00"></td></tr>
+                                        <tr><td>Child Care</td><td><input type="number" class="exp-living-input" placeholder="0.00"></td></tr>
+                                        <tr><td>Medical Expenses</td><td><input type="number" class="exp-living-input" placeholder="0.00"></td></tr>
+                                        <tr><td>Other Living Expenses</td><td><input type="number" class="exp-living-input" placeholder="0.00"></td></tr>
+                                        <tr class="spreadsheet-total-row">
+                                            <td>Total Living Expenses</td>
+                                            <td class="spreadsheet-total-val text-red-600" id="total-living">$0.00</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Right Column: Transp, Insur, Loans, Other, Summary -->
+                        <div>
+                            <!-- Transportation -->
+                            <div class="spreadsheet-container mb-6">
+                                <table class="spreadsheet-table">
+                                    <thead>
+                                        <tr><th colspan="2" class="text-left bg-orange-50 text-orange-800"><i class="fa-solid fa-car mr-2"></i> Monthly Transportation Expenses</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>Bus/Train/Taxi/Tolls/Licensing/Fuel/Maintenance</td><td><input type="number" class="exp-transp-input" placeholder="0.00"></td></tr>
+                                        <tr><td>Other Transportation</td><td><input type="number" class="exp-transp-input" placeholder="0.00"></td></tr>
+                                        <tr class="spreadsheet-total-row">
+                                            <td>Total Transportation</td>
+                                            <td class="spreadsheet-total-val text-red-600" id="total-transp">$0.00</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- Insurance -->
+                            <div class="spreadsheet-container mb-6">
+                                <table class="spreadsheet-table">
+                                    <thead>
+                                        <tr><th colspan="2" class="text-left bg-purple-50 text-purple-800"><i class="fa-solid fa-shield-halved mr-2"></i> Monthly Insurance Expenses</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>Home/Health/Life/Auto/Disability/LTC</td><td><input type="number" class="exp-ins-input" placeholder="0.00"></td></tr>
+                                        <tr class="spreadsheet-total-row">
+                                            <td>Total Insurance</td>
+                                            <td class="spreadsheet-total-val text-red-600" id="total-ins">$0.00</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <!-- Loans -->
+                            <div class="spreadsheet-container mb-6">
+                                <table class="spreadsheet-table">
+                                    <thead>
+                                        <tr><th colspan="2" class="text-left bg-red-50 text-red-800"><i class="fa-solid fa-building-columns mr-2"></i> Monthly Loan Payments</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>Home Equity / School / Auto / Credit Cards</td><td><input type="number" class="exp-loan-input" placeholder="0.00"></td></tr>
+                                        <tr class="spreadsheet-total-row">
+                                            <td>Total Loans</td>
+                                            <td class="spreadsheet-total-val text-red-600" id="total-loan">$0.00</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <!-- Other -->
+                            <div class="spreadsheet-container mb-6">
+                                <table class="spreadsheet-table">
+                                    <thead>
+                                        <tr><th colspan="2" class="text-left bg-gray-100 text-gray-800"><i class="fa-solid fa-cart-shopping mr-2"></i> Other Monthly Expenses</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>Dining / Entertainment / Shopping / Fitness</td><td><input type="number" class="exp-other-input" placeholder="0.00"></td></tr>
+                                        <tr class="spreadsheet-total-row">
+                                            <td>Total Other Expenses</td>
+                                            <td class="spreadsheet-total-val text-red-600" id="total-other">$0.00</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- Master Summary -->
+                            <div class="bg-gray-800 rounded-xl p-6 text-white shadow-lg mt-8 border-t-4 border-craneGreen">
+                                <h4 class="text-lg font-bold mb-4 border-b border-gray-600 pb-2 uppercase tracking-wider text-gray-300">Total Summary</h4>
+                                <div class="flex justify-between mb-2"><span>Total Income:</span> <span id="summary-inc" class="font-mono text-green-400">$0.00</span></div>
+                                <div class="flex justify-between mb-2"><span>(Total Monthly Living Expenses)</span> <span id="summary-living" class="font-mono text-red-400">$0.00</span></div>
+                                <div class="flex justify-between mb-2"><span>(Total Monthly Transp. Expenses)</span> <span id="summary-transp" class="font-mono text-red-400">$0.00</span></div>
+                                <div class="flex justify-between mb-2"><span>(Total Monthly Insurance Expenses)</span> <span id="summary-ins" class="font-mono text-red-400">$0.00</span></div>
+                                <div class="flex justify-between mb-2"><span>(Total Monthly Loan Expenses)</span> <span id="summary-loan" class="font-mono text-red-400">$0.00</span></div>
+                                <div class="flex justify-between mb-2"><span>(Total Other Monthly Expenses)</span> <span id="summary-other" class="font-mono text-red-400">$0.00</span></div>
+                                
+                                <div class="flex justify-between mt-4 pt-4 border-t border-gray-600 font-bold text-2xl">
+                                    <span>Net Cash Flow:</span> <span id="summary-net" class="font-mono">$0.00</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            `;
+        }
+
+        function attachBudgetListeners() {
+            // Grab all the input groups
+            const incInputs = document.querySelectorAll('.inc-input');
+            const livingInputs = document.querySelectorAll('.exp-living-input');
+            const transpInputs = document.querySelectorAll('.exp-transp-input');
+            const insInputs = document.querySelectorAll('.exp-ins-input');
+            const loanInputs = document.querySelectorAll('.exp-loan-input');
+            const otherInputs = document.querySelectorAll('.exp-other-input');
+
+            function calculateTotals() {
+                // Sum Income
+                let totalInc = 0;
+                incInputs.forEach(input => totalInc += parseFloat(input.value) || 0);
+                document.getElementById('total-income').innerText = '$' + totalInc.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+
+                // Sum Living
+                let totalLiving = 0;
+                livingInputs.forEach(input => totalLiving += parseFloat(input.value) || 0);
+                document.getElementById('total-living').innerText = '$' + totalLiving.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                
+                // Sum Transp
+                let totalTransp = 0;
+                transpInputs.forEach(input => totalTransp += parseFloat(input.value) || 0);
+                document.getElementById('total-transp').innerText = '$' + totalTransp.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+
+                // Sum Insurance
+                let totalIns = 0;
+                insInputs.forEach(input => totalIns += parseFloat(input.value) || 0);
+                document.getElementById('total-ins').innerText = '$' + totalIns.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                
+                // Sum Loans
+                let totalLoan = 0;
+                loanInputs.forEach(input => totalLoan += parseFloat(input.value) || 0);
+                document.getElementById('total-loan').innerText = '$' + totalLoan.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                
+                // Sum Other
+                let totalOther = 0;
+                otherInputs.forEach(input => totalOther += parseFloat(input.value) || 0);
+                document.getElementById('total-other').innerText = '$' + totalOther.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+
+                // Master Summary Mapping
+                const grandTotalExp = totalLiving + totalTransp + totalIns + totalLoan + totalOther;
+                const netFlow = totalInc - grandTotalExp;
+
+                document.getElementById('summary-inc').innerText = '$' + totalInc.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                document.getElementById('summary-living').innerText = '$' + totalLiving.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                document.getElementById('summary-transp').innerText = '$' + totalTransp.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                document.getElementById('summary-ins').innerText = '$' + totalIns.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                document.getElementById('summary-loan').innerText = '$' + totalLoan.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                document.getElementById('summary-other').innerText = '$' + totalOther.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                
+                // Net Cash Flow color formatting
+                const netEl = document.getElementById('summary-net');
+                netEl.innerText = '$' + netFlow.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                
+                if(netFlow >= 0) {
+                    netEl.className = "font-mono text-green-400";
+                } else {
+                    netEl.className = "font-mono text-red-400";
+                }
+            }
+
+            // Attach the calculate event to every single number input on the spreadsheet
+            const allInputs = document.querySelectorAll('.spreadsheet-table input[type="number"]');
+            allInputs.forEach(input => {
+                input.addEventListener('input', calculateTotals);
+            });
+        }
+
+        // Close modals on clicking outside the white box
         resModal.addEventListener('click', (e) => {
             if (e.target === resModal) closeResourceModal();
         });
