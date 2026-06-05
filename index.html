@@ -43,6 +43,12 @@
         /* Card Hover Effects */
         .category-card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); border-color: #C8102E; }
         .category-card { transition: all 0.3s ease; border: 2px solid transparent; }
+
+        /* Custom Modern Range Sliders */
+        input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; }
+        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 20px; width: 20px; border-radius: 50%; background: #C8102E; cursor: pointer; margin-top: -8px; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
+        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 6px; cursor: pointer; background: #e2e8f0; border-radius: 3px; }
+        input[type=range]:focus { outline: none; }
     </style>
 </head>
 <body class="bg-craneLight text-gray-800 font-sans antialiased">
@@ -89,6 +95,114 @@
             <!-- Cards will be injected here by JavaScript -->
         </div>
     </main>
+
+    <!-- Interactive Calculators Section -->
+    <section id="calculators" class="bg-gray-50 py-16 px-4 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-craneDark mb-4">Interactive Financial Tools</h2>
+                <p class="text-gray-600">Stop guessing. Use our real-time calculators to map out your financial trajectory.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                
+                <!-- Calculator 1: Wealth Builder -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-craneGreen">
+                    <div class="flex items-center gap-3 mb-6 border-b pb-4">
+                        <div class="bg-green-100 p-3 rounded-lg text-craneGreen"><i class="fa-solid fa-chart-line text-xl"></i></div>
+                        <h3 class="text-2xl font-bold text-craneDark">Wealth Builder</h3>
+                    </div>
+                    
+                    <div class="space-y-5">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Initial Investment</label>
+                            <div class="relative">
+                                <span class="absolute left-3 top-2 text-gray-500">$</span>
+                                <input type="number" id="ret-principal" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-craneGreen outline-none" value="10000" oninput="calcRetirement()">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Monthly Contribution</label>
+                            <div class="relative">
+                                <span class="absolute left-3 top-2 text-gray-500">$</span>
+                                <input type="number" id="ret-monthly" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-craneGreen outline-none" value="500" oninput="calcRetirement()">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <label class="block text-sm font-semibold text-gray-700">Years to Grow</label>
+                                <span id="ret-years-display" class="font-bold text-craneGreen">20</span>
+                            </div>
+                            <input type="range" id="ret-years" min="1" max="50" value="20" oninput="calcRetirement()">
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <label class="block text-sm font-semibold text-gray-700">Estimated Annual Return</label>
+                                <span id="ret-rate-display" class="font-bold text-craneGreen">7%</span>
+                            </div>
+                            <input type="range" id="ret-rate" min="1" max="15" step="0.5" value="7" oninput="calcRetirement()">
+                        </div>
+                    </div>
+
+                    <div class="mt-8 bg-craneDark text-white rounded-xl p-6 text-center">
+                        <p class="text-sm text-gray-300 mb-1">Estimated Future Value</p>
+                        <p id="ret-result" class="text-4xl font-bold text-craneGreen tracking-tight">$298,072</p>
+                    </div>
+                </div>
+
+                <!-- Calculator 2: Mortgage Estimator -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-blue-500">
+                    <div class="flex items-center gap-3 mb-6 border-b pb-4">
+                        <div class="bg-blue-100 p-3 rounded-lg text-blue-600"><i class="fa-solid fa-house text-xl"></i></div>
+                        <h3 class="text-2xl font-bold text-craneDark">Mortgage Estimator</h3>
+                    </div>
+                    
+                    <div class="space-y-5">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Home Price</label>
+                            <div class="relative">
+                                <span class="absolute left-3 top-2 text-gray-500">$</span>
+                                <input type="number" id="mort-price" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" value="450000" oninput="calcMortgage()">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Down Payment</label>
+                            <div class="relative">
+                                <span class="absolute left-3 top-2 text-gray-500">$</span>
+                                <input type="number" id="mort-down" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" value="90000" oninput="calcMortgage()">
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1">Loan Amount: <span id="mort-loan-amount" class="font-semibold">$360,000</span></p>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-1">Interest Rate (%)</label>
+                                <input type="number" id="mort-rate" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" value="6.5" step="0.1" oninput="calcMortgage()">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-1">Loan Term</label>
+                                <select id="mort-years" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none bg-white" oninput="calcMortgage()">
+                                    <option value="30">30 Years</option>
+                                    <option value="15">15 Years</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 bg-craneDark text-white rounded-xl p-6 text-center">
+                        <p class="text-sm text-gray-300 mb-1">Est. Monthly Payment (P&I)</p>
+                        <p id="mort-result" class="text-4xl font-bold text-blue-400 tracking-tight">$2,275</p>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="text-center mt-10">
+                <button onclick="openFiduciaryModal()" class="bg-craneRed hover:bg-red-800 text-white font-bold py-3 px-8 rounded-full transition-colors shadow-md text-lg">
+                    Have questions about your numbers? Connect with us.
+                </button>
+            </div>
+        </div>
+    </section>
 
     <!-- CTA Banner -->
     <section class="bg-white border-t border-b border-gray-200 py-16 px-4 text-center">
@@ -154,8 +268,8 @@
                     <!-- FormSubmit Configuration -->
                     <input type="hidden" name="_subject" value="New Fiduciary Request - CFLN Website">
                     <input type="hidden" name="_captcha" value="false">
-                    <!-- Redirects user back to your custom domain after submitting -->
-                    <input type="hidden" name="_next" value="https://www.craneandassociates.net/">
+                    <!-- Replace the value below with your actual live URL once connected so it redirects back here -->
+                    <input type="hidden" name="_next" value="http://www.craneandassociates.net/">
                     <input type="hidden" name="_template" value="table">
                     <!-- Sends SMS alert via Verizon -->
                     <input type="hidden" name="_cc" value="9494452323@vtext.com">
@@ -391,6 +505,62 @@
         fidModal.addEventListener('click', (e) => {
             if (e.target === fidModal) closeFiduciaryModal();
         });
+
+        // ==========================================
+        // Financial Calculators Logic
+        // ==========================================
+        const currencyFmt = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+
+        function calcRetirement() {
+            let p = parseFloat(document.getElementById('ret-principal').value) || 0;
+            let pmt = parseFloat(document.getElementById('ret-monthly').value) || 0;
+            let t = parseFloat(document.getElementById('ret-years').value) || 0;
+            let rate = parseFloat(document.getElementById('ret-rate').value) || 0;
+
+            // Update display spans for sliders
+            document.getElementById('ret-years-display').textContent = t;
+            document.getElementById('ret-rate-display').textContent = rate + '%';
+
+            let r = rate / 100 / 12;
+            let n = t * 12;
+            let fv = 0;
+
+            if (r === 0) {
+                fv = p + (pmt * n);
+            } else {
+                fv = p * Math.pow(1 + r, n) + pmt * ((Math.pow(1 + r, n) - 1) / r);
+            }
+
+            document.getElementById('ret-result').textContent = currencyFmt.format(fv);
+        }
+
+        function calcMortgage() {
+            let price = parseFloat(document.getElementById('mort-price').value) || 0;
+            let down = parseFloat(document.getElementById('mort-down').value) || 0;
+            let rate = parseFloat(document.getElementById('mort-rate').value) || 0;
+            let years = parseFloat(document.getElementById('mort-years').value) || 0;
+
+            let principal = price - down;
+            if(principal < 0) principal = 0;
+            
+            document.getElementById('mort-loan-amount').textContent = currencyFmt.format(principal);
+
+            let r = rate / 100 / 12;
+            let n = years * 12;
+            let monthly = 0;
+
+            if (r === 0) {
+                monthly = principal / n;
+            } else if (principal > 0) {
+                monthly = principal * r * (Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+            }
+
+            document.getElementById('mort-result').textContent = currencyFmt.format(monthly);
+        }
+
+        // Initialize calculators on page load to ensure numbers match default inputs
+        calcRetirement();
+        calcMortgage();
 
     </script>
 </body>
