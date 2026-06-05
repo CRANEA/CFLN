@@ -43,12 +43,6 @@
         /* Card Hover Effects */
         .category-card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); border-color: #C8102E; }
         .category-card { transition: all 0.3s ease; border: 2px solid transparent; }
-
-        /* Custom Modern Range Sliders */
-        input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; }
-        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 20px; width: 20px; border-radius: 50%; background: #C8102E; cursor: pointer; margin-top: -8px; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
-        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 6px; cursor: pointer; background: #e2e8f0; border-radius: 3px; }
-        input[type=range]:focus { outline: none; }
     </style>
 </head>
 <body class="bg-craneLight text-gray-800 font-sans antialiased">
@@ -65,8 +59,8 @@
                     </div>
                 </div>
                 <div class="hidden md:flex">
-                    <button onclick="openFiduciaryModal()" class="bg-craneRed hover:bg-red-800 text-white font-semibold py-2 px-6 rounded-full transition-colors shadow-lg flex items-center gap-2">
-                        <i class="fa-solid fa-handshake"></i> Connect with a Fiduciary
+                    <button onclick="openFiduciaryModal()" class="bg-craneGreen hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-full transition-colors shadow-lg flex items-center gap-2">
+                        <i class="fa-solid fa-user-tie"></i> Talk to a Financial Fiduciary Today
                     </button>
                 </div>
             </div>
@@ -77,10 +71,11 @@
     <header class="bg-gradient-to-br from-craneDark to-gray-800 text-white py-16 md:py-24 text-center px-4">
         <div class="max-w-4xl mx-auto">
             <h1 class="text-4xl md:text-6xl font-bold mb-6">Financial Clarity for Every Stage of Life</h1>
-            <p class="text-lg md:text-xl text-gray-300 mb-10">Access free tools, resources, and expert fiduciary guidance tailored to exactly where you are on your financial journey.</p>
+            <p class="text-lg md:text-xl text-gray-300 mb-10">Access free financial tools and resources tailored to exactly where you are on your financial journey.</p>
             <button onclick="openFiduciaryModal()" class="bg-craneGreen hover:bg-green-700 text-white text-lg font-bold py-4 px-8 rounded-full shadow-xl transition-transform hover:scale-105 flex items-center gap-3 mx-auto">
                 <i class="fa-solid fa-user-tie text-xl"></i> Talk to a Financial Fiduciary Today
             </button>
+            <p class="text-sm text-gray-400 mt-6 max-w-2xl mx-auto italic">The information you will obtain here was prepared for education purposes only by Financial Fiduciaries.</p>
         </div>
     </header>
 
@@ -95,114 +90,6 @@
             <!-- Cards will be injected here by JavaScript -->
         </div>
     </main>
-
-    <!-- Interactive Calculators Section -->
-    <section id="calculators" class="bg-gray-50 py-16 px-4 border-t border-gray-200">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-craneDark mb-4">Interactive Financial Tools</h2>
-                <p class="text-gray-600">Stop guessing. Use our real-time calculators to map out your financial trajectory.</p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                
-                <!-- Calculator 1: Wealth Builder -->
-                <div class="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-craneGreen">
-                    <div class="flex items-center gap-3 mb-6 border-b pb-4">
-                        <div class="bg-green-100 p-3 rounded-lg text-craneGreen"><i class="fa-solid fa-chart-line text-xl"></i></div>
-                        <h3 class="text-2xl font-bold text-craneDark">Wealth Builder</h3>
-                    </div>
-                    
-                    <div class="space-y-5">
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-1">Initial Investment</label>
-                            <div class="relative">
-                                <span class="absolute left-3 top-2 text-gray-500">$</span>
-                                <input type="number" id="ret-principal" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-craneGreen outline-none" value="10000" oninput="calcRetirement()">
-                            </div>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-1">Monthly Contribution</label>
-                            <div class="relative">
-                                <span class="absolute left-3 top-2 text-gray-500">$</span>
-                                <input type="number" id="ret-monthly" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-craneGreen outline-none" value="500" oninput="calcRetirement()">
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <label class="block text-sm font-semibold text-gray-700">Years to Grow</label>
-                                <span id="ret-years-display" class="font-bold text-craneGreen">20</span>
-                            </div>
-                            <input type="range" id="ret-years" min="1" max="50" value="20" oninput="calcRetirement()">
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <label class="block text-sm font-semibold text-gray-700">Estimated Annual Return</label>
-                                <span id="ret-rate-display" class="font-bold text-craneGreen">7%</span>
-                            </div>
-                            <input type="range" id="ret-rate" min="1" max="15" step="0.5" value="7" oninput="calcRetirement()">
-                        </div>
-                    </div>
-
-                    <div class="mt-8 bg-craneDark text-white rounded-xl p-6 text-center">
-                        <p class="text-sm text-gray-300 mb-1">Estimated Future Value</p>
-                        <p id="ret-result" class="text-4xl font-bold text-craneGreen tracking-tight">$298,072</p>
-                    </div>
-                </div>
-
-                <!-- Calculator 2: Mortgage Estimator -->
-                <div class="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-blue-500">
-                    <div class="flex items-center gap-3 mb-6 border-b pb-4">
-                        <div class="bg-blue-100 p-3 rounded-lg text-blue-600"><i class="fa-solid fa-house text-xl"></i></div>
-                        <h3 class="text-2xl font-bold text-craneDark">Mortgage Estimator</h3>
-                    </div>
-                    
-                    <div class="space-y-5">
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-1">Home Price</label>
-                            <div class="relative">
-                                <span class="absolute left-3 top-2 text-gray-500">$</span>
-                                <input type="number" id="mort-price" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" value="450000" oninput="calcMortgage()">
-                            </div>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-1">Down Payment</label>
-                            <div class="relative">
-                                <span class="absolute left-3 top-2 text-gray-500">$</span>
-                                <input type="number" id="mort-down" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" value="90000" oninput="calcMortgage()">
-                            </div>
-                            <p class="text-xs text-gray-500 mt-1">Loan Amount: <span id="mort-loan-amount" class="font-semibold">$360,000</span></p>
-                        </div>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-1">Interest Rate (%)</label>
-                                <input type="number" id="mort-rate" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" value="6.5" step="0.1" oninput="calcMortgage()">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-1">Loan Term</label>
-                                <select id="mort-years" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none bg-white" oninput="calcMortgage()">
-                                    <option value="30">30 Years</option>
-                                    <option value="15">15 Years</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-8 bg-craneDark text-white rounded-xl p-6 text-center">
-                        <p class="text-sm text-gray-300 mb-1">Est. Monthly Payment (P&I)</p>
-                        <p id="mort-result" class="text-4xl font-bold text-blue-400 tracking-tight">$2,275</p>
-                    </div>
-                </div>
-
-            </div>
-            
-            <div class="text-center mt-10">
-                <button onclick="openFiduciaryModal()" class="bg-craneRed hover:bg-red-800 text-white font-bold py-3 px-8 rounded-full transition-colors shadow-md text-lg">
-                    Have questions about your numbers? Connect with us.
-                </button>
-            </div>
-        </div>
-    </section>
 
     <!-- CTA Banner -->
     <section class="bg-white border-t border-b border-gray-200 py-16 px-4 text-center">
@@ -235,12 +122,18 @@
             <!-- Body -->
             <div class="p-6 overflow-y-auto">
                 <p id="modalDesc" class="text-gray-600 mb-6 text-lg"></p>
+                
                 <h4 class="font-bold text-craneDark mb-4 border-b pb-2">Available Free Resources:</h4>
-                <ul id="modalResources" class="space-y-3 mb-8">
+                <ul id="modalResources" class="space-y-3 mb-6">
                     <!-- List items injected by JS -->
                 </ul>
+
+                <!-- NEW CALCULATOR BUTTON -->
+                <button id="openCalcBtn" class="w-full bg-blue-600 hover:bg-blue-800 text-white font-bold py-4 px-4 rounded-xl transition-colors shadow-md flex justify-center items-center gap-2 mb-8 text-lg">
+                    <i class="fa-solid fa-calculator"></i> <span id="calcBtnText">Financial Calculators</span>
+                </button>
                 
-                <div class="bg-blue-50 border border-blue-100 rounded-xl p-6 text-center">
+                <div class="bg-craneLight border border-gray-200 rounded-xl p-6 text-center">
                     <h5 class="font-bold text-craneDark mb-2">Want to apply these tools to your specific situation?</h5>
                     <p class="text-sm text-gray-600 mb-4">Get professional, objective advice tailored to your goals.</p>
                     <button onclick="swapToFiduciaryModal()" class="w-full bg-craneGreen hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg transition-colors shadow-sm flex justify-center items-center gap-2">
@@ -264,14 +157,10 @@
                 <p class="text-sm text-gray-600 mb-6">Tell us a little about yourself so we can prepare for our conversation. Your information is strictly confidential.</p>
                 
                 <form action="https://formsubmit.co/crane_avi@aipfinancial.net" method="POST" id="fiduciaryForm" class="space-y-4">
-                    
-                    <!-- FormSubmit Configuration -->
                     <input type="hidden" name="_subject" value="New Fiduciary Request - CFLN Website">
                     <input type="hidden" name="_captcha" value="false">
-                    <!-- Replace the value below with your actual live URL once connected so it redirects back here -->
                     <input type="hidden" name="_next" value="http://www.craneandassociates.net/">
                     <input type="hidden" name="_template" value="table">
-                    <!-- Sends SMS alert via Verizon -->
                     <input type="hidden" name="_cc" value="9494452323@vtext.com">
 
                     <div>
@@ -314,6 +203,27 @@
                         <p class="text-xs text-gray-400 text-center mt-3"><i class="fa-solid fa-lock"></i> 100% Secure & Confidential.</p>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- MODAL 3: Interactive Calculators Shell     -->
+    <!-- ========================================== -->
+    <div id="calculatorModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-gray-900 bg-opacity-75 backdrop-blur-sm px-4">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-4xl overflow-hidden flex flex-col max-h-[95vh]">
+            <div class="bg-blue-600 px-6 py-4 flex justify-between items-center text-white">
+                <h3 id="calcModalTitle" class="text-xl font-bold flex items-center gap-2"><i class="fa-solid fa-calculator"></i> Financial Calculators</h3>
+                <button onclick="closeCalculatorModal()" class="text-white hover:text-gray-200 focus:outline-none text-2xl leading-none">&times;</button>
+            </div>
+            <div class="p-8 overflow-y-auto text-center" id="calculatorContent">
+                <!-- Calculators will be injected here -->
+                <i class="fa-solid fa-gears text-6xl text-gray-300 mb-4"></i>
+                <h2 class="text-2xl font-bold text-craneDark mb-2">Calculators Module Loading...</h2>
+                <p class="text-gray-600 mb-8">This section is currently being configured with customized real-time calculators for this specific life stage.</p>
+                <button onclick="closeCalculatorModal()" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-6 rounded-full transition-colors">
+                    Go Back
+                </button>
             </div>
         </div>
     </div>
@@ -431,6 +341,7 @@
         // Modals Logic
         const resModal = document.getElementById('resourceModal');
         const fidModal = document.getElementById('fiduciaryModal');
+        const calcModal = document.getElementById('calculatorModal');
         const body = document.body;
 
         function openResourceModal(categoryId) {
@@ -440,6 +351,10 @@
             document.getElementById('modalHeader').className = `px-6 py-4 flex justify-between items-center text-white ${cat.color}`;
             document.getElementById('modalTitle').innerHTML = `<i class="fa-solid ${cat.icon}"></i> <span>${cat.title} Resources</span>`;
             document.getElementById('modalDesc').textContent = cat.desc;
+            
+            // Set dynamic text and function for the calculator button
+            document.getElementById('calcBtnText').textContent = `Financial Calculators for ${cat.subtitle}`;
+            document.getElementById('openCalcBtn').onclick = () => openCalculatorModal(cat);
             
             const resList = document.getElementById('modalResources');
             resList.innerHTML = '';
@@ -458,7 +373,6 @@
                 resList.appendChild(li);
             });
 
-            // Pre-fill the dropdown in the contact form to match the category they clicked
             const stageSelect = document.getElementById('stage');
             for(let i=0; i<stageSelect.options.length; i++) {
                 if(stageSelect.options[i].value.includes(cat.subtitle)) {
@@ -487,15 +401,35 @@
         function closeFiduciaryModal() {
             fidModal.classList.add('hidden');
             fidModal.classList.remove('flex');
-            // Only remove hide-scroll if the resource modal is also closed
-            if(resModal.classList.contains('hidden')) {
+            if(resModal.classList.contains('hidden') && calcModal.classList.contains('hidden')) {
                 body.classList.remove('hide-scroll');
             }
         }
 
         function swapToFiduciaryModal() {
             closeResourceModal();
-            setTimeout(openFiduciaryModal, 150); // slight delay for smooth transition
+            closeCalculatorModal();
+            setTimeout(openFiduciaryModal, 150);
+        }
+
+        // Calculator Modal Logic
+        function openCalculatorModal(cat) {
+            closeResourceModal();
+            document.getElementById('calcModalTitle').innerHTML = `<i class="fa-solid fa-calculator"></i> Calculators: ${cat.subtitle}`;
+            
+            setTimeout(() => {
+                calcModal.classList.remove('hidden');
+                calcModal.classList.add('flex');
+                body.classList.add('hide-scroll');
+            }, 150);
+        }
+
+        function closeCalculatorModal() {
+            calcModal.classList.add('hidden');
+            calcModal.classList.remove('flex');
+            if(resModal.classList.contains('hidden') && fidModal.classList.contains('hidden')) {
+                body.classList.remove('hide-scroll');
+            }
         }
 
         // Close modals on clicking outside
@@ -505,62 +439,9 @@
         fidModal.addEventListener('click', (e) => {
             if (e.target === fidModal) closeFiduciaryModal();
         });
-
-        // ==========================================
-        // Financial Calculators Logic
-        // ==========================================
-        const currencyFmt = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
-
-        function calcRetirement() {
-            let p = parseFloat(document.getElementById('ret-principal').value) || 0;
-            let pmt = parseFloat(document.getElementById('ret-monthly').value) || 0;
-            let t = parseFloat(document.getElementById('ret-years').value) || 0;
-            let rate = parseFloat(document.getElementById('ret-rate').value) || 0;
-
-            // Update display spans for sliders
-            document.getElementById('ret-years-display').textContent = t;
-            document.getElementById('ret-rate-display').textContent = rate + '%';
-
-            let r = rate / 100 / 12;
-            let n = t * 12;
-            let fv = 0;
-
-            if (r === 0) {
-                fv = p + (pmt * n);
-            } else {
-                fv = p * Math.pow(1 + r, n) + pmt * ((Math.pow(1 + r, n) - 1) / r);
-            }
-
-            document.getElementById('ret-result').textContent = currencyFmt.format(fv);
-        }
-
-        function calcMortgage() {
-            let price = parseFloat(document.getElementById('mort-price').value) || 0;
-            let down = parseFloat(document.getElementById('mort-down').value) || 0;
-            let rate = parseFloat(document.getElementById('mort-rate').value) || 0;
-            let years = parseFloat(document.getElementById('mort-years').value) || 0;
-
-            let principal = price - down;
-            if(principal < 0) principal = 0;
-            
-            document.getElementById('mort-loan-amount').textContent = currencyFmt.format(principal);
-
-            let r = rate / 100 / 12;
-            let n = years * 12;
-            let monthly = 0;
-
-            if (r === 0) {
-                monthly = principal / n;
-            } else if (principal > 0) {
-                monthly = principal * r * (Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
-            }
-
-            document.getElementById('mort-result').textContent = currencyFmt.format(monthly);
-        }
-
-        // Initialize calculators on page load to ensure numbers match default inputs
-        calcRetirement();
-        calcMortgage();
+        calcModal.addEventListener('click', (e) => {
+            if (e.target === calcModal) closeCalculatorModal();
+        });
 
     </script>
 </body>
