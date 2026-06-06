@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>Crane Financial Literacy Network</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -33,42 +33,38 @@
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans">
 
-    <!-- Navigation -->
     <nav class="bg-white shadow-sm py-2 no-print">
         <div class="max-w-[100rem] mx-auto px-4 flex justify-between items-center">
             <div class="flex items-center gap-4">
-                <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center text-white font-bold text-xs text-center border-4 border-green-700">CRANE</div>
-                <h1 class="text-3xl font-extrabold text-red-600 whitespace-nowrap">Crane <span class="text-green-700">Financial Literacy Network</span></h1>
+                <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center text-white font-bold text-xs text-center border-4 border-green-700 shrink-0">CRANE</div>
+                <h1 class="text-xl md:text-3xl font-extrabold text-red-600">Crane <span class="text-green-700 hidden sm:inline">Financial Literacy Network</span></h1>
             </div>
-            <a href="#" class="bg-green-700 hover:bg-green-800 text-white font-semibold py-2 px-4 rounded-full text-sm transition-colors flex items-center gap-2 shadow-md">
-                <i class="fas fa-user-tie"></i> Talk to a Financial Fiduciary Today
+            <a href="#" class="bg-green-700 hover:bg-green-800 text-white font-semibold py-2 px-4 rounded-full text-xs md:text-sm transition-colors flex items-center gap-2 shadow-md whitespace-nowrap">
+                <i class="fas fa-user-tie"></i> <span class="hidden md:inline">Talk to a Financial Fiduciary Today</span><span class="md:hidden">Contact Us</span>
             </a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <header class="bg-gradient-to-r from-blue-500 to-green-400 py-12 text-center shadow-inner no-print">
         <div class="max-w-4xl mx-auto px-4">
-            <h2 class="text-5xl font-extrabold text-white drop-shadow-md leading-tight">
+            <h2 class="text-4xl md:text-5xl font-extrabold text-white drop-shadow-md leading-tight">
                 Financial Clarity<br>
                 for Every Stage of Life
             </h2>
-            <p class="mt-4 text-xl text-white font-medium drop-shadow-sm">
+            <p class="mt-4 text-lg md:text-xl text-white font-medium drop-shadow-sm">
                 Access free financial tools and resources tailored to exactly where you are on your financial journey.
             </p>
-            <p class="mt-4 text-sm text-white italic drop-shadow-sm">
+            <p class="mt-4 text-xs md:text-sm text-white italic drop-shadow-sm">
                 The information you will obtain here was prepared for education purposes only by Financial Fiduciaries.
             </p>
         </div>
     </header>
 
-    <!-- Cards Section -->
     <main class="max-w-7xl mx-auto px-4 py-12 no-print">
-        <h3 class="text-center text-3xl font-bold text-gray-800 mb-10">Where are you on your journey?</h3>
+        <h3 class="text-center text-2xl md:text-3xl font-bold text-gray-800 mb-10">Where are you on your journey?</h3>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Card 1 -->
-            <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100 cursor-pointer" onclick="openModal('Young Adults')">
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100 cursor-pointer" onclick="openModal('Young Adults')">
                 <div class="w-14 h-14 bg-blue-500 text-white rounded-xl flex items-center justify-center text-2xl mb-6 shadow-sm">
                     <i class="fas fa-rocket"></i>
                 </div>
@@ -78,8 +74,7 @@
                 <span class="text-red-600 font-semibold flex items-center gap-2">View Resources <i class="fas fa-arrow-right"></i></span>
             </div>
 
-            <!-- Card 2 -->
-            <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100 cursor-pointer" onclick="openModal('Young Families')">
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100 cursor-pointer" onclick="openModal('Young Families')">
                 <div class="w-14 h-14 bg-teal-500 text-white rounded-xl flex items-center justify-center text-2xl mb-6 shadow-sm">
                     <i class="fas fa-home"></i>
                 </div>
@@ -89,8 +84,7 @@
                 <span class="text-red-600 font-semibold flex items-center gap-2">View Resources <i class="fas fa-arrow-right"></i></span>
             </div>
 
-            <!-- Card 3 -->
-            <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100 cursor-pointer" onclick="openModal('Mid Career')">
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100 cursor-pointer" onclick="openModal('Mid Career')">
                 <div class="w-14 h-14 bg-indigo-500 text-white rounded-xl flex items-center justify-center text-2xl mb-6 shadow-sm">
                     <i class="fas fa-briefcase"></i>
                 </div>
@@ -100,8 +94,7 @@
                 <span class="text-red-600 font-semibold flex items-center gap-2">View Resources <i class="fas fa-arrow-right"></i></span>
             </div>
 
-            <!-- Card 4 -->
-            <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100 cursor-pointer" onclick="openModal('Business Owners')">
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100 cursor-pointer" onclick="openModal('Business Owners')">
                 <div class="w-14 h-14 bg-red-600 text-white rounded-xl flex items-center justify-center text-2xl mb-6 shadow-sm">
                     <i class="fas fa-store"></i>
                 </div>
@@ -111,8 +104,7 @@
                 <span class="text-red-600 font-semibold flex items-center gap-2">View Resources <i class="fas fa-arrow-right"></i></span>
             </div>
 
-            <!-- Card 5 -->
-            <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100 cursor-pointer" onclick="openModal('Pre-Retirement')">
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100 cursor-pointer" onclick="openModal('Pre-Retirement')">
                 <div class="w-14 h-14 bg-orange-500 text-white rounded-xl flex items-center justify-center text-2xl mb-6 shadow-sm">
                     <i class="fas fa-bullseye"></i>
                 </div>
@@ -122,8 +114,7 @@
                 <span class="text-red-600 font-semibold flex items-center gap-2">View Resources <i class="fas fa-arrow-right"></i></span>
             </div>
 
-            <!-- Card 6 -->
-            <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100 cursor-pointer" onclick="openModal('Retired')">
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100 cursor-pointer" onclick="openModal('Retired')">
                 <div class="w-14 h-14 bg-green-700 text-white rounded-xl flex items-center justify-center text-2xl mb-6 shadow-sm">
                     <i class="fas fa-umbrella-beach"></i>
                 </div>
@@ -135,206 +126,198 @@
         </div>
     </main>
 
-    <!-- Footer Area CTA -->
     <section class="max-w-4xl mx-auto px-4 text-center pb-16 no-print">
         <p class="text-gray-600 font-medium">
             As fiduciaries, we are legally obligated to act in your best interests. No sales pitches—just objective financial strategies for your review and decision. To reach out to us, simply click the button at the top right of the screen or inside any of our life-stage resources.
         </p>
     </section>
 
-    <!-- OVERLAY / MODAL BACKGROUND -->
     <div id="modalOverlay" class="fixed inset-0 bg-black bg-opacity-60 hidden z-40 no-print"></div>
 
-    <!-- PERSONAL BUDGET MODAL -->
-    <div id="budgetModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden print-area">
-        <div class="p-8">
+    <div id="budgetModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[95%] md:w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden print-area">
+        <div class="p-4 md:p-8">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 border-b pb-4 gap-4">
-                <h2 class="text-3xl font-bold text-gray-800" id="budgetTitle">Your Budget Worksheet</h2>
-                <div class="flex flex-wrap gap-2 md:gap-4 no-print items-center">
-                    <a id="budgetRetirementBtn" href="#" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition flex items-center shadow-sm">
+                <div class="flex justify-between items-center w-full md:w-auto">
+                    <h2 class="text-xl md:text-3xl font-bold text-gray-800" id="budgetTitle">Your Budget Worksheet</h2>
+                    <button onclick="closeModal()" class="text-gray-500 hover:text-red-600 text-2xl transition md:hidden">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="flex w-full md:w-auto gap-2 md:gap-4 no-print items-center justify-between">
+                    <a id="budgetRetirementBtn" href="#" target="_blank" class="flex-1 md:flex-none justify-center bg-blue-600 hover:bg-blue-700 text-white px-3 md:px-4 py-2 rounded-lg text-sm md:text-base font-medium transition flex items-center shadow-sm text-center">
                         <i class="fas fa-clipboard-check mr-2"></i> Readiness App
                     </a>
-                    <button onclick="window.print()" class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 py-2 rounded-lg font-medium transition flex items-center">
+                    <button onclick="window.print()" class="flex-1 md:flex-none justify-center bg-gray-200 hover:bg-gray-300 text-gray-700 px-3 md:px-4 py-2 rounded-lg text-sm md:text-base font-medium transition flex items-center text-center">
                         <i class="fas fa-print mr-2"></i> Print
                     </button>
-                    <button onclick="closeModal()" class="text-gray-500 hover:text-red-600 text-2xl transition flex items-center ml-2">
+                    <button onclick="closeModal()" class="hidden md:block text-gray-500 hover:text-red-600 text-2xl transition ml-2">
                         <i class="fas fa-times"></i>
                     </button>
                 </div>
             </div>
 
-            <!-- Dynamic Calculator -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                 
-                <!-- Income Section -->
-                <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
-                    <h3 class="text-xl font-bold text-green-700 mb-4 border-b border-green-200 pb-2"><i class="fas fa-money-bill-wave mr-2"></i> Monthly Income</h3>
+                <div class="bg-gray-50 p-4 md:p-6 rounded-xl border border-gray-200">
+                    <h3 class="text-lg md:text-xl font-bold text-green-700 mb-4 border-b border-green-200 pb-2"><i class="fas fa-money-bill-wave mr-2"></i> Monthly Income</h3>
                     <div class="space-y-3">
-                        <div class="flex justify-between items-center"><label id="lbl-income-1" class="text-sm font-medium text-gray-700">Take-Home Income #1</label><input type="number" class="w-32 border rounded p-1 text-right income-input" placeholder="$0" oninput="calcBudget()"></div>
-                        <div class="flex justify-between items-center"><label id="lbl-income-2" class="text-sm font-medium text-gray-700">Take-Home Income #2</label><input type="number" class="w-32 border rounded p-1 text-right income-input" placeholder="$0" oninput="calcBudget()"></div>
-                        <div class="flex justify-between items-center"><label id="lbl-income-3" class="text-sm font-medium text-gray-700">Bonuses / Other Income</label><input type="number" class="w-32 border rounded p-1 text-right income-input" placeholder="$0" oninput="calcBudget()"></div>
-                        <div class="flex justify-between items-center"><label class="text-sm font-medium text-gray-700">Average Tax Refund / 12</label><input type="number" class="w-32 border rounded p-1 text-right income-input" placeholder="$0" oninput="calcBudget()"></div>
+                        <div class="flex justify-between items-center"><label id="lbl-income-1" class="text-xs md:text-sm font-medium text-gray-700 pr-2">Take-Home Income #1</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base income-input" placeholder="$0" oninput="calcBudget()"></div>
+                        <div class="flex justify-between items-center"><label id="lbl-income-2" class="text-xs md:text-sm font-medium text-gray-700 pr-2">Take-Home Income #2</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base income-input" placeholder="$0" oninput="calcBudget()"></div>
+                        <div class="flex justify-between items-center"><label id="lbl-income-3" class="text-xs md:text-sm font-medium text-gray-700 pr-2">Bonuses / Other Income</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base income-input" placeholder="$0" oninput="calcBudget()"></div>
+                        <div class="flex justify-between items-center"><label class="text-xs md:text-sm font-medium text-gray-700 pr-2">Average Tax Refund / 12</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base income-input" placeholder="$0" oninput="calcBudget()"></div>
                     </div>
                 </div>
 
-                <!-- Living Expenses Section -->
-                <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
-                    <h3 class="text-xl font-bold text-blue-600 mb-4 border-b border-blue-200 pb-2"><i class="fas fa-home mr-2"></i> Living Expenses</h3>
+                <div class="bg-gray-50 p-4 md:p-6 rounded-xl border border-gray-200">
+                    <h3 class="text-lg md:text-xl font-bold text-blue-600 mb-4 border-b border-blue-200 pb-2"><i class="fas fa-home mr-2"></i> Living Expenses</h3>
                     <div class="space-y-3">
-                        <div class="flex justify-between items-center"><label class="text-sm font-medium text-gray-700">Mortgage or Rent</label><input type="number" class="w-32 border rounded p-1 text-right expense-input" placeholder="$0" oninput="calcBudget()"></div>
-                        <div class="flex justify-between items-center"><label id="lbl-expense-office" class="text-sm font-medium text-gray-700">Office / Storage Rent</label><input type="number" class="w-32 border rounded p-1 text-right expense-input" placeholder="$0" oninput="calcBudget()"></div>
-                        <div class="flex justify-between items-center"><label class="text-sm font-medium text-gray-700">Utilities (Elec, Gas, Water)</label><input type="number" class="w-32 border rounded p-1 text-right expense-input" placeholder="$0" oninput="calcBudget()"></div>
-                        <div class="flex justify-between items-center"><label class="text-sm font-medium text-gray-700">Internet / Cable / Phone</label><input type="number" class="w-32 border rounded p-1 text-right expense-input" placeholder="$0" oninput="calcBudget()"></div>
-                        <div class="flex justify-between items-center"><label class="text-sm font-medium text-gray-700">Groceries / Supplies</label><input type="number" class="w-32 border rounded p-1 text-right expense-input" placeholder="$0" oninput="calcBudget()"></div>
-                        <div class="flex justify-between items-center"><label id="lbl-expense-child" class="text-sm font-medium text-gray-700">Child Care</label><input type="number" class="w-32 border rounded p-1 text-right expense-input" placeholder="$0" oninput="calcBudget()"></div>
-                        <div class="flex justify-between items-center"><label class="text-sm font-medium text-gray-700">Medical Expenses</label><input type="number" class="w-32 border rounded p-1 text-right expense-input" placeholder="$0" oninput="calcBudget()"></div>
+                        <div class="flex justify-between items-center"><label class="text-xs md:text-sm font-medium text-gray-700 pr-2">Mortgage or Rent</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base expense-input" placeholder="$0" oninput="calcBudget()"></div>
+                        <div class="flex justify-between items-center"><label id="lbl-expense-office" class="text-xs md:text-sm font-medium text-gray-700 pr-2">Office / Storage Rent</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base expense-input" placeholder="$0" oninput="calcBudget()"></div>
+                        <div class="flex justify-between items-center"><label class="text-xs md:text-sm font-medium text-gray-700 pr-2">Utilities (Elec, Gas, Water)</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base expense-input" placeholder="$0" oninput="calcBudget()"></div>
+                        <div class="flex justify-between items-center"><label class="text-xs md:text-sm font-medium text-gray-700 pr-2">Internet / Cable / Phone</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base expense-input" placeholder="$0" oninput="calcBudget()"></div>
+                        <div class="flex justify-between items-center"><label class="text-xs md:text-sm font-medium text-gray-700 pr-2">Groceries / Supplies</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base expense-input" placeholder="$0" oninput="calcBudget()"></div>
+                        <div class="flex justify-between items-center"><label id="lbl-expense-child" class="text-xs md:text-sm font-medium text-gray-700 pr-2">Child Care</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base expense-input" placeholder="$0" oninput="calcBudget()"></div>
+                        <div class="flex justify-between items-center"><label class="text-xs md:text-sm font-medium text-gray-700 pr-2">Medical Expenses</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base expense-input" placeholder="$0" oninput="calcBudget()"></div>
                     </div>
                 </div>
 
-                <!-- Transportation & Insurance Section -->
-                <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
-                    <h3 class="text-xl font-bold text-orange-500 mb-4 border-b border-orange-200 pb-2"><i class="fas fa-car mr-2"></i> Transport & Insurance</h3>
+                <div class="bg-gray-50 p-4 md:p-6 rounded-xl border border-gray-200">
+                    <h3 class="text-lg md:text-xl font-bold text-orange-500 mb-4 border-b border-orange-200 pb-2"><i class="fas fa-car mr-2"></i> Transport & Insurance</h3>
                     <div class="space-y-3">
-                        <div class="flex justify-between items-center"><label class="text-sm font-medium text-gray-700">Fuel & Auto Maintenance</label><input type="number" class="w-32 border rounded p-1 text-right expense-input" placeholder="$0" oninput="calcBudget()"></div>
-                        <div class="flex justify-between items-center"><label class="text-sm font-medium text-gray-700">Transit / Rideshare / Tolls</label><input type="number" class="w-32 border rounded p-1 text-right expense-input" placeholder="$0" oninput="calcBudget()"></div>
-                        <div class="flex justify-between items-center"><label class="text-sm font-medium text-gray-700">Health / Life Insurance</label><input type="number" class="w-32 border rounded p-1 text-right expense-input" placeholder="$0" oninput="calcBudget()"></div>
-                        <div class="flex justify-between items-center"><label class="text-sm font-medium text-gray-700">Home / Auto Insurance</label><input type="number" class="w-32 border rounded p-1 text-right expense-input" placeholder="$0" oninput="calcBudget()"></div>
+                        <div class="flex justify-between items-center"><label class="text-xs md:text-sm font-medium text-gray-700 pr-2">Fuel & Auto Maintenance</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base expense-input" placeholder="$0" oninput="calcBudget()"></div>
+                        <div class="flex justify-between items-center"><label class="text-xs md:text-sm font-medium text-gray-700 pr-2">Transit / Rideshare / Tolls</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base expense-input" placeholder="$0" oninput="calcBudget()"></div>
+                        <div class="flex justify-between items-center"><label class="text-xs md:text-sm font-medium text-gray-700 pr-2">Health / Life Insurance</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base expense-input" placeholder="$0" oninput="calcBudget()"></div>
+                        <div class="flex justify-between items-center"><label class="text-xs md:text-sm font-medium text-gray-700 pr-2">Home / Auto Insurance</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base expense-input" placeholder="$0" oninput="calcBudget()"></div>
                     </div>
                 </div>
 
-                <!-- Loans & Other Section -->
-                <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
-                    <h3 class="text-xl font-bold text-purple-600 mb-4 border-b border-purple-200 pb-2"><i class="fas fa-credit-card mr-2"></i> Debt & Lifestyle</h3>
+                <div class="bg-gray-50 p-4 md:p-6 rounded-xl border border-gray-200">
+                    <h3 class="text-lg md:text-xl font-bold text-purple-600 mb-4 border-b border-purple-200 pb-2"><i class="fas fa-credit-card mr-2"></i> Debt & Lifestyle</h3>
                     <div class="space-y-3">
-                        <div class="flex justify-between items-center"><label class="text-sm font-medium text-gray-700">Auto / Student Loans</label><input type="number" class="w-32 border rounded p-1 text-right expense-input" placeholder="$0" oninput="calcBudget()"></div>
-                        <div class="flex justify-between items-center"><label class="text-sm font-medium text-gray-700">Credit Card Minimums</label><input type="number" class="w-32 border rounded p-1 text-right expense-input" placeholder="$0" oninput="calcBudget()"></div>
-                        <div class="flex justify-between items-center"><label class="text-sm font-medium text-gray-700">Dining / Entertainment</label><input type="number" class="w-32 border rounded p-1 text-right expense-input" placeholder="$0" oninput="calcBudget()"></div>
-                        <div class="flex justify-between items-center"><label class="text-sm font-medium text-gray-700">Travel / Vacations</label><input type="number" class="w-32 border rounded p-1 text-right expense-input" placeholder="$0" oninput="calcBudget()"></div>
-                        <div class="flex justify-between items-center"><label class="text-sm font-medium text-gray-700">Other Miscellaneous</label><input type="number" class="w-32 border rounded p-1 text-right expense-input" placeholder="$0" oninput="calcBudget()"></div>
+                        <div class="flex justify-between items-center"><label class="text-xs md:text-sm font-medium text-gray-700 pr-2">Auto / Student Loans</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base expense-input" placeholder="$0" oninput="calcBudget()"></div>
+                        <div class="flex justify-between items-center"><label class="text-xs md:text-sm font-medium text-gray-700 pr-2">Credit Card Minimums</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base expense-input" placeholder="$0" oninput="calcBudget()"></div>
+                        <div class="flex justify-between items-center"><label class="text-xs md:text-sm font-medium text-gray-700 pr-2">Dining / Entertainment</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base expense-input" placeholder="$0" oninput="calcBudget()"></div>
+                        <div class="flex justify-between items-center"><label class="text-xs md:text-sm font-medium text-gray-700 pr-2">Travel / Vacations</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base expense-input" placeholder="$0" oninput="calcBudget()"></div>
+                        <div class="flex justify-between items-center"><label class="text-xs md:text-sm font-medium text-gray-700 pr-2">Other Miscellaneous</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base expense-input" placeholder="$0" oninput="calcBudget()"></div>
                     </div>
                 </div>
             </div>
 
-            <!-- Summary Box -->
-            <div class="mt-8 bg-gray-900 text-white p-6 rounded-xl shadow-inner print-invert">
+            <div class="mt-8 bg-gray-900 text-white p-4 md:p-6 rounded-xl shadow-inner print-invert">
                 <div class="flex justify-between items-center mb-2">
-                    <span class="text-lg font-medium text-gray-300 print-invert">Total Monthly Income</span>
-                    <span class="text-xl font-bold text-green-400" id="budgetTotalIncome">$0.00</span>
+                    <span class="text-sm md:text-lg font-medium text-gray-300 print-invert">Total Monthly Income</span>
+                    <span class="text-lg md:text-xl font-bold text-green-400" id="budgetTotalIncome">$0.00</span>
                 </div>
                 <div class="flex justify-between items-center mb-4 border-b border-gray-700 pb-4">
-                    <span class="text-lg font-medium text-gray-300 print-invert">Total Monthly Expenses</span>
-                    <span class="text-xl font-bold text-red-400" id="budgetTotalExpenses">$0.00</span>
+                    <span class="text-sm md:text-lg font-medium text-gray-300 print-invert">Total Monthly Expenses</span>
+                    <span class="text-lg md:text-xl font-bold text-red-400" id="budgetTotalExpenses">$0.00</span>
                 </div>
                 <div class="flex justify-between items-center">
-                    <span class="text-2xl font-bold uppercase tracking-wide">Net Cash Flow</span>
-                    <span class="text-3xl font-extrabold" id="budgetNetCash">$0.00</span>
+                    <span class="text-lg md:text-2xl font-bold uppercase tracking-wide">Net Cash Flow</span>
+                    <span class="text-xl md:text-3xl font-extrabold" id="budgetNetCash">$0.00</span>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- BUSINESS FINANCIALS MODAL -->
-    <div id="businessModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-5xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden print-area">
-        <div class="p-8">
+    <div id="businessModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[95%] md:w-full max-w-5xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden print-area">
+        <div class="p-4 md:p-8">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 border-b pb-4 gap-4">
-                <h2 class="text-3xl font-bold text-gray-800">Business Balance Sheet Snapshot</h2>
-                <div class="flex flex-wrap gap-2 md:gap-4 no-print items-center">
-                    <a id="bizRetirementBtn" href="#" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition flex items-center shadow-sm">
+                <div class="flex justify-between items-center w-full md:w-auto">
+                    <h2 class="text-xl md:text-3xl font-bold text-gray-800">Business Balance Sheet</h2>
+                    <button onclick="closeModal()" class="text-gray-500 hover:text-red-600 text-2xl transition md:hidden">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="flex w-full md:w-auto gap-2 md:gap-4 no-print items-center justify-between">
+                    <a id="bizRetirementBtn" href="#" target="_blank" class="flex-1 md:flex-none justify-center bg-blue-600 hover:bg-blue-700 text-white px-3 md:px-4 py-2 rounded-lg text-sm md:text-base font-medium transition flex items-center shadow-sm text-center">
                         <i class="fas fa-clipboard-check mr-2"></i> Readiness App
                     </a>
-                    <button onclick="window.print()" class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 py-2 rounded-lg font-medium transition flex items-center">
+                    <button onclick="window.print()" class="flex-1 md:flex-none justify-center bg-gray-200 hover:bg-gray-300 text-gray-700 px-3 md:px-4 py-2 rounded-lg text-sm md:text-base font-medium transition flex items-center text-center">
                         <i class="fas fa-print mr-2"></i> Print
                     </button>
-                    <button onclick="closeModal()" class="text-gray-500 hover:text-red-600 text-2xl transition flex items-center ml-2">
+                    <button onclick="closeModal()" class="hidden md:block text-gray-500 hover:text-red-600 text-2xl transition ml-2">
                         <i class="fas fa-times"></i>
                     </button>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- ASSETS COLUMN -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                 <div>
-                    <h3 class="text-2xl font-bold text-green-700 mb-4 border-b-2 border-green-700 pb-2">Assets</h3>
+                    <h3 class="text-xl md:text-2xl font-bold text-green-700 mb-4 border-b-2 border-green-700 pb-2">Assets</h3>
                     
-                    <!-- Current Assets -->
                     <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 mb-4">
-                        <h4 class="font-bold text-gray-800 mb-3">Current Assets</h4>
+                        <h4 class="font-bold text-gray-800 mb-3 text-sm md:text-base">Current Assets</h4>
                         <div class="space-y-2">
-                            <div class="flex justify-between"><label class="text-sm">Cash</label><input type="number" class="w-32 border rounded p-1 text-right asset-input" placeholder="$0" oninput="calcBusiness()"></div>
-                            <div class="flex justify-between"><label class="text-sm">Petty Cash</label><input type="number" class="w-32 border rounded p-1 text-right asset-input" placeholder="$0" oninput="calcBusiness()"></div>
-                            <div class="flex justify-between"><label class="text-sm">Accounts Receivable</label><input type="number" class="w-32 border rounded p-1 text-right asset-input" placeholder="$0" oninput="calcBusiness()"></div>
-                            <div class="flex justify-between"><label class="text-sm">Inventory</label><input type="number" class="w-32 border rounded p-1 text-right asset-input" placeholder="$0" oninput="calcBusiness()"></div>
-                            <div class="flex justify-between"><label class="text-sm">Short-Term Investment</label><input type="number" class="w-32 border rounded p-1 text-right asset-input" placeholder="$0" oninput="calcBusiness()"></div>
-                            <div class="flex justify-between"><label class="text-sm">Prepaid Expense</label><input type="number" class="w-32 border rounded p-1 text-right asset-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Cash</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base asset-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Petty Cash</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base asset-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Accounts Receivable</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base asset-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Inventory</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base asset-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Short-Term Investment</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base asset-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Prepaid Expense</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base asset-input" placeholder="$0" oninput="calcBusiness()"></div>
                         </div>
                     </div>
 
-                    <!-- Fixed Assets -->
                     <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 mb-4">
-                        <h4 class="font-bold text-gray-800 mb-3">Fixed Assets</h4>
+                        <h4 class="font-bold text-gray-800 mb-3 text-sm md:text-base">Fixed Assets</h4>
                         <div class="space-y-2">
-                            <div class="flex justify-between"><label class="text-sm">Land</label><input type="number" class="w-32 border rounded p-1 text-right asset-input" placeholder="$0" oninput="calcBusiness()"></div>
-                            <div class="flex justify-between"><label class="text-sm">Buildings</label><input type="number" class="w-32 border rounded p-1 text-right asset-input" placeholder="$0" oninput="calcBusiness()"></div>
-                            <div class="flex justify-between"><label class="text-sm">Improvements</label><input type="number" class="w-32 border rounded p-1 text-right asset-input" placeholder="$0" oninput="calcBusiness()"></div>
-                            <div class="flex justify-between"><label class="text-sm">Equipment</label><input type="number" class="w-32 border rounded p-1 text-right asset-input" placeholder="$0" oninput="calcBusiness()"></div>
-                            <div class="flex justify-between"><label class="text-sm">Furniture</label><input type="number" class="w-32 border rounded p-1 text-right asset-input" placeholder="$0" oninput="calcBusiness()"></div>
-                            <div class="flex justify-between"><label class="text-sm">Automobiles / Vehicles</label><input type="number" class="w-32 border rounded p-1 text-right asset-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Land</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base asset-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Buildings</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base asset-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Improvements</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base asset-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Equipment</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base asset-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Furniture</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base asset-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Automobiles / Vehicles</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base asset-input" placeholder="$0" oninput="calcBusiness()"></div>
                         </div>
                     </div>
 
-                    <!-- Other Assets -->
                     <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
-                        <h4 class="font-bold text-gray-800 mb-3">Other Assets</h4>
+                        <h4 class="font-bold text-gray-800 mb-3 text-sm md:text-base">Other Assets</h4>
                         <div class="space-y-2">
-                            <div class="flex justify-between"><label class="text-sm">Long-Term Investment</label><input type="number" class="w-32 border rounded p-1 text-right asset-input" placeholder="$0" oninput="calcBusiness()"></div>
-                            <div class="flex justify-between"><label class="text-sm">Intangibles / Other 1</label><input type="number" class="w-32 border rounded p-1 text-right asset-input" placeholder="$0" oninput="calcBusiness()"></div>
-                            <div class="flex justify-between"><label class="text-sm">Other 2</label><input type="number" class="w-32 border rounded p-1 text-right asset-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Long-Term Investment</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base asset-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Intangibles / Other 1</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base asset-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Other 2</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base asset-input" placeholder="$0" oninput="calcBusiness()"></div>
                         </div>
                     </div>
                 </div>
 
-                <!-- LIABILITIES COLUMN -->
                 <div>
-                    <h3 class="text-2xl font-bold text-red-600 mb-4 border-b-2 border-red-600 pb-2">Liabilities</h3>
+                    <h3 class="text-xl md:text-2xl font-bold text-red-600 mb-4 border-b-2 border-red-600 pb-2">Liabilities</h3>
                     
-                    <!-- Current Liabilities -->
                     <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 mb-4">
-                        <h4 class="font-bold text-gray-800 mb-3">Current Liabilities</h4>
+                        <h4 class="font-bold text-gray-800 mb-3 text-sm md:text-base">Current Liabilities</h4>
                         <div class="space-y-2">
-                            <div class="flex justify-between"><label class="text-sm">Accounts Payable</label><input type="number" class="w-32 border rounded p-1 text-right liab-input" placeholder="$0" oninput="calcBusiness()"></div>
-                            <div class="flex justify-between"><label class="text-sm">Notes Payable (Short-Term)</label><input type="number" class="w-32 border rounded p-1 text-right liab-input" placeholder="$0" oninput="calcBusiness()"></div>
-                            <div class="flex justify-between"><label class="text-sm">Interest Payable</label><input type="number" class="w-32 border rounded p-1 text-right liab-input" placeholder="$0" oninput="calcBusiness()"></div>
-                            <div class="flex justify-between"><label class="text-sm">Federal Income Tax Payable</label><input type="number" class="w-32 border rounded p-1 text-right liab-input" placeholder="$0" oninput="calcBusiness()"></div>
-                            <div class="flex justify-between"><label class="text-sm">State Income Tax Payable</label><input type="number" class="w-32 border rounded p-1 text-right liab-input" placeholder="$0" oninput="calcBusiness()"></div>
-                            <div class="flex justify-between"><label class="text-sm">Self-Employment Tax Payable</label><input type="number" class="w-32 border rounded p-1 text-right liab-input" placeholder="$0" oninput="calcBusiness()"></div>
-                            <div class="flex justify-between"><label class="text-sm">Sales Tax Payable</label><input type="number" class="w-32 border rounded p-1 text-right liab-input" placeholder="$0" oninput="calcBusiness()"></div>
-                            <div class="flex justify-between"><label class="text-sm">Property Tax Payable</label><input type="number" class="w-32 border rounded p-1 text-right liab-input" placeholder="$0" oninput="calcBusiness()"></div>
-                            <div class="flex justify-between"><label class="text-sm">Payroll Accrual</label><input type="number" class="w-32 border rounded p-1 text-right liab-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Accounts Payable</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base liab-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Notes Payable (Short-Term)</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base liab-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Interest Payable</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base liab-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Federal Income Tax Payable</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base liab-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">State Income Tax Payable</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base liab-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Self-Employment Tax</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base liab-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Sales Tax Payable</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base liab-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Property Tax Payable</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base liab-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Payroll Accrual</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base liab-input" placeholder="$0" oninput="calcBusiness()"></div>
                         </div>
                     </div>
 
-                    <!-- Long-Term Liabilities -->
                     <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 mb-8">
-                        <h4 class="font-bold text-gray-800 mb-3">Long-Term Liabilities</h4>
+                        <h4 class="font-bold text-gray-800 mb-3 text-sm md:text-base">Long-Term Liabilities</h4>
                         <div class="space-y-2">
-                            <div class="flex justify-between"><label class="text-sm">Notes Payable (Long-Term)</label><input type="number" class="w-32 border rounded p-1 text-right liab-input" placeholder="$0" oninput="calcBusiness()"></div>
-                            <div class="flex justify-between"><label class="text-sm">Other Long-Term Debt</label><input type="number" class="w-32 border rounded p-1 text-right liab-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Notes Payable (Long-Term)</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base liab-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Other Long-Term Debt</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base liab-input" placeholder="$0" oninput="calcBusiness()"></div>
                         </div>
                     </div>
 
-                    <!-- Business Summary Box -->
-                    <div class="bg-gray-900 text-white p-6 rounded-xl shadow-inner print-invert">
+                    <div class="bg-gray-900 text-white p-4 md:p-6 rounded-xl shadow-inner print-invert">
                         <div class="flex justify-between items-center mb-2">
-                            <span class="text-lg font-medium text-gray-300 print-invert">Total Assets</span>
-                            <span class="text-xl font-bold text-green-400" id="bizTotalAssets">$0.00</span>
+                            <span class="text-sm md:text-lg font-medium text-gray-300 print-invert">Total Assets</span>
+                            <span class="text-lg md:text-xl font-bold text-green-400" id="bizTotalAssets">$0.00</span>
                         </div>
                         <div class="flex justify-between items-center mb-4 border-b border-gray-700 pb-4">
-                            <span class="text-lg font-medium text-gray-300 print-invert">Total Liabilities</span>
-                            <span class="text-xl font-bold text-red-400" id="bizTotalLiab">$0.00</span>
+                            <span class="text-sm md:text-lg font-medium text-gray-300 print-invert">Total Liabilities</span>
+                            <span class="text-lg md:text-xl font-bold text-red-400" id="bizTotalLiab">$0.00</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <span class="text-xl font-bold uppercase tracking-wide">Net Worth / Equity</span>
-                            <span class="text-3xl font-extrabold text-blue-400" id="bizNetWorth">$0.00</span>
+                            <span class="text-lg md:text-xl font-bold uppercase tracking-wide">Net Worth / Equity</span>
+                            <span class="text-xl md:text-3xl font-extrabold text-blue-400" id="bizNetWorth">$0.00</span>
                         </div>
                     </div>
                 </div>
@@ -342,7 +325,6 @@
         </div>
     </div>
 
-    <!-- SCRIPT LOGIC -->
     <script>
         const formatCurrency = (num) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(num);
 
@@ -419,7 +401,7 @@
             const netCash = incomeTotal - expenseTotal;
             const netCashElement = document.getElementById('budgetNetCash');
             netCashElement.innerText = formatCurrency(netCash);
-            netCashElement.className = netCash >= 0 ? "text-3xl font-extrabold text-green-400" : "text-3xl font-extrabold text-red-400";
+            netCashElement.className = netCash >= 0 ? "text-xl md:text-3xl font-extrabold text-green-400" : "text-xl md:text-3xl font-extrabold text-red-400";
         }
 
         function calcBusiness() {
@@ -440,10 +422,8 @@
             const netWorth = assetsTotal - liabTotal;
             const netWorthElement = document.getElementById('bizNetWorth');
             netWorthElement.innerText = formatCurrency(netWorth);
-            netWorthElement.className = netWorth >= 0 ? "text-3xl font-extrabold text-blue-400" : "text-3xl font-extrabold text-red-400";
+            netWorthElement.className = netWorth >= 0 ? "text-xl md:text-3xl font-extrabold text-blue-400" : "text-xl md:text-3xl font-extrabold text-red-400";
         }
     </script>
 </body>
 </html>
-
-
