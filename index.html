@@ -18,6 +18,7 @@
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans">
 
+    <!-- Navigation -->
     <nav class="bg-white shadow-sm py-2 no-print">
         <div class="max-w-[100rem] mx-auto px-4 flex justify-between items-center">
             <div class="flex items-center gap-2 md:gap-4">
@@ -30,6 +31,7 @@
         </div>
     </nav>
 
+    <!-- Hero Section -->
     <header class="bg-gradient-to-r from-blue-500 to-green-400 py-12 text-center shadow-inner no-print">
         <div class="max-w-4xl mx-auto px-4">
             <h2 class="text-4xl md:text-5xl font-extrabold text-white drop-shadow-md leading-tight">
@@ -44,6 +46,7 @@
         </div>
     </header>
 
+    <!-- Cards Section -->
     <main class="max-w-7xl mx-auto px-4 py-12 no-print">
         <h3 class="text-center text-2xl md:text-3xl font-bold text-gray-800 mb-10">Where are you on your journey?</h3>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -92,12 +95,15 @@
         </div>
     </main>
 
+    <!-- Footer Area -->
     <section class="max-w-4xl mx-auto px-4 text-center pb-16 no-print">
         <p class="text-gray-600 font-medium">As fiduciaries, we are legally obligated to act in your best interests. No sales pitches—just objective financial strategies for your review and decision.</p>
     </section>
 
+    <!-- OVERLAYS -->
     <div id="modalOverlay" class="fixed inset-0 bg-black bg-opacity-60 hidden z-40 no-print"></div>
 
+    <!-- MAIN STAGE MENU MODAL (Cleaned Up) -->
     <div id="stageMenuModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-lg max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden no-print">
         <div class="p-6 md:p-8">
             <div class="flex justify-between items-center mb-6 border-b pb-4">
@@ -106,46 +112,94 @@
             </div>
             
             <div class="flex flex-col gap-3">
-                <button onclick="openWorksheetFromMenu()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
-                    <div class="bg-blue-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-calculator"></i></div>
-                    <span id="btnMenuWorksheetText">Budget Worksheet</span>
-                </button>
-                
-                <button onclick="openAuditFromMenu()" class="bg-green-700 hover:bg-green-800 text-white font-bold py-3 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                <!-- Audit / App Button (Always Visible) -->
+                <button onclick="openAuditFromMenu()" class="bg-green-700 hover:bg-green-800 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
                     <div class="bg-green-600 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-clipboard-check"></i></div>
                     <span id="btnMenuAuditText">Readiness App</span>
                 </button>
 
-                <button id="btnVideoSpecialNeeds" onclick="window.open('https://drive.google.com/file/d/14o1JqAzB5AWpl1NQ3By8QyFgsjjIlcOw/view?usp=sharing', '_blank')" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg hidden">
-                    <div class="bg-red-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-video"></i></div>
-                    <span>Special Needs Family (Video)</span>
+                <!-- Financial Calculators Submenu Button -->
+                <button onclick="openCalculatorsMenu()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-blue-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-calculator"></i></div>
+                    <span id="calcBtnText">Financial Calculators</span>
+                    <i class="fas fa-chevron-right ml-auto"></i>
                 </button>
 
-                <button id="btnPDFSpecialNeeds" onclick="window.open('https://drive.google.com/file/d/1PpUT8WtBbPJa4AlOF5PsZu9lA8xdz6Gx/view?usp=sharing', '_blank')" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg hidden">
-                    <div class="bg-red-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-file-pdf"></i></div>
-                    <span>Special Needs Family (PDF Report)</span>
+                <!-- Special Needs Folder Button -->
+                <button id="btnMainSpecialNeeds" onclick="openSpecialNeedsMenu()" class="bg-rose-600 hover:bg-rose-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg hidden">
+                    <div class="bg-rose-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-hands-holding-child"></i></div>
+                    <span>Families with a Special Needs Loved One</span>
+                    <i class="fas fa-chevron-right ml-auto"></i>
                 </button>
 
-                <button id="btnAssetProtection" onclick="window.open('https://drive.google.com/file/d/1ef2S0R9EEmDFVrw8hD8MVgtKpOoE8iqi/view?usp=sharing', '_blank')" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg hidden">
-                    <div class="bg-red-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-shield-halved"></i></div>
+                <!-- Asset Protection Direct Button -->
+                <button id="btnMainAssetProtection" onclick="window.open('https://drive.google.com/file/d/1ef2S0R9EEmDFVrw8hD8MVgtKpOoE8iqi/view?usp=sharing', '_blank')" class="bg-slate-700 hover:bg-slate-800 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg hidden">
+                    <div class="bg-slate-600 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-shield-halved"></i></div>
                     <span>Asset Protection (Guide)</span>
                 </button>
+            </div>
+        </div>
+    </div>
 
+    <!-- CALCULATORS SUBMENU FOLDER -->
+    <div id="calculatorsMenuModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-lg max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden no-print">
+        <div class="p-6 md:p-8">
+            <div class="flex justify-between items-center mb-6 border-b pb-4">
+                <button onclick="goBackToMenu()" class="text-blue-600 hover:text-blue-800 text-xl font-bold flex items-center gap-2"><i class="fas fa-arrow-left"></i> Back</button>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-red-600 text-2xl transition"><i class="fas fa-times"></i></button>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-4" id="calcMenuTitle">Calculators</h3>
+            
+            <div class="flex flex-col gap-3">
+                <!-- Budget Worksheet (Native) -->
+                <button onclick="openWorksheetFromMenu()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-blue-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-file-invoice-dollar"></i></div>
+                    <span id="btnMenuWorksheetText">Budget Worksheet</span>
+                </button>
+
+                <!-- Retirement Plan (Link) -->
+                <button id="btnRetirement" onclick="window.open('https://www.calculator.net/401k-calculator.html', '_blank')" class="bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg hidden">
+                    <div class="bg-pink-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-piggy-bank"></i></div>
+                    <span>Your Employers Retirement Plan</span>
+                </button>
+
+                <!-- Native Auto App -->
                 <button id="btnAuto" onclick="openNativeAutoApp()" class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-3 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg hidden">
                     <div class="bg-cyan-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-car"></i></div>
                     <span>Financing Your Car Purchase</span>
                 </button>
 
+                <!-- Native Mortgage App -->
                 <button id="btnHome" onclick="openNativeMortgageApp()" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg hidden">
                     <div class="bg-purple-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-house-user"></i></div>
                     <span>Considering Purchasing a Home?</span>
                 </button>
 
+                <!-- Native Loan App -->
                 <button id="btnLoan" onclick="openNativeLoanApp()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg hidden">
                     <div class="bg-emerald-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-hand-holding-dollar"></i></div>
                     <span>Your Cost for Borrowing Cash</span>
                 </button>
 
+                <!-- Rental Property (Link) -->
+                <button id="btnRental" onclick="window.open('https://www.calculator.net/rental-property-calculator.html', '_blank')" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg hidden">
+                    <div class="bg-indigo-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-building"></i></div>
+                    <span>Rental Property Cash Flow</span>
+                </button>
+
+                <!-- Reverse Mortgage (Link) -->
+                <button id="btnReverse" onclick="window.open('https://longbridge-financial.com/best-money/', '_blank')" class="bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg hidden">
+                    <div class="bg-teal-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-house-circle-check"></i></div>
+                    <span>Considering a Reverse Mortgage?</span>
+                </button>
+
+                <!-- Capital Gains (Link) -->
+                <button id="btnCapGains" onclick="window.open('https://smartasset.com/investing/capital-gains-tax-calculator', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg hidden">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-chart-line"></i></div>
+                    <span>Capital Gains Tax Liability</span>
+                </button>
+
+                <!-- SEC Tools -->
                 <button id="btnSEC" onclick="window.open('https://www.investor.gov/free-financial-planning-tools', '_blank')" class="bg-slate-600 hover:bg-slate-700 text-white font-bold py-3 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg hidden">
                     <div class="bg-slate-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-scale-balanced"></i></div>
                     <span>SEC Free Calculators</span>
@@ -154,6 +208,31 @@
         </div>
     </div>
 
+    <!-- SPECIAL NEEDS SUBMENU FOLDER -->
+    <div id="specialNeedsMenuModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-lg max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden no-print">
+        <div class="p-6 md:p-8">
+            <div class="flex justify-between items-center mb-6 border-b pb-4">
+                <button onclick="goBackToMenu()" class="text-blue-600 hover:text-blue-800 text-xl font-bold flex items-center gap-2"><i class="fas fa-arrow-left"></i> Back</button>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-red-600 text-2xl transition"><i class="fas fa-times"></i></button>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">Families with a Special Needs Loved One</h3>
+            
+            <div class="flex flex-col gap-3">
+                <button onclick="window.open('https://drive.google.com/file/d/14o1JqAzB5AWpl1NQ3By8QyFgsjjIlcOw/view?usp=sharing', '_blank')" class="bg-rose-600 hover:bg-rose-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-rose-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-video"></i></div>
+                    <span>Special Needs Family (Video)</span>
+                </button>
+
+                <button onclick="window.open('https://drive.google.com/file/d/1PpUT8WtBbPJa4AlOF5PsZu9lA8xdz6Gx/view?usp=sharing', '_blank')" class="bg-rose-600 hover:bg-rose-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-rose-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-file-pdf"></i></div>
+                    <span>Special Needs Family (PDF Report)</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- PERSONAL BUDGET MODAL -->
     <div id="budgetModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[95%] md:w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden print-area">
         <div class="p-4 md:p-8">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 border-b pb-4 gap-4">
@@ -169,7 +248,9 @@
                 </div>
             </div>
 
+            <!-- Dynamic Calculator -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                <!-- Income Section -->
                 <div class="bg-gray-50 p-4 md:p-6 rounded-xl border border-gray-200">
                     <h3 class="text-lg md:text-xl font-bold text-green-700 mb-4 border-b border-green-200 pb-2"><i class="fas fa-money-bill-wave mr-2"></i> Monthly Income</h3>
                     <div class="space-y-3">
@@ -180,6 +261,7 @@
                     </div>
                 </div>
 
+                <!-- Living Expenses Section -->
                 <div class="bg-gray-50 p-4 md:p-6 rounded-xl border border-gray-200">
                     <h3 class="text-lg md:text-xl font-bold text-blue-600 mb-4 border-b border-blue-200 pb-2"><i class="fas fa-home mr-2"></i> Living Expenses</h3>
                     <div class="space-y-3">
@@ -193,6 +275,7 @@
                     </div>
                 </div>
 
+                <!-- Transportation & Insurance Section -->
                 <div class="bg-gray-50 p-4 md:p-6 rounded-xl border border-gray-200">
                     <h3 class="text-lg md:text-xl font-bold text-orange-500 mb-4 border-b border-orange-200 pb-2"><i class="fas fa-car mr-2"></i> Transport & Insurance</h3>
                     <div class="space-y-3">
@@ -203,6 +286,7 @@
                     </div>
                 </div>
 
+                <!-- Loans & Other Section -->
                 <div class="bg-gray-50 p-4 md:p-6 rounded-xl border border-gray-200">
                     <h3 class="text-lg md:text-xl font-bold text-purple-600 mb-4 border-b border-purple-200 pb-2"><i class="fas fa-credit-card mr-2"></i> Debt & Lifestyle</h3>
                     <div class="space-y-3">
@@ -215,6 +299,7 @@
                 </div>
             </div>
 
+            <!-- Summary Box -->
             <div class="mt-8 bg-gray-900 text-white p-4 md:p-6 rounded-xl shadow-inner print-invert">
                 <div class="flex justify-between items-center mb-2">
                     <span class="text-sm md:text-lg font-medium text-gray-300 print-invert">Total Monthly Income</span>
@@ -232,6 +317,7 @@
         </div>
     </div>
 
+    <!-- BUSINESS FINANCIALS MODAL -->
     <div id="businessModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[95%] md:w-full max-w-5xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden print-area">
         <div class="p-4 md:p-8">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 border-b pb-4 gap-4">
@@ -248,6 +334,7 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                <!-- ASSETS COLUMN -->
                 <div>
                     <h3 class="text-xl md:text-2xl font-bold text-green-700 mb-4 border-b-2 border-green-700 pb-2">Assets</h3>
                     <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 mb-4">
@@ -282,6 +369,7 @@
                     </div>
                 </div>
 
+                <!-- LIABILITIES COLUMN -->
                 <div>
                     <h3 class="text-xl md:text-2xl font-bold text-red-600 mb-4 border-b-2 border-red-600 pb-2">Liabilities</h3>
                     <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 mb-4">
@@ -324,17 +412,20 @@
         </div>
     </div>
 
+    <!-- NATIVE AUTO LOAN VS LEASE COMPARISON MODAL -->
     <div id="autoAppModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[95%] max-w-2xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden no-print">
         <div class="p-6 md:p-8">
             <div class="flex justify-between items-center mb-6 border-b pb-4">
+                <button onclick="goBackToMenu()" class="text-blue-600 hover:text-blue-800 text-xl font-bold flex items-center gap-2"><i class="fas fa-arrow-left"></i> Back</button>
                 <div class="flex items-center gap-3">
-                    <img src="CFLN.png" class="h-10 w-10 object-contain">
-                    <h2 class="text-xl md:text-2xl font-bold text-gray-800">CFLN Car Purchase Cost App</h2>
+                    <img src="CFLN.png" class="h-8 w-8 object-contain">
+                    <h2 class="text-lg md:text-2xl font-bold text-gray-800">Car Purchase Cost App</h2>
                 </div>
                 <button onclick="closeModal()" class="text-gray-500 hover:text-red-600 text-2xl transition"><i class="fas fa-times"></i></button>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 border-b pb-6">
+                <!-- Loan Parameters -->
                 <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
                     <h3 class="font-bold text-cyan-700 mb-3 flex items-center gap-2"><i class="fas fa-receipt"></i> Option A: Buy with Loan</h3>
                     <div class="space-y-3">
@@ -359,6 +450,7 @@
                     </div>
                 </div>
 
+                <!-- Lease Parameters -->
                 <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
                     <h3 class="font-bold text-indigo-700 mb-3 flex items-center gap-2"><i class="fas fa-signature"></i> Option B: Lease vehicle</h3>
                     <div class="space-y-3">
@@ -397,12 +489,14 @@
         </div>
     </div>
 
+    <!-- NATIVE MORTGAGE CALCULATOR MODAL -->
     <div id="mortgageAppModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[95%] max-w-lg max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden no-print">
         <div class="p-6 md:p-8">
             <div class="flex justify-between items-center mb-6 border-b pb-4">
+                <button onclick="goBackToMenu()" class="text-blue-600 hover:text-blue-800 text-xl font-bold flex items-center gap-2"><i class="fas fa-arrow-left"></i> Back</button>
                 <div class="flex items-center gap-3">
-                    <img src="CFLN.png" class="h-10 w-10 object-contain">
-                    <h2 class="text-xl md:text-2xl font-bold text-gray-800">CFLN Mortgage App</h2>
+                    <img src="CFLN.png" class="h-8 w-8 object-contain">
+                    <h2 class="text-lg md:text-2xl font-bold text-gray-800">Mortgage App</h2>
                 </div>
                 <button onclick="closeModal()" class="text-gray-500 hover:text-red-600 text-2xl transition"><i class="fas fa-times"></i></button>
             </div>
@@ -419,12 +513,14 @@
         </div>
     </div>
 
+    <!-- NEW NATIVE PERSONAL LOAN CALCULATOR MODAL -->
     <div id="loanAppModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[95%] max-w-lg max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden no-print">
         <div class="p-6 md:p-8">
             <div class="flex justify-between items-center mb-6 border-b pb-4">
+                <button onclick="goBackToMenu()" class="text-blue-600 hover:text-blue-800 text-xl font-bold flex items-center gap-2"><i class="fas fa-arrow-left"></i> Back</button>
                 <div class="flex items-center gap-3">
-                    <img src="CFLN.png" class="h-10 w-10 object-contain">
-                    <h2 class="text-xl md:text-2xl font-bold text-gray-800">Cost of Borrowing App</h2>
+                    <img src="CFLN.png" class="h-8 w-8 object-contain">
+                    <h2 class="text-lg md:text-2xl font-bold text-gray-800">Cost of Borrowing App</h2>
                 </div>
                 <button onclick="closeModal()" class="text-gray-500 hover:text-red-600 text-2xl transition"><i class="fas fa-times"></i></button>
             </div>
@@ -444,6 +540,7 @@
         </div>
     </div>
 
+    <!-- CONTACT MODAL -->
     <div id="contactModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[95%] max-w-lg max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden no-print">
         <div class="p-6 md:p-8">
             <div class="flex justify-between items-center mb-6 border-b pb-4">
@@ -460,6 +557,7 @@
         </div>
     </div>
 
+    <!-- SUCCESS MODAL -->
     <div id="successModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-md bg-white rounded-2xl shadow-2xl z-50 hidden no-print text-center p-8 border-t-8 border-green-700">
         <img src="AIP_Logo.png" alt="Alpha Innovation Partners" class="mx-auto h-24 object-contain mb-6">
         <h2 class="text-2xl font-bold text-gray-800 mb-4">Message Sent</h2>
@@ -467,6 +565,7 @@
         <button onclick="closeModal()" class="bg-green-700 text-white font-bold py-3 px-8 rounded-lg w-full">Done</button>
     </div>
 
+    <!-- SCRIPT LOGIC -->
     <script>
         const formatCurrency = (num) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(num);
         let currentCategory = '';
@@ -493,8 +592,12 @@
         function openMenuModal(category) {
             currentCategory = category;
             document.getElementById('modalOverlay').classList.remove('hidden');
+            document.getElementById('calculatorsMenuModal').classList.add('hidden');
+            document.getElementById('specialNeedsMenuModal').classList.add('hidden');
             document.getElementById('stageMenuModal').classList.remove('hidden');
+            
             document.getElementById('menuTitle').innerText = category + " Resources";
+            document.getElementById('calcBtnText').innerText = "Financial Calculators for " + category;
 
             if (category === 'Young Adults' || category === 'Young Families') {
                 currentAppUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfIKhaLiUhQuadHvx0JVW2HVv3rL69bdysHwSUNr-iqhq6HNw/viewform?usp=header';
@@ -504,24 +607,41 @@
                 document.getElementById('btnMenuAuditText').innerText = 'Retirement Readiness App';
             }
 
-            document.getElementById('btnMenuWorksheetText').innerText = (category === 'Business Owners') ? "Business Balance Sheet" : "Budget Worksheet";
-            
-            // Educational Resource Buttons
-            toggleBtn('btnVideoSpecialNeeds', ['Young Families'], category);
-            toggleBtn('btnPDFSpecialNeeds', ['Young Families'], category);
-            toggleBtn('btnAssetProtection', ['Mid Career'], category);
+            // Show folder / direct links conditionally
+            toggleBtn('btnMainSpecialNeeds', ['Young Families'], category);
+            toggleBtn('btnMainAssetProtection', ['Mid Career'], category);
+        }
 
-            // Calculator Buttons
-            toggleBtn('btnAuto', ['Young Adults', 'Young Families', 'Mid Career', 'Pre-Retirement', 'Retired'], category);
-            toggleBtn('btnHome', ['Young Families', 'Mid Career', 'Pre-Retirement'], category);
-            toggleBtn('btnLoan', ['Young Adults', 'Young Families', 'Mid Career', 'Pre-Retirement'], category);
-            toggleBtn('btnSEC', ['Young Adults', 'Young Families', 'Mid Career', 'Business Owners', 'Pre-Retirement', 'Retired'], category);
+        function openCalculatorsMenu() {
+            document.getElementById('stageMenuModal').classList.add('hidden');
+            document.getElementById('calculatorsMenuModal').classList.remove('hidden');
+            
+            document.getElementById('calcMenuTitle').innerText = "Calculators: " + currentCategory;
+            document.getElementById('btnMenuWorksheetText').innerText = (currentCategory === 'Business Owners') ? "Business Balance Sheet" : "Budget Worksheet";
+
+            toggleBtn('btnRetirement', ['Young Adults', 'Young Families', 'Mid Career', 'Pre-Retirement'], currentCategory);
+            toggleBtn('btnAuto', ['Young Adults', 'Young Families', 'Mid Career', 'Pre-Retirement', 'Retired'], currentCategory);
+            toggleBtn('btnHome', ['Young Families', 'Mid Career', 'Pre-Retirement'], currentCategory);
+            toggleBtn('btnLoan', ['Young Adults', 'Young Families', 'Mid Career', 'Pre-Retirement'], currentCategory);
+            toggleBtn('btnRental', ['Business Owners'], currentCategory);
+            toggleBtn('btnReverse', ['Retired'], currentCategory);
+            toggleBtn('btnCapGains', ['Mid Career', 'Pre-Retirement', 'Retired'], currentCategory);
+            toggleBtn('btnSEC', ['Young Adults', 'Young Families', 'Mid Career', 'Business Owners', 'Pre-Retirement', 'Retired'], currentCategory);
+        }
+
+        function openSpecialNeedsMenu() {
+            document.getElementById('stageMenuModal').classList.add('hidden');
+            document.getElementById('specialNeedsMenuModal').classList.remove('hidden');
+        }
+
+        function goBackToMenu() {
+            openMenuModal(currentCategory);
         }
 
         function openAuditFromMenu() { window.open(currentAppUrl, '_blank'); }
 
         function openWorksheetFromMenu() {
-            document.getElementById('stageMenuModal').classList.add('hidden');
+            document.getElementById('calculatorsMenuModal').classList.add('hidden');
             if (currentCategory === 'Business Owners') {
                 document.getElementById('businessModal').classList.remove('hidden');
                 calcBusiness();
@@ -534,19 +654,19 @@
         }
 
         function openNativeMortgageApp() {
-            document.getElementById('stageMenuModal').classList.add('hidden');
+            document.getElementById('calculatorsMenuModal').classList.add('hidden');
             document.getElementById('mortgageAppModal').classList.remove('hidden');
             calculateNativeMortgage();
         }
 
         function openNativeAutoApp() {
-            document.getElementById('stageMenuModal').classList.add('hidden');
+            document.getElementById('calculatorsMenuModal').classList.add('hidden');
             document.getElementById('autoAppModal').classList.remove('hidden');
             calculateNativeAuto();
         }
 
         function openNativeLoanApp() {
-            document.getElementById('stageMenuModal').classList.add('hidden');
+            document.getElementById('calculatorsMenuModal').classList.add('hidden');
             document.getElementById('loanAppModal').classList.remove('hidden');
             calculateNativeLoan();
         }
@@ -617,6 +737,8 @@
         function closeModal() {
             document.getElementById('modalOverlay').classList.add('hidden');
             document.getElementById('stageMenuModal').classList.add('hidden');
+            document.getElementById('calculatorsMenuModal').classList.add('hidden');
+            document.getElementById('specialNeedsMenuModal').classList.add('hidden');
             document.getElementById('mortgageAppModal').classList.add('hidden');
             document.getElementById('autoAppModal').classList.add('hidden');
             document.getElementById('loanAppModal').classList.add('hidden');
