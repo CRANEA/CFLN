@@ -172,6 +172,12 @@
                     <div class="bg-green-600 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-clipboard-check"></i></div>
                     <span id="btnMenuAuditText">Readiness App</span>
                 </button>
+
+                <!-- DYNAMIC MORTGAGE CALCULATOR BUTTON -->
+                <button id="btnMenuMortgage" onclick="window.open('https://www.calculator.net/mortgage-calculator.html', '_blank')" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg hidden">
+                    <div class="bg-purple-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-house-user"></i></div>
+                    <span>Mortgage Calculator</span>
+                </button>
             </div>
         </div>
     </div>
@@ -446,6 +452,14 @@
             
             document.getElementById('btnMenuWorksheetText').innerText = worksheetBtnText;
             document.getElementById('btnMenuAuditText').innerText = auditBtnText;
+
+            // NEW LOGIC FOR MORTGAGE CALCULATOR
+            let mortgageBtn = document.getElementById('btnMenuMortgage');
+            if (category === 'Young Families' || category === 'Mid Career' || category === 'Pre-Retirement') {
+                mortgageBtn.classList.remove('hidden');
+            } else {
+                mortgageBtn.classList.add('hidden');
+            }
         }
 
         function openWorksheetFromMenu() {
