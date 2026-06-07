@@ -210,6 +210,16 @@
         </div>
     </div>
 
+    <!-- CUSTOM SUCCESS MODAL -->
+    <div id="successModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-md bg-white rounded-2xl shadow-2xl z-50 hidden no-print text-center p-8 border-t-8 border-green-700">
+        <img src="AIP_Logo.png" alt="Alpha Innovation Partners" class="mx-auto h-24 object-contain mb-6">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Message Sent</h2>
+        <p class="text-gray-600 mb-8 leading-relaxed font-medium">Your Information has Securely been forwarded to Alpha Innovation Partners. A Financial Fiduciary will contact you within 24 hours. Thank you.</p>
+        <button onclick="closeSuccessModal()" class="bg-green-700 hover:bg-green-800 text-white font-bold py-3 px-8 rounded-lg transition-colors shadow-md w-full">
+            Done
+        </button>
+    </div>
+
     <!-- PERSONAL BUDGET MODAL -->
     <div id="budgetModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[95%] md:w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden print-area">
         <div class="p-4 md:p-8">
@@ -410,6 +420,11 @@
             document.getElementById('contactModal').classList.remove('hidden');
         }
 
+        function closeSuccessModal() {
+            document.getElementById('modalOverlay').classList.add('hidden');
+            document.getElementById('successModal').classList.add('hidden');
+        }
+
         // Opens the intermediate menu first
         function openMenuModal(category) {
             currentCategory = category;
@@ -418,7 +433,6 @@
             document.getElementById('stageMenuModal').classList.remove('hidden');
             document.getElementById('menuTitle').innerText = category + " Resources";
 
-            // Determine link and button text based on life stage
             let auditBtnText = '';
             if (category === 'Young Adults' || category === 'Young Families') {
                 currentAppUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfIKhaLiUhQuadHvx0JVW2HVv3rL69bdysHwSUNr-iqhq6HNw/viewform?usp=header';
@@ -434,7 +448,6 @@
             document.getElementById('btnMenuAuditText').innerText = auditBtnText;
         }
 
-        // Logic for the menu buttons
         function openWorksheetFromMenu() {
             document.getElementById('stageMenuModal').classList.add('hidden');
             
@@ -459,14 +472,15 @@
             document.getElementById('businessModal').classList.add('hidden');
             document.getElementById('contactModal').classList.add('hidden');
             document.getElementById('stageMenuModal').classList.add('hidden');
+            document.getElementById('successModal').classList.add('hidden');
             
             document.querySelectorAll('input[type="number"]').forEach(input => input.value = '');
         }
 
-        // Handle the Form Submission Silently
+        // Handle the Form Submission Silently to bypass ugly browser alerts
         const form = document.getElementById('fiduciaryForm');
         form.addEventListener('submit', function(e) {
-            e.preventDefault(); // Stops the page from leaving
+            e.preventDefault(); // Stops the page from redirecting
             const data = new FormData(form);
             const action = form.action;
             const btn = document.getElementById('submitBtn');
@@ -477,12 +491,12 @@
             fetch(action, {
                 method: 'POST',
                 body: data,
-                mode: 'no-cors' // Bypasses Google security restrictions
+                mode: 'no-cors' // Talks to Google securely behind the scenes
             }).then(() => {
-                // Success actions: Notice, clear form, close box
-                alert("Success! Your request has been sent to our fiduciaries. We will be in touch shortly.");
-                form.reset();
-                closeModal();
+                form.reset(); // clear the form
+                document.getElementById('contactModal').classList.add('hidden'); // hide form
+                document.getElementById('successModal').classList.remove('hidden'); // Show gorgeous logo popup
+                
                 btn.innerText = "Send Request";
                 btn.disabled = false;
             }).catch((error) => {
