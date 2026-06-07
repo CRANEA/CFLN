@@ -122,18 +122,106 @@
                     <span id="btnMenuAuditText">Readiness App</span>
                 </button>
 
-                <!-- NEW NATIVE MORTGAGE APP BUTTON -->
+                <!-- NEW NATIVE AUTO APP BUTTON -->
+                <button id="btnAuto" onclick="openNativeAutoApp()" class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-3 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg hidden">
+                    <div class="bg-cyan-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-car"></i></div>
+                    <span>Financing Your Car Purchase</span>
+                </button>
+
+                <!-- Native Mortgage App Button -->
                 <button id="btnHome" onclick="openNativeMortgageApp()" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg hidden">
                     <div class="bg-purple-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-house-user"></i></div>
                     <span>Considering Purchasing a Home?</span>
                 </button>
 
-                <!-- SEC Tools (External Link) -->
+                <!-- SEC Tools -->
                 <button id="btnSEC" onclick="window.open('https://www.investor.gov/free-financial-planning-tools', '_blank')" class="bg-slate-600 hover:bg-slate-700 text-white font-bold py-3 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg hidden">
                     <div class="bg-slate-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-scale-balanced"></i></div>
                     <span>SEC Free Calculators</span>
                 </button>
             </div>
+        </div>
+    </div>
+
+    <!-- NATIVE AUTO LOAN VS LEASE COMPARISON MODAL -->
+    <div id="autoAppModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[95%] max-w-2xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden no-print">
+        <div class="p-6 md:p-8">
+            <div class="flex justify-between items-center mb-6 border-b pb-4">
+                <div class="flex items-center gap-3">
+                    <img src="CFLN.png" class="h-10 w-10 object-contain">
+                    <h2 class="text-xl md:text-2xl font-bold text-gray-800">CFLN Car Purchase Cost App</h2>
+                </div>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-red-600 text-2xl transition"><i class="fas fa-times"></i></button>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 border-b pb-6">
+                <!-- Loan Parameters -->
+                <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                    <h3 class="font-bold text-cyan-700 mb-3 flex items-center gap-2"><i class="fas fa-receipt"></i> Option A: Buy with Loan</h3>
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-xs font-medium text-gray-600 mb-1">Vehicle Price ($)</label>
+                            <input type="number" id="autoPrice" class="w-full border rounded p-2 text-base auto-calc-input" value="35000" oninput="calculateNativeAuto()">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-600 mb-1">Down Payment / Trade ($)</label>
+                            <input type="number" id="autoDown" class="w-full border rounded p-2 text-base auto-calc-input" value="5000" oninput="calculateNativeAuto运行()">
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div>
+                                <label class="block text-xs font-medium text-gray-600 mb-1">Interest Rate (%)</label>
+                                <input type="number" step="0.1" id="autoRate" class="w-full border rounded p-2 text-base auto-calc-input" value="5.5" oninput="calculateNativeAuto()">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-gray-600 mb-1">Term (Months)</label>
+                                <input type="number" id="autoLoanTerm" class="w-full border rounded p-2 text-base auto-calc-input" value="60" oninput="calculateNativeAuto()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lease Parameters -->
+                <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                    <h3 class="font-bold text-indigo-700 mb-3 flex items-center gap-2"><i class="fas fa-signature"></i> Option B: Lease vehicle</h3>
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-xs font-medium text-gray-600 mb-1">Monthly Lease Payment ($)</label>
+                            <input type="number" id="leaseMonthly" class="w-full border rounded p-2 text-base auto-calc-input" value="399" oninput="calculateNativeAuto()">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-600 mb-1">Amount Due at Signing ($)</label>
+                            <input type="number" id="leaseSigning" class="w-full border rounded p-2 text-base auto-calc-input" value="3000" oninput="calculateNativeAuto()">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-600 mb-1">Lease Term (Months)</label>
+                            <input type="number" id="leaseTerm" class="w-full border rounded p-2 text-base auto-calc-input" value="36" oninput="calculateNativeAuto()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comparison Dashboard -->
+            <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-cyan-50 p-4 rounded-xl border border-cyan-100 text-center">
+                    <p class="text-xs font-bold uppercase tracking-wider text-cyan-800">Loan Monthly Payment</p>
+                    <h4 class="text-2xl font-extrabold text-cyan-700 mt-1" id="autoLoanResult">$0.00</h4>
+                    <p class="text-xs text-gray-500 mt-2">Total Lifecycle Out-of-Pocket:<br><strong class="text-cyan-800" id="autoLoanTotal">$0.00</strong></p>
+                </div>
+                <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-100 text-center">
+                    <p class="text-xs font-bold uppercase tracking-wider text-indigo-800">Lease Monthly Payment</p>
+                    <h4 class="text-2xl font-extrabold text-indigo-700 mt-1" id="autoLeaseResult">$0.00</h4>
+                    <p class="text-xs text-gray-500 mt-2">Total Lifecycle Out-of-Pocket:<br><strong class="text-indigo-800" id="autoLeaseTotal">$0.00</strong></p>
+                </div>
+            </div>
+
+            <div class="bg-amber-50 border border-amber-200 text-amber-900 rounded-xl p-4 mt-6 text-xs leading-relaxed flex gap-3 items-start">
+                <i class="fas fa-circle-info text-amber-600 text-base mt-0.5 shrink-0"></i>
+                <p><strong>Fiduciary Tip:</strong> Lower monthly lease payments look attractive, but leasing means you have no ownership equity at the end of the term. Buying costs more upfront, but rewards you with a fully paid-off asset.</p>
+            </div>
+
+            <button onclick="openContactModal()" class="w-full bg-cyan-700 hover:bg-cyan-800 text-white font-bold py-3 rounded-lg transition-colors mt-6 shadow-md">
+                Map Out My Car Budget with a Fiduciary
+            </button>
         </div>
     </div>
 
@@ -147,43 +235,20 @@
                 </div>
                 <button onclick="closeModal()" class="text-gray-500 hover:text-red-600 text-2xl transition"><i class="fas fa-times"></i></button>
             </div>
-            
             <div class="space-y-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Home Price ($)</label>
-                    <input type="number" id="mortgagePrice" class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-purple-500 outline-none" value="400000" oninput="calculateNativeMortgage()">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Down Payment ($)</label>
-                    <input type="number" id="mortgageDown" class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-purple-500 outline-none" value="80000" oninput="calculateNativeMortgage()">
-                </div>
+                <div><label class="block text-sm font-medium text-gray-700 mb-1">Home Price ($)</label><input type="number" id="mortgagePrice" class="w-full border rounded-lg p-3 outline-none" value="400000" oninput="calculateNativeMortgage()"></div>
+                <div><label class="block text-sm font-medium text-gray-700 mb-1">Down Payment ($)</label><input type="number" id="mortgageDown" class="w-full border rounded-lg p-3 outline-none" value="80000" oninput="calculateNativeMortgage()"></div>
                 <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Interest Rate (%)</label>
-                        <input type="number" step="0.01" id="mortgageRate" class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-purple-500 outline-none" value="6.5" oninput="calculateNativeMortgage()">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Loan Term (Years)</label>
-                        <select id="mortgageTerm" class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-purple-500 outline-none" onchange="calculateNativeMortgage()">
-                            <option value="30">30 Years</option>
-                            <option value="15">15 Years</option>
-                        </select>
-                    </div>
+                    <div><label class="block text-sm font-medium text-gray-700 mb-1">Interest Rate (%)</label><input type="number" step="0.01" id="mortgageRate" class="w-full border rounded-lg p-3 outline-none" value="6.5" oninput="calculateNativeMortgage()"></div>
+                    <div><label class="block text-sm font-medium text-gray-700 mb-1">Loan Term (Years)</label><select id="mortgageTerm" class="w-full border rounded-lg p-3 outline-none" onchange="calculateNativeMortgage()"><option value="30">30 Years</option><option value="15">15 Years</option></select></div>
                 </div>
-                
-                <div class="bg-purple-50 p-6 rounded-xl mt-6 border border-purple-100 text-center">
-                    <p class="text-gray-600 font-medium mb-1">Estimated Monthly Payment (P&I)</p>
-                    <h3 class="text-4xl font-extrabold text-purple-700" id="mortgageResult">$0.00</h3>
-                </div>
-
-                <button onclick="openContactModal()" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 rounded-lg transition-colors mt-4 shadow-md">
-                    Discuss My Options with a Fiduciary
-                </button>
+                <div class="bg-purple-50 p-6 rounded-xl mt-6 text-center"><p class="text-gray-600 mb-1">Estimated Monthly Payment (P&I)</p><h3 class="text-4xl font-extrabold text-purple-700" id="mortgageResult">$0.00</h3></div>
+                <button onclick="openContactModal()" class="w-full bg-purple-600 text-white font-bold py-3 rounded-lg shadow-md">Discuss My Options with a Fiduciary</button>
             </div>
         </div>
     </div>
 
-    <!-- CONTACT & SUCCESS MODALS (Abbreviated for space, keep your exact original forms here) -->
+    <!-- CONTACT & SUCCESS MODALS -->
     <div id="contactModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[95%] max-w-lg max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden no-print">
         <div class="p-6 md:p-8">
             <div class="flex justify-between items-center mb-6 border-b pb-4">
@@ -195,7 +260,7 @@
                 <div><label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label><input type="email" name="email" required class="w-full border rounded-lg p-2"></div>
                 <div><label class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label><input type="tel" name="phone" required class="w-full border rounded-lg p-2"></div>
                 <div><label class="block text-sm font-medium text-gray-700 mb-1">Financial Concerns</label><textarea name="concerns" rows="4" required class="w-full border rounded-lg p-2"></textarea></div>
-                <button type="submit" id="submitBtn" class="w-full bg-green-700 text-white font-bold py-3 rounded-lg">Send Request</button>
+                <button type="submit" id="submitBtn" class="w-full bg-green-700 text-white font-bold py-3 rounded-lg shadow-md">Send Request</button>
             </form>
         </div>
     </div>
@@ -215,7 +280,8 @@
 
         function openContactModal() {
             document.getElementById('contactModal').classList.remove('hidden');
-            document.getElementById('mortgageAppModal').classList.add('hidden'); // switch from mortgage to contact if open
+            document.getElementById('mortgageAppModal').classList.add('hidden');
+            document.getElementById('autoAppModal').classList.add('hidden');
             if(document.getElementById('modalOverlay').classList.contains('hidden')) {
                 document.getElementById('modalOverlay').classList.remove('hidden');
             }
@@ -245,6 +311,7 @@
 
             document.getElementById('btnMenuWorksheetText').innerText = (category === 'Business Owners') ? "Business Balance Sheet" : "Budget Worksheet";
             
+            toggleBtn('btnAuto', ['Young Adults', 'Young Families', 'Mid Career', 'Pre-Retirement', 'Retired'], category);
             toggleBtn('btnHome', ['Young Families', 'Mid Career', 'Pre-Retirement'], category);
             toggleBtn('btnSEC', ['Young Adults', 'Young Families', 'Mid Career', 'Business Owners', 'Pre-Retirement', 'Retired'], category);
         }
@@ -254,7 +321,13 @@
         function openNativeMortgageApp() {
             document.getElementById('stageMenuModal').classList.add('hidden');
             document.getElementById('mortgageAppModal').classList.remove('hidden');
-            calculateNativeMortgage(); // Calculate default values instantly
+            calculateNativeMortgage();
+        }
+
+        function openNativeAutoApp() {
+            document.getElementById('stageMenuModal').classList.add('hidden');
+            document.getElementById('autoAppModal').classList.remove('hidden');
+            calculateNativeAuto();
         }
 
         function calculateNativeMortgage() {
@@ -266,21 +339,47 @@
             let principal = price - down;
             let monthlyRate = (rate / 100) / 12;
             let numberOfPayments = term * 12;
-            
             let monthlyPayment = 0;
-            if (monthlyRate === 0) {
-                monthlyPayment = principal / numberOfPayments;
-            } else if (principal > 0) {
-                monthlyPayment = principal * monthlyRate * (Math.pow(1 + monthlyRate, numberOfPayments)) / (Math.pow(1 + monthlyRate, numberOfPayments) - 1);
-            }
+            if (monthlyRate === 0) monthlyPayment = principal / numberOfPayments;
+            else if (principal > 0) monthlyPayment = principal * monthlyRate * (Math.pow(1 + monthlyRate, numberOfPayments)) / (Math.pow(1 + monthlyRate, numberOfPayments) - 1);
 
             document.getElementById('mortgageResult').innerText = formatCurrency(monthlyPayment);
+        }
+
+        function calculateNativeAuto() {
+            // Option A: Buy Loan Math
+            let price = Number(document.getElementById('autoPrice').value) || 0;
+            let down = Number(document.getElementById('autoDown').value) || 0;
+            let rate = Number(document.getElementById('autoRate').value) || 0;
+            let months = Number(document.getElementById('autoLoanTerm').value) || 60;
+
+            let principal = price - down;
+            let monthlyRate = (rate / 100) / 12;
+            let loanPayment = 0;
+            if (monthlyRate === 0) loanPayment = principal / months;
+            else if (principal > 0) loanPayment = principal * monthlyRate * (Math.pow(1 + monthlyRate, months)) / (Math.pow(1 + monthlyRate, months) - 1);
+
+            let loanTotalCost = (loanPayment * months) + down;
+
+            // Option B: Lease Math
+            let leasePayment = Number(document.getElementById('leaseMonthly').value) || 0;
+            let signing = Number(document.getElementById('leaseSigning').value) || 0;
+            let leaseMonths = Number(document.getElementById('leaseTerm').value) || 36;
+
+            let leaseTotalCost = (leasePayment * leaseMonths) + signing;
+
+            // Render Output
+            document.getElementById('autoLoanResult').innerText = formatCurrency(loanPayment);
+            document.getElementById('autoLoanTotal').innerText = formatCurrency(loanTotalCost);
+            document.getElementById('autoLeaseResult').innerText = formatCurrency(leasePayment);
+            document.getElementById('autoLeaseTotal').innerText = formatCurrency(leaseTotalCost);
         }
 
         function closeModal() {
             document.getElementById('modalOverlay').classList.add('hidden');
             document.getElementById('stageMenuModal').classList.add('hidden');
             document.getElementById('mortgageAppModal').classList.add('hidden');
+            document.getElementById('autoAppModal').classList.add('hidden');
             document.getElementById('contactModal').classList.add('hidden');
             document.getElementById('successModal').classList.add('hidden');
         }
