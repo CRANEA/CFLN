@@ -33,21 +33,25 @@
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans">
 
+    <!-- Navigation -->
     <nav class="bg-white shadow-sm py-2 no-print">
         <div class="max-w-[100rem] mx-auto px-4 flex justify-between items-center">
             <div class="flex items-center gap-2 md:gap-4">
                 
+                <!-- MUCH LARGER LOGO FIX -->
                 <img src="CFLN.png" alt="Crane Logo" class="w-32 h-32 md:w-40 md:h-40 object-contain shrink-0">
 
                 <h1 class="text-xl md:text-3xl font-extrabold text-red-600">Crane <span class="text-green-700 hidden sm:inline">Financial Literacy Network</span></h1>
             </div>
             
+            <!-- CONTACT FIDUCIARY BUTTON -->
             <button onclick="openContactModal()" class="bg-green-700 hover:bg-green-800 text-white font-semibold py-2 px-4 rounded-full text-xs md:text-sm transition-colors flex items-center gap-2 shadow-md whitespace-nowrap">
                 <i class="fas fa-user-tie"></i> <span class="hidden md:inline">Talk to a Financial Fiduciary Today</span><span class="md:hidden">Contact Us</span>
             </button>
         </div>
     </nav>
 
+    <!-- Hero Section -->
     <header class="bg-gradient-to-r from-blue-500 to-green-400 py-12 text-center shadow-inner no-print">
         <div class="max-w-4xl mx-auto px-4">
             <h2 class="text-4xl md:text-5xl font-extrabold text-white drop-shadow-md leading-tight">
@@ -63,10 +67,12 @@
         </div>
     </header>
 
+    <!-- Cards Section -->
     <main class="max-w-7xl mx-auto px-4 py-12 no-print">
         <h3 class="text-center text-2xl md:text-3xl font-bold text-gray-800 mb-10">Where are you on your journey?</h3>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Card 1 -->
             <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100 cursor-pointer" onclick="openMenuModal('Young Adults')">
                 <div class="w-14 h-14 bg-blue-500 text-white rounded-xl flex items-center justify-center text-2xl mb-6 shadow-sm">
                     <i class="fas fa-rocket"></i>
@@ -77,6 +83,7 @@
                 <span class="text-red-600 font-semibold flex items-center gap-2">View Resources <i class="fas fa-arrow-right"></i></span>
             </div>
 
+            <!-- Card 2 -->
             <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100 cursor-pointer" onclick="openMenuModal('Young Families')">
                 <div class="w-14 h-14 bg-teal-500 text-white rounded-xl flex items-center justify-center text-2xl mb-6 shadow-sm">
                     <i class="fas fa-home"></i>
@@ -87,6 +94,7 @@
                 <span class="text-red-600 font-semibold flex items-center gap-2">View Resources <i class="fas fa-arrow-right"></i></span>
             </div>
 
+            <!-- Card 3 -->
             <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100 cursor-pointer" onclick="openMenuModal('Mid Career')">
                 <div class="w-14 h-14 bg-indigo-500 text-white rounded-xl flex items-center justify-center text-2xl mb-6 shadow-sm">
                     <i class="fas fa-briefcase"></i>
@@ -97,6 +105,7 @@
                 <span class="text-red-600 font-semibold flex items-center gap-2">View Resources <i class="fas fa-arrow-right"></i></span>
             </div>
 
+            <!-- Card 4 -->
             <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100 cursor-pointer" onclick="openMenuModal('Business Owners')">
                 <div class="w-14 h-14 bg-red-600 text-white rounded-xl flex items-center justify-center text-2xl mb-6 shadow-sm">
                     <i class="fas fa-store"></i>
@@ -107,6 +116,7 @@
                 <span class="text-red-600 font-semibold flex items-center gap-2">View Resources <i class="fas fa-arrow-right"></i></span>
             </div>
 
+            <!-- Card 5 -->
             <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100 cursor-pointer" onclick="openMenuModal('Pre-Retirement')">
                 <div class="w-14 h-14 bg-orange-500 text-white rounded-xl flex items-center justify-center text-2xl mb-6 shadow-sm">
                     <i class="fas fa-bullseye"></i>
@@ -117,6 +127,7 @@
                 <span class="text-red-600 font-semibold flex items-center gap-2">View Resources <i class="fas fa-arrow-right"></i></span>
             </div>
 
+            <!-- Card 6 -->
             <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100 cursor-pointer" onclick="openMenuModal('Retired')">
                 <div class="w-14 h-14 bg-green-700 text-white rounded-xl flex items-center justify-center text-2xl mb-6 shadow-sm">
                     <i class="fas fa-umbrella-beach"></i>
@@ -129,14 +140,17 @@
         </div>
     </main>
 
+    <!-- Footer Area CTA -->
     <section class="max-w-4xl mx-auto px-4 text-center pb-16 no-print">
         <p class="text-gray-600 font-medium">
             As fiduciaries, we are legally obligated to act in your best interests. No sales pitches—just objective financial strategies for your review and decision. To reach out to us, simply click the button at the top right of the screen or inside any of our life-stage resources.
         </p>
     </section>
 
+    <!-- OVERLAY / MODAL BACKGROUND -->
     <div id="modalOverlay" class="fixed inset-0 bg-black bg-opacity-60 hidden z-40 no-print"></div>
 
+    <!-- NEW INTERMEDIATE MENU MODAL -->
     <div id="stageMenuModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-lg bg-white rounded-2xl shadow-2xl z-50 hidden no-print">
         <div class="p-6 md:p-8">
             <div class="flex justify-between items-center mb-6 border-b pb-4">
@@ -147,11 +161,13 @@
             </div>
             
             <div class="flex flex-col gap-4">
+                <!-- Worksheet Button -->
                 <button onclick="openWorksheetFromMenu()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
                     <div class="bg-blue-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-calculator"></i></div>
                     <span id="btnMenuWorksheetText">Budget Worksheet</span>
                 </button>
                 
+                <!-- Audit / App Button -->
                 <button onclick="openAuditFromMenu()" class="bg-green-700 hover:bg-green-800 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
                     <div class="bg-green-600 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-clipboard-check"></i></div>
                     <span id="btnMenuAuditText">Readiness App</span>
@@ -160,6 +176,7 @@
         </div>
     </div>
 
+    <!-- CONTACT FIDUCIARY MODAL -->
     <div id="contactModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[95%] max-w-lg max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden no-print">
         <div class="p-6 md:p-8">
             <div class="flex justify-between items-center mb-6 border-b pb-4">
@@ -169,10 +186,7 @@
                 </button>
             </div>
             
-            <form action="https://script.google.com/macros/s/AKfycbzGamtc28859ePWNMIHT391MuHDEE4lGwrUkJSVygqOSQSubUnibkoQYlTosQZGJxOy5Q/exec" method="POST" class="space-y-4">
-                <input type="hidden" name="_subject" value="New Fiduciary Request from Website!">
-                <input type="hidden" name="_captcha" value="false">
-                
+            <form id="fiduciaryForm" action="https://script.google.com/macros/s/AKfycbzGamtc28859ePWNMIHT391MuHDEE4lGwrUkJSVygqOSQSubUnibkoQYlTosQZGJxOy5Q/exec" class="space-y-4">
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
                     <input type="text" name="name" required class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-green-500 outline-none">
@@ -189,13 +203,14 @@
                     <label class="block text-sm font-medium text-gray-700 mb-1">Financial Concerns</label>
                     <textarea name="concerns" rows="4" required class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-green-500 outline-none"></textarea>
                 </div>
-                <button type="submit" class="w-full bg-green-700 hover:bg-green-800 text-white font-bold py-3 rounded-lg transition-colors mt-4 shadow-md">
+                <button type="submit" id="submitBtn" class="w-full bg-green-700 hover:bg-green-800 text-white font-bold py-3 rounded-lg transition-colors mt-4 shadow-md">
                     Send Request
                 </button>
             </form>
         </div>
     </div>
 
+    <!-- PERSONAL BUDGET MODAL -->
     <div id="budgetModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[95%] md:w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden print-area">
         <div class="p-4 md:p-8">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 border-b pb-4 gap-4">
@@ -215,7 +230,9 @@
                 </div>
             </div>
 
+            <!-- Dynamic Calculator -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                <!-- Income Section -->
                 <div class="bg-gray-50 p-4 md:p-6 rounded-xl border border-gray-200">
                     <h3 class="text-lg md:text-xl font-bold text-green-700 mb-4 border-b border-green-200 pb-2"><i class="fas fa-money-bill-wave mr-2"></i> Monthly Income</h3>
                     <div class="space-y-3">
@@ -226,6 +243,7 @@
                     </div>
                 </div>
 
+                <!-- Living Expenses Section -->
                 <div class="bg-gray-50 p-4 md:p-6 rounded-xl border border-gray-200">
                     <h3 class="text-lg md:text-xl font-bold text-blue-600 mb-4 border-b border-blue-200 pb-2"><i class="fas fa-home mr-2"></i> Living Expenses</h3>
                     <div class="space-y-3">
@@ -239,6 +257,7 @@
                     </div>
                 </div>
 
+                <!-- Transportation & Insurance Section -->
                 <div class="bg-gray-50 p-4 md:p-6 rounded-xl border border-gray-200">
                     <h3 class="text-lg md:text-xl font-bold text-orange-500 mb-4 border-b border-orange-200 pb-2"><i class="fas fa-car mr-2"></i> Transport & Insurance</h3>
                     <div class="space-y-3">
@@ -249,6 +268,7 @@
                     </div>
                 </div>
 
+                <!-- Loans & Other Section -->
                 <div class="bg-gray-50 p-4 md:p-6 rounded-xl border border-gray-200">
                     <h3 class="text-lg md:text-xl font-bold text-purple-600 mb-4 border-b border-purple-200 pb-2"><i class="fas fa-credit-card mr-2"></i> Debt & Lifestyle</h3>
                     <div class="space-y-3">
@@ -261,6 +281,7 @@
                 </div>
             </div>
 
+            <!-- Summary Box -->
             <div class="mt-8 bg-gray-900 text-white p-4 md:p-6 rounded-xl shadow-inner print-invert">
                 <div class="flex justify-between items-center mb-2">
                     <span class="text-sm md:text-lg font-medium text-gray-300 print-invert">Total Monthly Income</span>
@@ -278,6 +299,7 @@
         </div>
     </div>
 
+    <!-- BUSINESS FINANCIALS MODAL -->
     <div id="businessModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[95%] md:w-full max-w-5xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden print-area">
         <div class="p-4 md:p-8">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 border-b pb-4 gap-4">
@@ -298,6 +320,7 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                <!-- ASSETS COLUMN -->
                 <div>
                     <h3 class="text-xl md:text-2xl font-bold text-green-700 mb-4 border-b-2 border-green-700 pb-2">Assets</h3>
                     <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 mb-4">
@@ -332,6 +355,7 @@
                     </div>
                 </div>
 
+                <!-- LIABILITIES COLUMN -->
                 <div>
                     <h3 class="text-xl md:text-2xl font-bold text-red-600 mb-4 border-b-2 border-red-600 pb-2">Liabilities</h3>
                     <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 mb-4">
@@ -374,6 +398,7 @@
         </div>
     </div>
 
+    <!-- SCRIPT LOGIC -->
     <script>
         const formatCurrency = (num) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(num);
 
@@ -437,6 +462,35 @@
             
             document.querySelectorAll('input[type="number"]').forEach(input => input.value = '');
         }
+
+        // Handle the Form Submission Silently
+        const form = document.getElementById('fiduciaryForm');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // Stops the page from leaving
+            const data = new FormData(form);
+            const action = form.action;
+            const btn = document.getElementById('submitBtn');
+            
+            btn.innerText = "Sending Request...";
+            btn.disabled = true;
+
+            fetch(action, {
+                method: 'POST',
+                body: data,
+                mode: 'no-cors' // Bypasses Google security restrictions
+            }).then(() => {
+                // Success actions: Notice, clear form, close box
+                alert("Success! Your request has been sent to our fiduciaries. We will be in touch shortly.");
+                form.reset();
+                closeModal();
+                btn.innerText = "Send Request";
+                btn.disabled = false;
+            }).catch((error) => {
+                alert("There was an error sending your request. Please try again.");
+                btn.innerText = "Send Request";
+                btn.disabled = false;
+            });
+        });
 
         function applyDynamicLabels(category) {
             const lblInc1 = document.getElementById('lbl-income-1');
