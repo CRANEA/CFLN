@@ -125,6 +125,20 @@
                     <i class="fas fa-chevron-right ml-auto"></i>
                 </button>
 
+                <!-- Young Adults Literacy Folder -->
+                <button id="btnMainLitYoungAdults" onclick="openLitYoungAdultsMenu()" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg hidden">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-book-open"></i></div>
+                    <span>Financial Literacy for Young Adults</span>
+                    <i class="fas fa-chevron-right ml-auto"></i>
+                </button>
+
+                <!-- Young Families Literacy Folder -->
+                <button id="btnMainLitYoungFamilies" onclick="openLitYoungFamiliesMenu()" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg hidden">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-book-open"></i></div>
+                    <span>Financial Literacy for Young Families</span>
+                    <i class="fas fa-chevron-right ml-auto"></i>
+                </button>
+
                 <!-- Special Needs Folder Button -->
                 <button id="btnMainSpecialNeeds" onclick="openSpecialNeedsMenu()" class="bg-rose-600 hover:bg-rose-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg hidden">
                     <div class="bg-rose-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-hands-holding-child"></i></div>
@@ -136,6 +150,13 @@
                 <button id="btnMainAssetProtection" onclick="window.open('https://drive.google.com/file/d/1ef2S0R9EEmDFVrw8hD8MVgtKpOoE8iqi/view?usp=sharing', '_blank')" class="bg-slate-700 hover:bg-slate-800 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg hidden">
                     <div class="bg-slate-600 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-shield-halved"></i></div>
                     <span>Asset Protection (Guide)</span>
+                </button>
+
+                <!-- Retired Literacy Folder -->
+                <button id="btnMainLitRetired" onclick="openLitRetiredMenu()" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg hidden">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-book-open"></i></div>
+                    <span>Financial Literacy for Retired Americans</span>
+                    <i class="fas fa-chevron-right ml-auto"></i>
                 </button>
             </div>
         </div>
@@ -203,6 +224,80 @@
                 <button id="btnSEC" onclick="window.open('https://www.investor.gov/free-financial-planning-tools', '_blank')" class="bg-slate-600 hover:bg-slate-700 text-white font-bold py-3 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg hidden">
                     <div class="bg-slate-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-scale-balanced"></i></div>
                     <span>SEC Free Calculators</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- YOUNG ADULTS LITERACY SUBMENU FOLDER -->
+    <div id="litYoungAdultsModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-lg max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden no-print">
+        <div class="p-6 md:p-8">
+            <div class="flex justify-between items-center mb-6 border-b pb-4">
+                <button onclick="goBackToMenu()" class="text-blue-600 hover:text-blue-800 text-xl font-bold flex items-center gap-2"><i class="fas fa-arrow-left"></i> Back</button>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-red-600 text-2xl transition"><i class="fas fa-times"></i></button>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">Financial Literacy for Young Adults</h3>
+            
+            <div class="flex flex-col gap-3">
+                <button onclick="window.open('https://drive.google.com/file/d/1NI5Ja4dRDxc6AkcCuPyqSfbYdf33xtL9/view?usp=sharing', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-chart-pie"></i></div>
+                    <span>How Money Works- Infographic</span>
+                </button>
+                <button onclick="window.open('https://drive.google.com/file/d/1M-tEcS1mqvGjAaMnKNDXUhoL5ADZqAC8/view?usp=sharing', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-file-pdf"></i></div>
+                    <span>How Money Works= PDF</span>
+                </button>
+                <button onclick="window.open('https://drive.google.com/file/d/1jyq2YGCtrCTdyRI-7yiE7s7r3u59qMa_/view?usp=sharing', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-video"></i></div>
+                    <span>How Money Works- Video</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- YOUNG FAMILIES LITERACY SUBMENU FOLDER -->
+    <div id="litYoungFamiliesModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-lg max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden no-print">
+        <div class="p-6 md:p-8">
+            <div class="flex justify-between items-center mb-6 border-b pb-4">
+                <button onclick="goBackToMenu()" class="text-blue-600 hover:text-blue-800 text-xl font-bold flex items-center gap-2"><i class="fas fa-arrow-left"></i> Back</button>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-red-600 text-2xl transition"><i class="fas fa-times"></i></button>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">Financial Literacy for Young Families</h3>
+            
+            <div class="flex flex-col gap-3">
+                <button onclick="window.open('https://drive.google.com/file/d/1I2Jsz3dfwAwlmkwHiwA91u2aeba0CtWy/view?usp=sharing', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-baby"></i></div>
+                    <span>Million $ Baby!</span>
+                </button>
+                <button onclick="window.open('https://drive.google.com/file/d/1NI5Ja4dRDxc6AkcCuPyqSfbYdf33xtL9/view?usp=sharing', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-chart-pie"></i></div>
+                    <span>How Money Works- Infographic</span>
+                </button>
+                <button onclick="window.open('https://drive.google.com/file/d/1M-tEcS1mqvGjAaMnKNDXUhoL5ADZqAC8/view?usp=sharing', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-file-pdf"></i></div>
+                    <span>How Money Works= PDF</span>
+                </button>
+                <button onclick="window.open('https://drive.google.com/file/d/1jyq2YGCtrCTdyRI-7yiE7s7r3u59qMa_/view?usp=sharing', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-video"></i></div>
+                    <span>How Money Works- Video</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- RETIRED LITERACY SUBMENU FOLDER -->
+    <div id="litRetiredModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-lg max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden no-print">
+        <div class="p-6 md:p-8">
+            <div class="flex justify-between items-center mb-6 border-b pb-4">
+                <button onclick="goBackToMenu()" class="text-blue-600 hover:text-blue-800 text-xl font-bold flex items-center gap-2"><i class="fas fa-arrow-left"></i> Back</button>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-red-600 text-2xl transition"><i class="fas fa-times"></i></button>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">Financial Literacy for Retired Americans</h3>
+            
+            <div class="flex flex-col gap-3">
+                <button onclick="window.open('https://drive.google.com/file/d/1z9RhFdjOFlV5kFQqyjrlF-5ibWrj1DOC/view?usp=sharing', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-scroll"></i></div>
+                    <span>Beyond the Bond</span>
                 </button>
             </div>
         </div>
@@ -416,7 +511,7 @@
     <div id="autoAppModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[95%] max-w-2xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden no-print">
         <div class="p-6 md:p-8">
             <div class="flex justify-between items-center mb-6 border-b pb-4">
-                <button onclick="goBackToMenu()" class="text-blue-600 hover:text-blue-800 text-xl font-bold flex items-center gap-2"><i class="fas fa-arrow-left"></i> Back</button>
+                <button onclick="openCalculatorsMenu()" class="text-blue-600 hover:text-blue-800 text-xl font-bold flex items-center gap-2"><i class="fas fa-arrow-left"></i> Back</button>
                 <div class="flex items-center gap-3">
                     <img src="CFLN.png" class="h-8 w-8 object-contain">
                     <h2 class="text-lg md:text-2xl font-bold text-gray-800">Car Purchase Cost App</h2>
@@ -493,7 +588,7 @@
     <div id="mortgageAppModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[95%] max-w-lg max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden no-print">
         <div class="p-6 md:p-8">
             <div class="flex justify-between items-center mb-6 border-b pb-4">
-                <button onclick="goBackToMenu()" class="text-blue-600 hover:text-blue-800 text-xl font-bold flex items-center gap-2"><i class="fas fa-arrow-left"></i> Back</button>
+                <button onclick="openCalculatorsMenu()" class="text-blue-600 hover:text-blue-800 text-xl font-bold flex items-center gap-2"><i class="fas fa-arrow-left"></i> Back</button>
                 <div class="flex items-center gap-3">
                     <img src="CFLN.png" class="h-8 w-8 object-contain">
                     <h2 class="text-lg md:text-2xl font-bold text-gray-800">Mortgage App</h2>
@@ -513,11 +608,11 @@
         </div>
     </div>
 
-    <!-- NEW NATIVE PERSONAL LOAN CALCULATOR MODAL -->
+    <!-- NATIVE PERSONAL LOAN CALCULATOR MODAL -->
     <div id="loanAppModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[95%] max-w-lg max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden no-print">
         <div class="p-6 md:p-8">
             <div class="flex justify-between items-center mb-6 border-b pb-4">
-                <button onclick="goBackToMenu()" class="text-blue-600 hover:text-blue-800 text-xl font-bold flex items-center gap-2"><i class="fas fa-arrow-left"></i> Back</button>
+                <button onclick="openCalculatorsMenu()" class="text-blue-600 hover:text-blue-800 text-xl font-bold flex items-center gap-2"><i class="fas fa-arrow-left"></i> Back</button>
                 <div class="flex items-center gap-3">
                     <img src="CFLN.png" class="h-8 w-8 object-contain">
                     <h2 class="text-lg md:text-2xl font-bold text-gray-800">Cost of Borrowing App</h2>
@@ -594,6 +689,9 @@
             document.getElementById('modalOverlay').classList.remove('hidden');
             document.getElementById('calculatorsMenuModal').classList.add('hidden');
             document.getElementById('specialNeedsMenuModal').classList.add('hidden');
+            document.getElementById('litYoungAdultsModal').classList.add('hidden');
+            document.getElementById('litYoungFamiliesModal').classList.add('hidden');
+            document.getElementById('litRetiredModal').classList.add('hidden');
             document.getElementById('stageMenuModal').classList.remove('hidden');
             
             document.getElementById('menuTitle').innerText = category + " Resources";
@@ -610,6 +708,9 @@
             // Show folder / direct links conditionally
             toggleBtn('btnMainSpecialNeeds', ['Young Families'], category);
             toggleBtn('btnMainAssetProtection', ['Mid Career'], category);
+            toggleBtn('btnMainLitYoungAdults', ['Young Adults'], category);
+            toggleBtn('btnMainLitYoungFamilies', ['Young Families'], category);
+            toggleBtn('btnMainLitRetired', ['Retired'], category);
         }
 
         function openCalculatorsMenu() {
@@ -632,6 +733,21 @@
         function openSpecialNeedsMenu() {
             document.getElementById('stageMenuModal').classList.add('hidden');
             document.getElementById('specialNeedsMenuModal').classList.remove('hidden');
+        }
+
+        function openLitYoungAdultsMenu() {
+            document.getElementById('stageMenuModal').classList.add('hidden');
+            document.getElementById('litYoungAdultsModal').classList.remove('hidden');
+        }
+
+        function openLitYoungFamiliesMenu() {
+            document.getElementById('stageMenuModal').classList.add('hidden');
+            document.getElementById('litYoungFamiliesModal').classList.remove('hidden');
+        }
+
+        function openLitRetiredMenu() {
+            document.getElementById('stageMenuModal').classList.add('hidden');
+            document.getElementById('litRetiredModal').classList.remove('hidden');
         }
 
         function goBackToMenu() {
@@ -739,6 +855,9 @@
             document.getElementById('stageMenuModal').classList.add('hidden');
             document.getElementById('calculatorsMenuModal').classList.add('hidden');
             document.getElementById('specialNeedsMenuModal').classList.add('hidden');
+            document.getElementById('litYoungAdultsModal').classList.add('hidden');
+            document.getElementById('litYoungFamiliesModal').classList.add('hidden');
+            document.getElementById('litRetiredModal').classList.add('hidden');
             document.getElementById('mortgageAppModal').classList.add('hidden');
             document.getElementById('autoAppModal').classList.add('hidden');
             document.getElementById('loanAppModal').classList.add('hidden');
