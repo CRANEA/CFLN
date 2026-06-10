@@ -286,11 +286,11 @@
                 </button>
                 <button onclick="window.open('https://youtu.be/0sOGmM1onaE', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
                     <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-video"></i></div>
-                    <span>Cash Flow Challenges in Retirement (Video 7:35min)</span>
+                    <span>Cash Flow Challenges in Retirement (Video 07:35min)</span>
                 </button>
                 <button onclick="window.open('https://youtu.be/HJc2utx1M-M', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
                     <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-video"></i></div>
-                    <span>The Tax Buckets and Your Retirement Cash Flow (Video 04:52mins)</span>
+                    <span>The Tax Buckets and Your Retirement Cash Flow (Video 04:52min)</span>
                 </button>
             </div>
         </div>
@@ -314,11 +314,11 @@
                 </button>
                 <button onclick="window.open('https://youtu.be/0sOGmM1onaE', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
                     <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-video"></i></div>
-                    <span>Cash Flow Challenges in Retirement (Video 7:35min)</span>
+                    <span>Cash Flow Challenges in Retirement (Video 07:35min)</span>
                 </button>
                 <button onclick="window.open('https://youtu.be/HJc2utx1M-M', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
                     <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-video"></i></div>
-                    <span>The Tax Buckets and Your Retirement Cash Flow (Video 04:52mins)</span>
+                    <span>The Tax Buckets and Your Retirement Cash Flow (Video 04:52min)</span>
                 </button>
             </div>
         </div>
@@ -342,7 +342,7 @@
                 </button>
                 <button onclick="window.open('https://youtu.be/0sOGmM1onaE', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
                     <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-video"></i></div>
-                    <span>Cash Flow Challenges in Retirement (Video 7:35min)</span>
+                    <span>Cash Flow Challenges in Retirement (Video 07:35min)</span>
                 </button>
             </div>
         </div>
@@ -367,7 +367,6 @@
             </div>
         </div>
     </div>
-
 
     <div id="budgetModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[95%] md:w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden print-area">
         <div class="p-4 md:p-8">
@@ -690,13 +689,24 @@
         let currentCategory = '';
         let currentAppUrl = '';
 
+        // Safely show or hide elements
+        function showEl(id) {
+            const el = document.getElementById(id);
+            if (el) el.classList.remove('hidden');
+        }
+        function hideEl(id) {
+            const el = document.getElementById(id);
+            if (el) el.classList.add('hidden');
+        }
+
         function openContactModal() {
-            document.getElementById('contactModal').classList.remove('hidden');
-            document.getElementById('mortgageAppModal').classList.add('hidden');
-            document.getElementById('autoAppModal').classList.add('hidden');
-            document.getElementById('loanAppModal').classList.add('hidden');
-            if(document.getElementById('modalOverlay').classList.contains('hidden')) {
-                document.getElementById('modalOverlay').classList.remove('hidden');
+            showEl('contactModal');
+            hideEl('mortgageAppModal');
+            hideEl('autoAppModal');
+            hideEl('loanAppModal');
+            const overlay = document.getElementById('modalOverlay');
+            if (overlay && overlay.classList.contains('hidden')) {
+                overlay.classList.remove('hidden');
             }
         }
 
@@ -710,25 +720,33 @@
 
         function openMenuModal(category) {
             currentCategory = category;
-            document.getElementById('modalOverlay').classList.remove('hidden');
-            document.getElementById('calculatorsMenuModal').classList.add('hidden');
-            document.getElementById('specialNeedsMenuModal').classList.add('hidden');
-            document.getElementById('litYoungAdultsModal').classList.add('hidden');
-            document.getElementById('litYoungFamiliesModal').classList.add('hidden');
-            document.getElementById('litMidCareerModal').classList.add('hidden');
-            document.getElementById('litPreRetirementModal').classList.add('hidden');
-            document.getElementById('litRetiredModal').classList.add('hidden');
-            document.getElementById('stageMenuModal').classList.remove('hidden');
             
-            document.getElementById('menuTitle').innerText = category + " Resources";
-            document.getElementById('calcBtnText').innerText = "Financial Calculators for " + category;
+            // Hide all other menus to reset state
+            hideEl('calculatorsMenuModal');
+            hideEl('specialNeedsMenuModal');
+            hideEl('litYoungAdultsModal');
+            hideEl('litYoungFamiliesModal');
+            hideEl('litMidCareerModal');
+            hideEl('litPreRetirementModal');
+            hideEl('litRetiredModal');
+            
+            // Show main overlay and menu
+            showEl('modalOverlay');
+            showEl('stageMenuModal');
+            
+            const titleEl = document.getElementById('menuTitle');
+            if (titleEl) titleEl.innerText = category + " Resources";
+            
+            const calcBtnEl = document.getElementById('calcBtnText');
+            if (calcBtnEl) calcBtnEl.innerText = "Financial Calculators for " + category;
 
+            const auditBtnTextEl = document.getElementById('btnMenuAuditText');
             if (category === 'Young Adults' || category === 'Young Families') {
                 currentAppUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfIKhaLiUhQuadHvx0JVW2HVv3rL69bdysHwSUNr-iqhq6HNw/viewform?usp=header';
-                document.getElementById('btnMenuAuditText').innerText = 'Financial Foundations Audit';
+                if (auditBtnTextEl) auditBtnTextEl.innerText = 'Financial Foundations Audit';
             } else {
                 currentAppUrl = 'https://sites.google.com/craneandassociates.net/alphainnovationpartnersretire/home';
-                document.getElementById('btnMenuAuditText').innerText = 'Retirement Readiness App';
+                if (auditBtnTextEl) auditBtnTextEl.innerText = 'Retirement Readiness App';
             }
 
             // Show folder / direct links conditionally
@@ -741,11 +759,14 @@
         }
 
         function openCalculatorsMenu() {
-            document.getElementById('stageMenuModal').classList.add('hidden');
-            document.getElementById('calculatorsMenuModal').classList.remove('hidden');
+            hideEl('stageMenuModal');
+            showEl('calculatorsMenuModal');
             
-            document.getElementById('calcMenuTitle').innerText = "Calculators: " + currentCategory;
-            document.getElementById('btnMenuWorksheetText').innerText = (currentCategory === 'Business Owners') ? "Business Balance Sheet" : "Budget Worksheet";
+            const titleEl = document.getElementById('calcMenuTitle');
+            if (titleEl) titleEl.innerText = "Calculators: " + currentCategory;
+            
+            const wkTextEl = document.getElementById('btnMenuWorksheetText');
+            if (wkTextEl) wkTextEl.innerText = (currentCategory === 'Business Owners') ? "Business Balance Sheet" : "Budget Worksheet";
 
             toggleBtn('btnRetirement', ['Young Adults', 'Young Families', 'Mid Career', 'Pre-Retirement'], currentCategory);
             toggleBtn('btnAuto', ['Young Adults', 'Young Families', 'Mid Career', 'Pre-Retirement', 'Retired'], currentCategory);
@@ -758,33 +779,33 @@
         }
 
         function openSpecialNeedsMenu() {
-            document.getElementById('stageMenuModal').classList.add('hidden');
-            document.getElementById('specialNeedsMenuModal').classList.remove('hidden');
+            hideEl('stageMenuModal');
+            showEl('specialNeedsMenuModal');
         }
 
         function openLitYoungAdultsMenu() {
-            document.getElementById('stageMenuModal').classList.add('hidden');
-            document.getElementById('litYoungAdultsModal').classList.remove('hidden');
+            hideEl('stageMenuModal');
+            showEl('litYoungAdultsModal');
         }
 
         function openLitYoungFamiliesMenu() {
-            document.getElementById('stageMenuModal').classList.add('hidden');
-            document.getElementById('litYoungFamiliesModal').classList.remove('hidden');
+            hideEl('stageMenuModal');
+            showEl('litYoungFamiliesModal');
         }
         
         function openLitMidCareerMenu() {
-            document.getElementById('stageMenuModal').classList.add('hidden');
-            document.getElementById('litMidCareerModal').classList.remove('hidden');
+            hideEl('stageMenuModal');
+            showEl('litMidCareerModal');
         }
 
         function openLitPreRetirementMenu() {
-            document.getElementById('stageMenuModal').classList.add('hidden');
-            document.getElementById('litPreRetirementModal').classList.remove('hidden');
+            hideEl('stageMenuModal');
+            showEl('litPreRetirementModal');
         }
 
         function openLitRetiredMenu() {
-            document.getElementById('stageMenuModal').classList.add('hidden');
-            document.getElementById('litRetiredModal').classList.remove('hidden');
+            hideEl('stageMenuModal');
+            showEl('litRetiredModal');
         }
 
         function goBackToMenu() {
@@ -794,41 +815,50 @@
         function openAuditFromMenu() { window.open(currentAppUrl, '_blank'); }
 
         function openWorksheetFromMenu() {
-            document.getElementById('calculatorsMenuModal').classList.add('hidden');
+            hideEl('calculatorsMenuModal');
             if (currentCategory === 'Business Owners') {
-                document.getElementById('businessModal').classList.remove('hidden');
+                showEl('businessModal');
                 calcBusiness();
             } else {
-                document.getElementById('budgetModal').classList.remove('hidden');
-                document.getElementById('budgetTitle').innerText = currentCategory + " Budget Worksheet";
+                showEl('budgetModal');
+                const titleEl = document.getElementById('budgetTitle');
+                if (titleEl) titleEl.innerText = currentCategory + " Budget Worksheet";
                 applyDynamicLabels(currentCategory);
                 calcBudget();
             }
         }
 
         function openNativeMortgageApp() {
-            document.getElementById('calculatorsMenuModal').classList.add('hidden');
-            document.getElementById('mortgageAppModal').classList.remove('hidden');
+            hideEl('calculatorsMenuModal');
+            showEl('mortgageAppModal');
             calculateNativeMortgage();
         }
 
         function openNativeAutoApp() {
-            document.getElementById('calculatorsMenuModal').classList.add('hidden');
-            document.getElementById('autoAppModal').classList.remove('hidden');
+            hideEl('calculatorsMenuModal');
+            showEl('autoAppModal');
             calculateNativeAuto();
         }
 
         function openNativeLoanApp() {
-            document.getElementById('calculatorsMenuModal').classList.add('hidden');
-            document.getElementById('loanAppModal').classList.remove('hidden');
+            hideEl('calculatorsMenuModal');
+            showEl('loanAppModal');
             calculateNativeLoan();
         }
 
         function calculateNativeMortgage() {
-            let price = Number(document.getElementById('mortgagePrice').value) || 0;
-            let down = Number(document.getElementById('mortgageDown').value) || 0;
-            let rate = Number(document.getElementById('mortgageRate').value) || 0;
-            let term = Number(document.getElementById('mortgageTerm').value) || 30;
+            const priceEl = document.getElementById('mortgagePrice');
+            const downEl = document.getElementById('mortgageDown');
+            const rateEl = document.getElementById('mortgageRate');
+            const termEl = document.getElementById('mortgageTerm');
+            const resultEl = document.getElementById('mortgageResult');
+            
+            if(!priceEl || !downEl || !rateEl || !termEl || !resultEl) return;
+
+            let price = Number(priceEl.value) || 0;
+            let down = Number(downEl.value) || 0;
+            let rate = Number(rateEl.value) || 0;
+            let term = Number(termEl.value) || 30;
 
             let principal = price - down;
             let monthlyRate = (rate / 100) / 12;
@@ -837,14 +867,30 @@
             if (monthlyRate === 0) monthlyPayment = principal / numberOfPayments;
             else if (principal > 0) monthlyPayment = principal * monthlyRate * (Math.pow(1 + monthlyRate, numberOfPayments)) / (Math.pow(1 + monthlyRate, numberOfPayments) - 1);
 
-            document.getElementById('mortgageResult').innerText = formatCurrency(monthlyPayment);
+            resultEl.innerText = formatCurrency(monthlyPayment);
         }
 
         function calculateNativeAuto() {
-            let price = Number(document.getElementById('autoPrice').value) || 0;
-            let down = Number(document.getElementById('autoDown').value) || 0;
-            let rate = Number(document.getElementById('autoRate').value) || 0;
-            let months = Number(document.getElementById('autoLoanTerm').value) || 60;
+            const autoPriceEl = document.getElementById('autoPrice');
+            const autoDownEl = document.getElementById('autoDown');
+            const autoRateEl = document.getElementById('autoRate');
+            const autoLoanTermEl = document.getElementById('autoLoanTerm');
+            
+            const leaseMonthlyEl = document.getElementById('leaseMonthly');
+            const leaseSigningEl = document.getElementById('leaseSigning');
+            const leaseTermEl = document.getElementById('leaseTerm');
+            
+            const autoLoanResultEl = document.getElementById('autoLoanResult');
+            const autoLoanTotalEl = document.getElementById('autoLoanTotal');
+            const autoLeaseResultEl = document.getElementById('autoLeaseResult');
+            const autoLeaseTotalEl = document.getElementById('autoLeaseTotal');
+
+            if(!autoPriceEl) return;
+
+            let price = Number(autoPriceEl.value) || 0;
+            let down = Number(autoDownEl.value) || 0;
+            let rate = Number(autoRateEl.value) || 0;
+            let months = Number(autoLoanTermEl.value) || 60;
 
             let principal = price - down;
             let monthlyRate = (rate / 100) / 12;
@@ -854,22 +900,30 @@
 
             let loanTotalCost = (loanPayment * months) + down;
 
-            let leasePayment = Number(document.getElementById('leaseMonthly').value) || 0;
-            let signing = Number(document.getElementById('leaseSigning').value) || 0;
-            let leaseMonths = Number(document.getElementById('leaseTerm').value) || 36;
+            let leasePayment = Number(leaseMonthlyEl.value) || 0;
+            let signing = Number(leaseSigningEl.value) || 0;
+            let leaseMonths = Number(leaseTermEl.value) || 36;
 
             let leaseTotalCost = (leasePayment * leaseMonths) + signing;
 
-            document.getElementById('autoLoanResult').innerText = formatCurrency(loanPayment);
-            document.getElementById('autoLoanTotal').innerText = formatCurrency(loanTotalCost);
-            document.getElementById('autoLeaseResult').innerText = formatCurrency(leasePayment);
-            document.getElementById('autoLeaseTotal').innerText = formatCurrency(leaseTotalCost);
+            if(autoLoanResultEl) autoLoanResultEl.innerText = formatCurrency(loanPayment);
+            if(autoLoanTotalEl) autoLoanTotalEl.innerText = formatCurrency(loanTotalCost);
+            if(autoLeaseResultEl) autoLeaseResultEl.innerText = formatCurrency(leasePayment);
+            if(autoLeaseTotalEl) autoLeaseTotalEl.innerText = formatCurrency(leaseTotalCost);
         }
 
         function calculateNativeLoan() {
-            let amount = Number(document.getElementById('loanAmount').value) || 0;
-            let rate = Number(document.getElementById('loanRate').value) || 0;
-            let months = Number(document.getElementById('loanTerm').value) || 36;
+            const loanAmountEl = document.getElementById('loanAmount');
+            const loanRateEl = document.getElementById('loanRate');
+            const loanTermEl = document.getElementById('loanTerm');
+            const loanResultEl = document.getElementById('loanResult');
+            const loanTotalInterestEl = document.getElementById('loanTotalInterest');
+
+            if(!loanAmountEl) return;
+
+            let amount = Number(loanAmountEl.value) || 0;
+            let rate = Number(loanRateEl.value) || 0;
+            let months = Number(loanTermEl.value) || 36;
 
             let monthlyRate = (rate / 100) / 12;
             let payment = 0;
@@ -883,51 +937,59 @@
             let totalCost = payment * months;
             let totalInterest = totalCost - amount;
 
-            document.getElementById('loanResult').innerText = formatCurrency(payment);
-            document.getElementById('loanTotalInterest').innerText = formatCurrency(totalInterest > 0 ? totalInterest : 0);
+            if(loanResultEl) loanResultEl.innerText = formatCurrency(payment);
+            if(loanTotalInterestEl) loanTotalInterestEl.innerText = formatCurrency(totalInterest > 0 ? totalInterest : 0);
         }
 
         function closeModal() {
-            document.getElementById('modalOverlay').classList.add('hidden');
-            document.getElementById('stageMenuModal').classList.add('hidden');
-            document.getElementById('calculatorsMenuModal').classList.add('hidden');
-            document.getElementById('specialNeedsMenuModal').classList.add('hidden');
-            document.getElementById('litYoungAdultsModal').classList.add('hidden');
-            document.getElementById('litYoungFamiliesModal').classList.add('hidden');
-            document.getElementById('litMidCareerModal').classList.add('hidden');
-            document.getElementById('litPreRetirementModal').classList.add('hidden');
-            document.getElementById('litRetiredModal').classList.add('hidden');
-            document.getElementById('mortgageAppModal').classList.add('hidden');
-            document.getElementById('autoAppModal').classList.add('hidden');
-            document.getElementById('loanAppModal').classList.add('hidden');
-            document.getElementById('budgetModal').classList.add('hidden');
-            document.getElementById('businessModal').classList.add('hidden');
-            document.getElementById('contactModal').classList.add('hidden');
-            document.getElementById('successModal').classList.add('hidden');
+            hideEl('modalOverlay');
+            hideEl('stageMenuModal');
+            hideEl('calculatorsMenuModal');
+            hideEl('specialNeedsMenuModal');
+            hideEl('litYoungAdultsModal');
+            hideEl('litYoungFamiliesModal');
+            hideEl('litMidCareerModal');
+            hideEl('litPreRetirementModal');
+            hideEl('litRetiredModal');
+            hideEl('mortgageAppModal');
+            hideEl('autoAppModal');
+            hideEl('loanAppModal');
+            hideEl('budgetModal');
+            hideEl('businessModal');
+            hideEl('contactModal');
+            hideEl('successModal');
         }
 
         const form = document.getElementById('fiduciaryForm');
-        form.addEventListener('submit', function(e) {
-            e.preventDefault(); 
-            const data = new FormData(form);
-            const action = form.action;
-            const btn = document.getElementById('submitBtn');
-            btn.innerText = "Sending Request...";
-            btn.disabled = true;
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault(); 
+                const data = new FormData(form);
+                const action = form.action;
+                const btn = document.getElementById('submitBtn');
+                if(btn) {
+                    btn.innerText = "Sending Request...";
+                    btn.disabled = true;
+                }
 
-            fetch(action, { method: 'POST', body: data, mode: 'no-cors' })
-            .then(() => {
-                form.reset(); 
-                document.getElementById('contactModal').classList.add('hidden'); 
-                document.getElementById('successModal').classList.remove('hidden'); 
-                btn.innerText = "Send Request";
-                btn.disabled = false;
-            }).catch(() => {
-                alert("Error sending request.");
-                btn.innerText = "Send Request";
-                btn.disabled = false;
+                fetch(action, { method: 'POST', body: data, mode: 'no-cors' })
+                .then(() => {
+                    form.reset(); 
+                    hideEl('contactModal');
+                    showEl('successModal');
+                    if(btn) {
+                        btn.innerText = "Send Request";
+                        btn.disabled = false;
+                    }
+                }).catch(() => {
+                    alert("Error sending request.");
+                    if(btn) {
+                        btn.innerText = "Send Request";
+                        btn.disabled = false;
+                    }
+                });
             });
-        });
+        }
 
         function applyDynamicLabels(category) {
             const lblInc1 = document.getElementById('lbl-income-1');
@@ -935,6 +997,8 @@
             const lblInc3 = document.getElementById('lbl-income-3');
             const lblChild = document.getElementById('lbl-expense-child');
             const lblOffice = document.getElementById('lbl-expense-office');
+
+            if (!lblInc1) return;
 
             if (category === 'Retired' || category === 'Pre-Retirement') {
                 lblInc1.innerText = "Spouse 1 Social Security";
@@ -962,14 +1026,19 @@
             document.querySelectorAll('.expense-input').forEach(input => {
                 expenseTotal += Number(input.value) || 0;
             });
+            
+            const totalIncEl = document.getElementById('budgetTotalIncome');
+            const totalExpEl = document.getElementById('budgetTotalExpenses');
+            const netCashEl = document.getElementById('budgetNetCash');
 
-            document.getElementById('budgetTotalIncome').innerText = formatCurrency(incomeTotal);
-            document.getElementById('budgetTotalExpenses').innerText = formatCurrency(expenseTotal);
+            if(totalIncEl) totalIncEl.innerText = formatCurrency(incomeTotal);
+            if(totalExpEl) totalExpEl.innerText = formatCurrency(expenseTotal);
             
             const netCash = incomeTotal - expenseTotal;
-            const netCashElement = document.getElementById('budgetNetCash');
-            netCashElement.innerText = formatCurrency(netCash);
-            netCashElement.className = netCash >= 0 ? "text-xl md:text-3xl font-extrabold text-green-400" : "text-xl md:text-3xl font-extrabold text-red-400";
+            if(netCashEl) {
+                netCashEl.innerText = formatCurrency(netCash);
+                netCashEl.className = netCash >= 0 ? "text-xl md:text-3xl font-extrabold text-green-400" : "text-xl md:text-3xl font-extrabold text-red-400";
+            }
         }
 
         function calcBusiness() {
@@ -984,13 +1053,18 @@
                 liabTotal += Number(input.value) || 0;
             });
 
-            document.getElementById('bizTotalAssets').innerText = formatCurrency(assetsTotal);
-            document.getElementById('bizTotalLiab').innerText = formatCurrency(liabTotal);
+            const bizAssetsEl = document.getElementById('bizTotalAssets');
+            const bizLiabEl = document.getElementById('bizTotalLiab');
+            const bizNetEl = document.getElementById('bizNetWorth');
+
+            if(bizAssetsEl) bizAssetsEl.innerText = formatCurrency(assetsTotal);
+            if(bizLiabEl) bizLiabEl.innerText = formatCurrency(liabTotal);
             
             const netWorth = assetsTotal - liabTotal;
-            const netWorthElement = document.getElementById('bizNetWorth');
-            netWorthElement.innerText = formatCurrency(netWorth);
-            netWorthElement.className = netWorth >= 0 ? "text-xl md:text-3xl font-extrabold text-blue-400" : "text-xl md:text-3xl font-extrabold text-red-400";
+            if(bizNetEl) {
+                bizNetEl.innerText = formatCurrency(netWorth);
+                bizNetEl.className = netWorth >= 0 ? "text-xl md:text-3xl font-extrabold text-blue-400" : "text-xl md:text-3xl font-extrabold text-red-400";
+            }
         }
     </script>
 </body>
