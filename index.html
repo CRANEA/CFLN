@@ -1,115 +1,1114 @@
-function doPost(e) {
-  try {
-    // 1. Capture the form data submitted from the website
-    var name = e.parameter.name || "There";
-    var email = e.parameter.email;
-    var phone = e.parameter.phone;
-    var concerns = e.parameter.concerns;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Crane Financial Literacy Network</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @media print {
+            body * { visibility: hidden; }
+            .print-area, .print-area * { visibility: visible; }
+            .print-area { position: absolute; left: 0; top: 0; width: 100%; }
+            .no-print { display: none !important; }
+            .print-invert { background-color: #fff !important; color: #000 !important; border: 1px solid #ccc; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
 
-    // 2. Calculate the exact send time
-    var now = new Date();
-    var dayOfWeek = now.getDay(); // 0 = Sunday, 5 = Friday, 6 = Saturday
-    var sendTime;
+    <nav class="bg-white shadow-sm py-2 no-print">
+        <div class="max-w-[100rem] mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center gap-2 md:gap-4">
+                <img src="CFLN.png" alt="Crane Logo" class="w-32 h-32 md:w-40 md:h-40 object-contain shrink-0">
+                <h1 class="text-xl md:text-3xl font-extrabold text-red-600">Crane <span class="text-green-700 hidden sm:inline">Financial Literacy Network</span></h1>
+            </div>
+            
+            <div class="flex items-center gap-2 md:gap-4">
+                <button onclick="window.open('https://www.youtube.com/@crane_financial_literacy', '_blank')" class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-3 md:px-4 rounded-full text-xs md:text-sm transition-colors flex items-center gap-2 shadow-md whitespace-nowrap">
+                    <i class="fab fa-youtube text-base md:text-lg"></i> <span class="hidden sm:inline">YouTube Channel</span>
+                </button>
 
-    if (dayOfWeek === 5 || dayOfWeek === 6) {
-      // If submitted on Friday (5) or Saturday (6), set time to next Monday at 9:22 AM
-      var daysToAdd = (dayOfWeek === 5) ? 3 : 2;
-      sendTime = new Date(now.getTime() + (daysToAdd * 24 * 60 * 60 * 1000));
-      sendTime.setHours(9, 22, 0, 0);
-    } else {
-      // Otherwise, add exactly 20 hours to the current time
-      sendTime = new Date(now.getTime() + (20 * 60 * 60 * 1000));
-    }
+                <button onclick="openContactModal()" class="bg-green-700 hover:bg-green-800 text-white font-semibold py-2 px-3 md:px-4 rounded-full text-xs md:text-sm transition-colors flex items-center gap-2 shadow-md whitespace-nowrap">
+                    <i class="fas fa-user-tie"></i> <span class="hidden lg:inline">Talk to a Financial Fiduciary</span><span class="lg:hidden">Contact</span>
+                </button>
+            </div>
+        </div>
+    </nav>
 
-    // 3. Create a time-driven trigger to run the email function at the calculated time
-    var triggerId = ScriptApp.newTrigger('sendDelayedEmail')
-      .timeBased()
-      .at(sendTime)
-      .create()
-      .getUniqueId();
+    <header class="bg-gradient-to-r from-blue-500 to-green-400 py-12 text-center shadow-inner no-print">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-4xl md:text-5xl font-extrabold text-white drop-shadow-md leading-tight">
+                Financial Clarity<br>for Every Stage of Life
+            </h2>
+            <p class="mt-4 text-lg md:text-xl text-white font-medium drop-shadow-sm">
+                Access free financial tools and resources tailored to exactly where you are on your financial journey.
+            </p>
+            <p class="mt-4 text-xs md:text-sm text-white italic drop-shadow-sm">
+                The information you will obtain here was prepared for education purposes only by Financial Fiduciaries.
+            </p>
+        </div>
+    </header>
 
-    // 4. Save the user's data so the trigger remembers who to email tomorrow
-    var emailData = {
-      name: name,
-      email: email
-    };
-    PropertiesService.getScriptProperties().setProperty(triggerId, JSON.stringify(emailData));
+    <main class="max-w-7xl mx-auto px-4 py-12 no-print">
+        <h3 class="text-center text-2xl md:text-3xl font-bold text-gray-800 mb-10">Where are you on your journey?</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100 cursor-pointer" onclick="openMenuModal('Young Adults')">
+                <div class="w-14 h-14 bg-blue-500 text-white rounded-xl flex items-center justify-center text-2xl mb-6 shadow-sm"><i class="fas fa-rocket"></i></div>
+                <p class="text-xs font-extrabold text-gray-700 tracking-widest uppercase mb-1">Young Adults</p>
+                <h4 class="text-2xl font-bold text-gray-900 mb-3">Starting Out</h4>
+                <p class="text-gray-600 mb-6">Build a rock-solid foundation for your future by mastering cash flow, tackling debt, and setting early investing goals.</p>
+                <span class="text-red-600 font-semibold flex items-center gap-2">View Resources <i class="fas fa-arrow-right"></i></span>
+            </div>
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100 cursor-pointer" onclick="openMenuModal('Young Families')">
+                <div class="w-14 h-14 bg-teal-500 text-white rounded-xl flex items-center justify-center text-2xl mb-6 shadow-sm"><i class="fas fa-home"></i></div>
+                <p class="text-xs font-extrabold text-gray-700 tracking-widest uppercase mb-1">Young Families</p>
+                <h4 class="text-2xl font-bold text-gray-900 mb-3">Growing Roots</h4>
+                <p class="text-gray-600 mb-6">Protect what matters most while balancing new expenses, saving for education, and upgrading your lifestyle securely.</p>
+                <span class="text-red-600 font-semibold flex items-center gap-2">View Resources <i class="fas fa-arrow-right"></i></span>
+            </div>
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100 cursor-pointer" onclick="openMenuModal('Mid Career')">
+                <div class="w-14 h-14 bg-indigo-500 text-white rounded-xl flex items-center justify-center text-2xl mb-6 shadow-sm"><i class="fas fa-briefcase"></i></div>
+                <p class="text-xs font-extrabold text-gray-700 tracking-widest uppercase mb-1">Mid Career</p>
+                <h4 class="text-2xl font-bold text-gray-900 mb-3">Peak Earning Years</h4>
+                <p class="text-gray-600 mb-6">You are making great money. Now it is time to optimize taxes, maximize retirement accounts, and accelerate wealth creation.</p>
+                <span class="text-red-600 font-semibold flex items-center gap-2">View Resources <i class="fas fa-arrow-right"></i></span>
+            </div>
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100 cursor-pointer" onclick="openMenuModal('Business Owners')">
+                <div class="w-14 h-14 bg-red-600 text-white rounded-xl flex items-center justify-center text-2xl mb-6 shadow-sm"><i class="fas fa-store"></i></div>
+                <p class="text-xs font-extrabold text-gray-700 tracking-widest uppercase mb-1">Business Owners</p>
+                <h4 class="text-2xl font-bold text-gray-900 mb-3">Enterprise Builders</h4>
+                <p class="text-gray-600 mb-6">Separate your personal wealth from your business risk. Discover advanced strategies for succession and capital management.</p>
+                <span class="text-red-600 font-semibold flex items-center gap-2">View Resources <i class="fas fa-arrow-right"></i></span>
+            </div>
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100 cursor-pointer" onclick="openMenuModal('Pre-Retirement')">
+                <div class="w-14 h-14 bg-orange-500 text-white rounded-xl flex items-center justify-center text-2xl mb-6 shadow-sm"><i class="fas fa-bullseye"></i></div>
+                <p class="text-xs font-extrabold text-gray-700 tracking-widest uppercase mb-1">Pre-Retirement</p>
+                <h4 class="text-2xl font-bold text-gray-900 mb-3">Nearing the Finish Line</h4>
+                <p class="text-gray-600 mb-6">The transition from saving to spending is critical. Solidify your timeline, lock in assets, and finalize your distribution strategy.</p>
+                <span class="text-red-600 font-semibold flex items-center gap-2">View Resources <i class="fas fa-arrow-right"></i></span>
+            </div>
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-gray-100 cursor-pointer" onclick="openMenuModal('Retired')">
+                <div class="w-14 h-14 bg-green-700 text-white rounded-xl flex items-center justify-center text-2xl mb-6 shadow-sm"><i class="fas fa-umbrella-beach"></i></div>
+                <p class="text-xs font-extrabold text-gray-700 tracking-widest uppercase mb-1">Retired</p>
+                <h4 class="text-2xl font-bold text-gray-900 mb-3">Enjoying the Reward</h4>
+                <p class="text-gray-600 mb-6">Ensure your money outlives you. Focus on safe withdrawal rates, efficient legacy planning, and enjoying your life's work.</p>
+                <span class="text-red-600 font-semibold flex items-center gap-2">View Resources <i class="fas fa-arrow-right"></i></span>
+            </div>
+        </div>
+    </main>
 
-    // Return a success message to the website
-    return ContentService.createTextOutput("Success").setMimeType(ContentService.MimeType.TEXT);
+    <section class="max-w-4xl mx-auto px-4 text-center pb-16 no-print">
+        <p class="text-gray-600 font-medium">As fiduciaries, we are legally obligated to act in your best interests. No sales pitches—just objective financial strategies for your review and decision.</p>
+    </section>
 
-  } catch(error) {
-    return ContentService.createTextOutput("Error").setMimeType(ContentService.MimeType.TEXT);
-  }
-}
+    <div id="modalOverlay" class="fixed inset-0 bg-black bg-opacity-60 hidden z-40 no-print"></div>
 
-function sendDelayedEmail(event) {
-  var triggerId = event.triggerUid;
-  var properties = PropertiesService.getScriptProperties();
-  var dataString = properties.getProperty(triggerId);
+    <div id="stageMenuModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-lg max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden no-print">
+        <div class="p-6 md:p-8">
+            <div class="flex justify-between items-center mb-6 border-b pb-4">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800" id="menuTitle">Select Resource</h2>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-red-600 text-2xl transition"><i class="fas fa-times"></i></button>
+            </div>
+            
+            <div class="flex flex-col gap-3">
+                <button onclick="openAuditFromMenu()" class="bg-green-700 hover:bg-green-800 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-green-600 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-clipboard-check"></i></div>
+                    <span id="btnMenuAuditText">Readiness App</span>
+                </button>
 
-  if (dataString) {
-    var data = JSON.parse(dataString);
-    var firstName = data.name.split(' ')[0]; // Grabs just their first name
+                <button onclick="openCalculatorsMenu()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-blue-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-calculator"></i></div>
+                    <span id="calcBtnText">Financial Calculators</span>
+                    <i class="fas fa-chevron-right ml-auto"></i>
+                </button>
 
-    var subject = "Following up on your request to speak with a Fiduciary";
-    
-    // 5. Build the HTML Email Body and Signature
-    var htmlBody = `
-      <p style="font-family: Arial, sans-serif; font-size: 14px; color: #333;">
-        ${firstName}, thank you for visiting the Crane Financial Literacy Network website and requesting to talk to a Financial Fiduciary. I have received your request.
-      </p>
-      <p style="font-family: Arial, sans-serif; font-size: 14px; color: #333;">
-        In order to understand your wishes and concerns, please click on the button below and provide the information requested. Your submission is secure and, of course, 100% confidential.
-      </p>
-      <p style="margin: 25px 0;">
-        <a href="https://script.google.com/a/macros/craneandassociates.net/s/AKfycbz1L4w0-5dvQOylslaQ-gtgcvVpQ6H443H5BvM4V0vC/dev" style="background-color: #16a34a; color: #ffffff; text-decoration: none; padding: 12px 24px; border-radius: 5px; font-family: Arial, sans-serif; font-weight: bold; display: inline-block;">Link to Your Fact Finder</a>
-      </p>
-      <p style="font-family: Arial, sans-serif; font-size: 14px; color: #333;">
-        I will review your answers and reach out to you to schedule a Zoom call with you. If you are married, I would like to speak with both of you.
-      </p>
-      <p style="font-family: Arial, sans-serif; font-size: 14px; color: #333;">
-        I look forward to helping you address your financial concerns and put you on the road to a healthy financial future.
-      </p>
-      <br>
-      
-      <!-- Signature Block -->
-      <table style="font-family: Arial, sans-serif; max-width: 600px; border-top: 1px solid #ccc; padding-top: 15px;">
-        <tr>
-          <td style="padding-bottom: 15px;">
-            <strong style="font-size: 16px; color: #333;">Avi Crane</strong> <span style="font-size: 12px; color: #666;">CRD# 6947883</span><br>
-            <span style="font-size: 12px; color: #666;">Investment Advisor Representative</span><br>
-            <em style="font-size: 12px; color: #666;">ALPHA INNOVATION PARTNERS / INFINITY FINANCIAL SERVICES</em>
-          </td>
-        </tr>
-        <tr>
-          <td style="font-size: 12px; color: #444; line-height: 1.6;">
-            ✉️ crane_avi@aipfinancial.net<br>
-            📞 +1 949 346 1459<br>
-            📍 Southern California Office: 100 Spectrum, Suite 900, Irvine, CA 92618<br>
-            🌐 www.infinitysecurities.com
-          </td>
-        </tr>
-      </table>
-      
-      <p style="font-family: Arial, sans-serif; font-size: 10px; color: #777; text-align: justify; margin-top: 20px; line-height: 1.4;">
-        This communication may contain privileged and/or confidential information. It is intended solely for the use of the addressee. If you are not the intended recipient, you are strictly prohibited from disclosing, copying, distributing, or using any of this information. If you received this communication in error, please contact the sender immediately and destroy the material in its entirety, whether electronic or hard copy. Confidential, proprietary, or time-sensitive communications should not be transmitted via the internet, as there can be no assurance of actual or timely delivery, receipt and/or confidentiality. This is not an offer, or solicitation of any offer to buy or sell an security, investment, or other product, nor do we accept, buy, sell or cancel orders by email, or any instructions by email that would require your signature. Investment Advisory Services are offered through Infinity Financial Services Advisory, an SEC Registered Investment Advisor. Securities Products offered through Infinity Financial Services, Member FINRA/SIPC.
-      </p>
-    `;
+                <button id="btnMainLitYoungAdults" onclick="openLitYoungAdultsMenu()" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg hidden">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-book-open"></i></div>
+                    <span>Financial Literacy for Young Adults</span>
+                    <i class="fas fa-chevron-right ml-auto"></i>
+                </button>
 
-    // 6. Send the Email
-    GmailApp.sendEmail(data.email, subject, "", {
-      htmlBody: htmlBody,
-      name: "Avi Crane",
-      from: "crane_avi@aipfinancial.net" // See important note below!
-    });
+                <button id="btnMainLitYoungFamilies" onclick="openLitYoungFamiliesMenu()" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg hidden">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-book-open"></i></div>
+                    <span>Financial Literacy for Young Families</span>
+                    <i class="fas fa-chevron-right ml-auto"></i>
+                </button>
 
-    // 7. Clean up the trigger so it doesn't run again
-    ScriptApp.getProjectTriggers().forEach(function(trigger) {
-      if (trigger.getUniqueId() === triggerId) {
-        ScriptApp.deleteTrigger(trigger);
-      }
-    });
-    properties.deleteProperty(triggerId);
-  }
-}
+                <button id="btnMainLitMidCareer" onclick="openLitMidCareerMenu()" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg hidden">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-book-open"></i></div>
+                    <span>Financial Literacy for Your Mid-Career</span>
+                    <i class="fas fa-chevron-right ml-auto"></i>
+                </button>
+
+                <button id="btnMainLitBusiness" onclick="openLitBusinessMenu()" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg hidden">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-book-open"></i></div>
+                    <span>Financial Literacy for Business Owners</span>
+                    <i class="fas fa-chevron-right ml-auto"></i>
+                </button>
+
+                <button id="btnMainLitPreRetirement" onclick="openLitPreRetirementMenu()" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg hidden">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-book-open"></i></div>
+                    <span>Financial Literacy for Preparing for Your Retirement</span>
+                    <i class="fas fa-chevron-right ml-auto"></i>
+                </button>
+
+                <button id="btnMainLitRetired" onclick="openLitRetiredMenu()" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg hidden">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-book-open"></i></div>
+                    <span>Financial Literacy for Retired Americans</span>
+                    <i class="fas fa-chevron-right ml-auto"></i>
+                </button>
+
+                <button id="btnMainSpecialNeeds" onclick="openSpecialNeedsMenu()" class="bg-rose-600 hover:bg-rose-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg hidden">
+                    <div class="bg-rose-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-hands-holding-child"></i></div>
+                    <span>Families with a Special Needs Loved One</span>
+                    <i class="fas fa-chevron-right ml-auto"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="calculatorsMenuModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-lg max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden no-print">
+        <div class="p-6 md:p-8">
+            <div class="flex justify-between items-center mb-6 border-b pb-4">
+                <button onclick="goBackToMenu()" class="text-blue-600 hover:text-blue-800 text-xl font-bold flex items-center gap-2"><i class="fas fa-arrow-left"></i> Back</button>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-red-600 text-2xl transition"><i class="fas fa-times"></i></button>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-4" id="calcMenuTitle">Calculators</h3>
+            
+            <div class="flex flex-col gap-3">
+                <button onclick="openWorksheetFromMenu()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-blue-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-file-invoice-dollar"></i></div>
+                    <span id="btnMenuWorksheetText">Budget Worksheet</span>
+                </button>
+                <button id="btnRetirement" onclick="window.open('https://www.calculator.net/401k-calculator.html', '_blank')" class="bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg hidden">
+                    <div class="bg-pink-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-piggy-bank"></i></div>
+                    <span>Your Employers Retirement Plan</span>
+                </button>
+                <button id="btnAuto" onclick="openNativeAutoApp()" class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-3 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg hidden">
+                    <div class="bg-cyan-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-car"></i></div>
+                    <span>Financing Your Car Purchase</span>
+                </button>
+                <button id="btnHome" onclick="openNativeMortgageApp()" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg hidden">
+                    <div class="bg-purple-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-house-user"></i></div>
+                    <span>Considering Purchasing a Home?</span>
+                </button>
+                <button id="btnLoan" onclick="openNativeLoanApp()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg hidden">
+                    <div class="bg-emerald-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-hand-holding-dollar"></i></div>
+                    <span>Your Cost for Borrowing Cash</span>
+                </button>
+                <button id="btnRental" onclick="window.open('https://www.calculator.net/rental-property-calculator.html', '_blank')" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg hidden">
+                    <div class="bg-indigo-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-building"></i></div>
+                    <span>Rental Property Cash Flow</span>
+                </button>
+                <button id="btnReverse" onclick="window.open('https://longbridge-financial.com/best-money/', '_blank')" class="bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg hidden">
+                    <div class="bg-teal-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-house-circle-check"></i></div>
+                    <span>Considering a Reverse Mortgage?</span>
+                </button>
+                <button id="btnCapGains" onclick="window.open('https://smartasset.com/investing/capital-gains-tax-calculator', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg hidden">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-chart-line"></i></div>
+                    <span>Capital Gains Tax Liability</span>
+                </button>
+                <button id="btnSEC" onclick="window.open('https://www.investor.gov/free-financial-planning-tools', '_blank')" class="bg-slate-600 hover:bg-slate-700 text-white font-bold py-3 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg hidden">
+                    <div class="bg-slate-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-scale-balanced"></i></div>
+                    <span>SEC Free Calculators</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="litYoungAdultsModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-lg max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden no-print">
+        <div class="p-6 md:p-8">
+            <div class="flex justify-between items-center mb-6 border-b pb-4">
+                <button onclick="goBackToMenu()" class="text-blue-600 hover:text-blue-800 text-xl font-bold flex items-center gap-2"><i class="fas fa-arrow-left"></i> Back</button>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-red-600 text-2xl transition"><i class="fas fa-times"></i></button>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">Financial Literacy for Young Adults</h3>
+            <div class="flex flex-col gap-3">
+                <button onclick="window.open('https://drive.google.com/file/d/1NI5Ja4dRDxc6AkcCuPyqSfbYdf33xtL9/view?usp=sharing', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-chart-pie"></i></div>
+                    <span>How Money Works- Infographic</span>
+                </button>
+                <button onclick="window.open('https://drive.google.com/file/d/1M-tEcS1mqvGjAaMnKNDXUhoL5ADZqAC8/view?usp=sharing', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-file-pdf"></i></div>
+                    <span>How Money Works- PDF</span>
+                </button>
+                <button onclick="window.open('https://youtu.be/llDal8EhBVQ', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-video"></i></div>
+                    <span>How Money Works- Video</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="litYoungFamiliesModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-lg max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden no-print">
+        <div class="p-6 md:p-8">
+            <div class="flex justify-between items-center mb-6 border-b pb-4">
+                <button onclick="goBackToMenu()" class="text-blue-600 hover:text-blue-800 text-xl font-bold flex items-center gap-2"><i class="fas fa-arrow-left"></i> Back</button>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-red-600 text-2xl transition"><i class="fas fa-times"></i></button>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">Financial Literacy for Young Families</h3>
+            <div class="flex flex-col gap-3">
+                <button onclick="window.open('https://youtu.be/irk6Uk9GypA', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-baby"></i></div>
+                    <span>Million $ Baby!</span>
+                </button>
+                <button onclick="window.open('https://drive.google.com/file/d/1NI5Ja4dRDxc6AkcCuPyqSfbYdf33xtL9/view?usp=sharing', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-chart-pie"></i></div>
+                    <span>How Money Works- Infographic</span>
+                </button>
+                <button onclick="window.open('https://drive.google.com/file/d/1M-tEcS1mqvGjAaMnKNDXUhoL5ADZqAC8/view?usp=sharing', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-file-pdf"></i></div>
+                    <span>How Money Works- PDF</span>
+                </button>
+                <button onclick="window.open('https://youtu.be/llDal8EhBVQ', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-video"></i></div>
+                    <span>How Money Works- Video</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="litMidCareerModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-lg max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden no-print">
+        <div class="p-6 md:p-8">
+            <div class="flex justify-between items-center mb-6 border-b pb-4">
+                <button onclick="goBackToMenu()" class="text-blue-600 hover:text-blue-800 text-xl font-bold flex items-center gap-2"><i class="fas fa-arrow-left"></i> Back</button>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-red-600 text-2xl transition"><i class="fas fa-times"></i></button>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">Financial Literacy for Your Mid-Career</h3>
+            <div class="flex flex-col gap-3">
+                <button onclick="window.open('https://drive.google.com/file/d/1ef2S0R9EEmDFVrw8hD8MVgtKpOoE8iqi/view?usp=sharing', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-shield-halved"></i></div>
+                    <span>Asset Protection (Guide)</span>
+                </button>
+                <button onclick="window.open('https://drive.google.com/file/d/1AHJvPpA4-StjaZUCtZlAamhTK9Aj-7Az/view?usp=sharing', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-file-pdf"></i></div>
+                    <span>Navigating Your Social Security (PDF)</span>
+                </button>
+                <button onclick="window.open('https://youtu.be/A1zhR8MLgVY', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-video"></i></div>
+                    <span>Navigating Your Social Security (Video 05:35min)</span>
+                </button>
+                <button onclick="window.open('https://youtu.be/0sOGmM1onaE', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-video"></i></div>
+                    <span>Cash Flow Challenges in Retirement (Video 07:35min)</span>
+                </button>
+                <button onclick="window.open('https://youtu.be/HJc2utx1M-M', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-video"></i></div>
+                    <span>The Tax Buckets and Your Retirement Cash Flow (Video 04:52min)</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="litBusinessModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-lg max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden no-print">
+        <div class="p-6 md:p-8">
+            <div class="flex justify-between items-center mb-6 border-b pb-4">
+                <button onclick="goBackToMenu()" class="text-blue-600 hover:text-blue-800 text-xl font-bold flex items-center gap-2"><i class="fas fa-arrow-left"></i> Back</button>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-red-600 text-2xl transition"><i class="fas fa-times"></i></button>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">Financial Literacy for Business Owners</h3>
+            <div class="flex flex-col gap-3">
+                <button onclick="window.open('https://youtu.be/M_yAEFLtSjU', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-video"></i></div>
+                    <span>Creating a Legacy w/o Impacting Your Business or Personal Cash Flow (Video)</span>
+                </button>
+                <button onclick="window.open('https://docs.google.com/presentation/d/1o0g1ngt54-bssXn-HXOuO8klc4A0AMr-JdmTlI2qLhE/edit?usp=sharing', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-desktop"></i></div>
+                    <span>Retirement Plans (Slides)</span>
+                </button>
+                <button onclick="window.open('https://drive.google.com/file/d/1ecWbFj371p0OBo-909u5M0HxiaEBATI8/view?usp=sharing', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-file-pdf"></i></div>
+                    <span>Retirement Plans (PDF)</span>
+                </button>
+                <button onclick="window.open('https://drive.google.com/file/d/1SK4xhRbUqJC8jTK-HyMM0k6xX0Xd0ayx/view?usp=sharing', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-file-pdf"></i></div>
+                    <span>California Mandated Retirement Plan (PDF)</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="litPreRetirementModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-lg max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden no-print">
+        <div class="p-6 md:p-8">
+            <div class="flex justify-between items-center mb-6 border-b pb-4">
+                <button onclick="goBackToMenu()" class="text-blue-600 hover:text-blue-800 text-xl font-bold flex items-center gap-2"><i class="fas fa-arrow-left"></i> Back</button>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-red-600 text-2xl transition"><i class="fas fa-times"></i></button>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">Financial Literacy for Preparing for Your Retirement</h3>
+            <div class="flex flex-col gap-3">
+                <button onclick="window.open('https://drive.google.com/file/d/1AHJvPpA4-StjaZUCtZlAamhTK9Aj-7Az/view?usp=sharing', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-file-pdf"></i></div>
+                    <span>Navigating Your Social Security (PDF)</span>
+                </button>
+                <button onclick="window.open('https://youtu.be/A1zhR8MLgVY', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-video"></i></div>
+                    <span>Navigating Your Social Security (Video 05:35min)</span>
+                </button>
+                <button onclick="window.open('https://youtu.be/0sOGmM1onaE', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-video"></i></div>
+                    <span>Cash Flow Challenges in Retirement (Video 07:35min)</span>
+                </button>
+                <button onclick="window.open('https://youtu.be/HJc2utx1M-M', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-video"></i></div>
+                    <span>The Tax Buckets and Your Retirement Cash Flow (Video 04:52min)</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="litRetiredModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-lg max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden no-print">
+        <div class="p-6 md:p-8">
+            <div class="flex justify-between items-center mb-6 border-b pb-4">
+                <button onclick="goBackToMenu()" class="text-blue-600 hover:text-blue-800 text-xl font-bold flex items-center gap-2"><i class="fas fa-arrow-left"></i> Back</button>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-red-600 text-2xl transition"><i class="fas fa-times"></i></button>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">Financial Literacy for Retired Americans</h3>
+            <div class="flex flex-col gap-3">
+                <button onclick="window.open('https://drive.google.com/file/d/1z9RhFdjOFlV5kFQqyjrlF-5ibWrj1DOC/view?usp=sharing', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-scroll"></i></div>
+                    <span>Beyond the Bond</span>
+                </button>
+                <button onclick="window.open('https://youtu.be/A1zhR8MLgVY', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-video"></i></div>
+                    <span>A Social Security Update (Video 05:35min)</span>
+                </button>
+                <button onclick="window.open('https://youtu.be/0sOGmM1onaE', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-video"></i></div>
+                    <span>Cash Flow Challenges in Retirement (Video 07:35min)</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="specialNeedsMenuModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-lg max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden no-print">
+        <div class="p-6 md:p-8">
+            <div class="flex justify-between items-center mb-6 border-b pb-4">
+                <button onclick="goBackToMenu()" class="text-blue-600 hover:text-blue-800 text-xl font-bold flex items-center gap-2"><i class="fas fa-arrow-left"></i> Back</button>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-red-600 text-2xl transition"><i class="fas fa-times"></i></button>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">Families with a Special Needs Loved One</h3>
+            <div class="flex flex-col gap-3">
+                <button onclick="window.open('https://youtu.be/Tko3UXFuT6o', '_blank')" class="bg-rose-600 hover:bg-rose-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-rose-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-video"></i></div>
+                    <span>Special Needs Family (Video)</span>
+                </button>
+                <button onclick="window.open('https://drive.google.com/file/d/1PpUT8WtBbPJa4AlOF5PsZu9lA8xdz6Gx/view?usp=sharing', '_blank')" class="bg-rose-600 hover:bg-rose-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-rose-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-file-pdf"></i></div>
+                    <span>Special Needs Family (PDF Report)</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="budgetModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[95%] md:w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden print-area">
+        <div class="p-4 md:p-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 border-b pb-4 gap-4">
+                <div class="flex justify-between items-center w-full md:w-auto">
+                    <h2 class="text-xl md:text-3xl font-bold text-gray-800" id="budgetTitle">Your Budget Worksheet</h2>
+                    <button onclick="closeModal()" class="text-gray-500 hover:text-red-600 text-2xl transition md:hidden"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="flex w-full md:w-auto gap-2 md:gap-4 no-print items-center justify-between">
+                    <button onclick="window.print()" class="flex-1 md:flex-none justify-center bg-gray-200 hover:bg-gray-300 text-gray-700 px-3 md:px-4 py-2 rounded-lg text-sm md:text-base font-medium transition flex items-center text-center">
+                        <i class="fas fa-print mr-2"></i> Print
+                    </button>
+                    <button onclick="closeModal()" class="hidden md:block text-gray-500 hover:text-red-600 text-2xl transition ml-2"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                <div class="bg-gray-50 p-4 md:p-6 rounded-xl border border-gray-200">
+                    <h3 class="text-lg md:text-xl font-bold text-green-700 mb-4 border-b border-green-200 pb-2"><i class="fas fa-money-bill-wave mr-2"></i> Monthly Income</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center"><label id="lbl-income-1" class="text-xs md:text-sm font-medium text-gray-700 pr-2">Take-Home Income #1</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base income-input" placeholder="$0" oninput="calcBudget()"></div>
+                        <div class="flex justify-between items-center"><label id="lbl-income-2" class="text-xs md:text-sm font-medium text-gray-700 pr-2">Take-Home Income #2</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base income-input" placeholder="$0" oninput="calcBudget()"></div>
+                        <div class="flex justify-between items-center"><label id="lbl-income-3" class="text-xs md:text-sm font-medium text-gray-700 pr-2">Bonuses / Other</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base income-input" placeholder="$0" oninput="calcBudget()"></div>
+                        <div class="flex justify-between items-center"><label class="text-xs md:text-sm font-medium text-gray-700 pr-2">Avg Tax Refund / 12</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base income-input" placeholder="$0" oninput="calcBudget()"></div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-4 md:p-6 rounded-xl border border-gray-200">
+                    <h3 class="text-lg md:text-xl font-bold text-blue-600 mb-4 border-b border-blue-200 pb-2"><i class="fas fa-home mr-2"></i> Living Expenses</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center"><label class="text-xs md:text-sm font-medium text-gray-700 pr-2">Mortgage or Rent</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base expense-input" placeholder="$0" oninput="calcBudget()"></div>
+                        <div class="flex justify-between items-center"><label id="lbl-expense-office" class="text-xs md:text-sm font-medium text-gray-700 pr-2">Office / Storage Rent</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base expense-input" placeholder="$0" oninput="calcBudget()"></div>
+                        <div class="flex justify-between items-center"><label class="text-xs md:text-sm font-medium text-gray-700 pr-2">Utilities (Elec/Gas)</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base expense-input" placeholder="$0" oninput="calcBudget()"></div>
+                        <div class="flex justify-between items-center"><label class="text-xs md:text-sm font-medium text-gray-700 pr-2">Internet / Cable</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base expense-input" placeholder="$0" oninput="calcBudget()"></div>
+                        <div class="flex justify-between items-center"><label class="text-xs md:text-sm font-medium text-gray-700 pr-2">Groceries / Supplies</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base expense-input" placeholder="$0" oninput="calcBudget()"></div>
+                        <div class="flex justify-between items-center"><label id="lbl-expense-child" class="text-xs md:text-sm font-medium text-gray-700 pr-2">Child Care</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base expense-input" placeholder="$0" oninput="calcBudget()"></div>
+                        <div class="flex justify-between items-center"><label class="text-xs md:text-sm font-medium text-gray-700 pr-2">Medical Expenses</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base expense-input" placeholder="$0" oninput="calcBudget()"></div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-4 md:p-6 rounded-xl border border-gray-200">
+                    <h3 class="text-lg md:text-xl font-bold text-orange-500 mb-4 border-b border-orange-200 pb-2"><i class="fas fa-car mr-2"></i> Transport & Insurance</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center"><label class="text-xs md:text-sm font-medium text-gray-700 pr-2">Fuel / Auto Maint.</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base expense-input" placeholder="$0" oninput="calcBudget()"></div>
+                        <div class="flex justify-between items-center"><label class="text-xs md:text-sm font-medium text-gray-700 pr-2">Transit / Tolls</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base expense-input" placeholder="$0" oninput="calcBudget()"></div>
+                        <div class="flex justify-between items-center"><label class="text-xs md:text-sm font-medium text-gray-700 pr-2">Health / Life Ins.</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base expense-input" placeholder="$0" oninput="calcBudget()"></div>
+                        <div class="flex justify-between items-center"><label class="text-xs md:text-sm font-medium text-gray-700 pr-2">Home / Auto Ins.</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base expense-input" placeholder="$0" oninput="calcBudget()"></div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-4 md:p-6 rounded-xl border border-gray-200">
+                    <h3 class="text-lg md:text-xl font-bold text-purple-600 mb-4 border-b border-purple-200 pb-2"><i class="fas fa-credit-card mr-2"></i> Debt & Lifestyle</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center"><label class="text-xs md:text-sm font-medium text-gray-700 pr-2">Auto / Student Loans</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base expense-input" placeholder="$0" oninput="calcBudget()"></div>
+                        <div class="flex justify-between items-center"><label class="text-xs md:text-sm font-medium text-gray-700 pr-2">Credit Card Min.</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base expense-input" placeholder="$0" oninput="calcBudget()"></div>
+                        <div class="flex justify-between items-center"><label class="text-xs md:text-sm font-medium text-gray-700 pr-2">Dining / Ent.</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base expense-input" placeholder="$0" oninput="calcBudget()"></div>
+                        <div class="flex justify-between items-center"><label class="text-xs md:text-sm font-medium text-gray-700 pr-2">Travel / Vacations</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base expense-input" placeholder="$0" oninput="calcBudget()"></div>
+                        <div class="flex justify-between items-center"><label class="text-xs md:text-sm font-medium text-gray-700 pr-2">Other Misc.</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base expense-input" placeholder="$0" oninput="calcBudget()"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 bg-gray-900 text-white p-4 md:p-6 rounded-xl shadow-inner print-invert">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-sm md:text-lg font-medium text-gray-300 print-invert">Total Monthly Income</span>
+                    <span class="text-lg md:text-xl font-bold text-green-400" id="budgetTotalIncome">$0.00</span>
+                </div>
+                <div class="flex justify-between items-center mb-4 border-b border-gray-700 pb-4">
+                    <span class="text-sm md:text-lg font-medium text-gray-300 print-invert">Total Monthly Expenses</span>
+                    <span class="text-lg md:text-xl font-bold text-red-400" id="budgetTotalExpenses">$0.00</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-lg md:text-2xl font-bold uppercase tracking-wide">Net Cash Flow</span>
+                    <span class="text-xl md:text-3xl font-extrabold" id="budgetNetCash">$0.00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="businessModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[95%] md:w-full max-w-5xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden print-area">
+        <div class="p-4 md:p-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 border-b pb-4 gap-4">
+                <div class="flex justify-between items-center w-full md:w-auto">
+                    <h2 class="text-xl md:text-3xl font-bold text-gray-800">Business Balance Sheet</h2>
+                    <button onclick="closeModal()" class="text-gray-500 hover:text-red-600 text-2xl transition md:hidden"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="flex w-full md:w-auto gap-2 md:gap-4 no-print items-center justify-between">
+                    <button onclick="window.print()" class="flex-1 md:flex-none justify-center bg-gray-200 hover:bg-gray-300 text-gray-700 px-3 md:px-4 py-2 rounded-lg text-sm md:text-base font-medium transition flex items-center text-center">
+                        <i class="fas fa-print mr-2"></i> Print
+                    </button>
+                    <button onclick="closeModal()" class="hidden md:block text-gray-500 hover:text-red-600 text-2xl transition ml-2"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                <div>
+                    <h3 class="text-xl md:text-2xl font-bold text-green-700 mb-4 border-b-2 border-green-700 pb-2">Assets</h3>
+                    <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 mb-4">
+                        <h4 class="font-bold text-gray-800 mb-3 text-sm md:text-base">Current Assets</h4>
+                        <div class="space-y-2">
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Cash</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base asset-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Petty Cash</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base asset-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Accounts Receivable</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base asset-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Inventory</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base asset-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Short-Term Invest.</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base asset-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Prepaid Expense</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base asset-input" placeholder="$0" oninput="calcBusiness()"></div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 mb-4">
+                        <h4 class="font-bold text-gray-800 mb-3 text-sm md:text-base">Fixed Assets</h4>
+                        <div class="space-y-2">
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Land</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base asset-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Buildings</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base asset-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Improvements</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base asset-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Equipment</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base asset-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Furniture</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base asset-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Vehicles</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base asset-input" placeholder="$0" oninput="calcBusiness()"></div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                        <h4 class="font-bold text-gray-800 mb-3 text-sm md:text-base">Other Assets</h4>
+                        <div class="space-y-2">
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Long-Term Invest.</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base asset-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Intangibles / Other 1</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base asset-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Other 2</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base asset-input" placeholder="$0" oninput="calcBusiness()"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-xl md:text-2xl font-bold text-red-600 mb-4 border-b-2 border-red-600 pb-2">Liabilities</h3>
+                    <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 mb-4">
+                        <h4 class="font-bold text-gray-800 mb-3 text-sm md:text-base">Current Liabilities</h4>
+                        <div class="space-y-2">
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Accounts Payable</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base liab-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Notes Payable (Short)</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base liab-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Interest Payable</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base liab-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Fed Income Tax Pay.</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base liab-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">State Income Tax Pay.</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base liab-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Self-Employment Tax</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base liab-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Sales Tax Payable</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base liab-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Property Tax Payable</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base liab-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Payroll Accrual</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base liab-input" placeholder="$0" oninput="calcBusiness()"></div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 mb-8">
+                        <h4 class="font-bold text-gray-800 mb-3 text-sm md:text-base">Long-Term Liabilities</h4>
+                        <div class="space-y-2">
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Notes Payable (Long)</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base liab-input" placeholder="$0" oninput="calcBusiness()"></div>
+                            <div class="flex justify-between items-center"><label class="text-xs md:text-sm pr-2">Other Long-Term Debt</label><input type="number" class="w-24 md:w-32 border rounded p-1 text-right text-base liab-input" placeholder="$0" oninput="calcBusiness()"></div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-900 text-white p-4 md:p-6 rounded-xl shadow-inner print-invert">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm md:text-lg font-medium text-gray-300 print-invert">Total Assets</span>
+                            <span class="text-lg md:text-xl font-bold text-green-400" id="bizTotalAssets">$0.00</span>
+                        </div>
+                        <div class="flex justify-between items-center mb-4 border-b border-gray-700 pb-4">
+                            <span class="text-sm md:text-lg font-medium text-gray-300 print-invert">Total Liabilities</span>
+                            <span class="text-lg md:text-xl font-bold text-red-400" id="bizTotalLiab">$0.00</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-lg md:text-xl font-bold uppercase tracking-wide">Net Worth / Equity</span>
+                            <span class="text-xl md:text-3xl font-extrabold text-blue-400" id="bizNetWorth">$0.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="autoAppModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[95%] max-w-2xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden no-print">
+        <div class="p-6 md:p-8">
+            <div class="flex justify-between items-center mb-6 border-b pb-4">
+                <button onclick="openCalculatorsMenu()" class="text-blue-600 hover:text-blue-800 text-xl font-bold flex items-center gap-2"><i class="fas fa-arrow-left"></i> Back</button>
+                <div class="flex items-center gap-3">
+                    <img src="CFLN.png" class="h-8 w-8 object-contain">
+                    <h2 class="text-lg md:text-2xl font-bold text-gray-800">Car Purchase Cost App</h2>
+                </div>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-red-600 text-2xl transition"><i class="fas fa-times"></i></button>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 border-b pb-6">
+                <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                    <h3 class="font-bold text-cyan-700 mb-3 flex items-center gap-2"><i class="fas fa-receipt"></i> Option A: Buy with Loan</h3>
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-xs font-medium text-gray-600 mb-1">Vehicle Price ($)</label>
+                            <input type="number" id="autoPrice" class="w-full border rounded p-2 text-base auto-calc-input" value="35000" oninput="calculateNativeAuto()">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-600 mb-1">Down Payment / Trade ($)</label>
+                            <input type="number" id="autoDown" class="w-full border rounded p-2 text-base auto-calc-input" value="5000" oninput="calculateNativeAuto()">
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div>
+                                <label class="block text-xs font-medium text-gray-600 mb-1">Interest Rate (%)</label>
+                                <input type="number" step="0.1" id="autoRate" class="w-full border rounded p-2 text-base auto-calc-input" value="5.5" oninput="calculateNativeAuto()">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-gray-600 mb-1">Term (Months)</label>
+                                <input type="number" id="autoLoanTerm" class="w-full border rounded p-2 text-base auto-calc-input" value="60" oninput="calculateNativeAuto()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                    <h3 class="font-bold text-indigo-700 mb-3 flex items-center gap-2"><i class="fas fa-signature"></i> Option B: Lease vehicle</h3>
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-xs font-medium text-gray-600 mb-1">Monthly Lease Payment ($)</label>
+                            <input type="number" id="leaseMonthly" class="w-full border rounded p-2 text-base auto-calc-input" value="399" oninput="calculateNativeAuto()">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-600 mb-1">Amount Due at Signing ($)</label>
+                            <input type="number" id="leaseSigning" class="w-full border rounded p-2 text-base auto-calc-input" value="3000" oninput="calculateNativeAuto()">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-600 mb-1">Lease Term (Months)</label>
+                            <input type="number" id="leaseTerm" class="w-full border rounded p-2 text-base auto-calc-input" value="36" oninput="calculateNativeAuto()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-cyan-50 p-4 rounded-xl border border-cyan-100 text-center">
+                    <p class="text-xs font-bold uppercase tracking-wider text-cyan-800">Loan Monthly Payment</p>
+                    <h4 class="text-2xl font-extrabold text-cyan-700 mt-1" id="autoLoanResult">$0.00</h4>
+                    <p class="text-xs text-gray-500 mt-2">Total Lifecycle Out-of-Pocket:<br><strong class="text-cyan-800" id="autoLoanTotal">$0.00</strong></p>
+                </div>
+                <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-100 text-center">
+                    <p class="text-xs font-bold uppercase tracking-wider text-indigo-800">Lease Monthly Payment</p>
+                    <h4 class="text-2xl font-extrabold text-indigo-700 mt-1" id="autoLeaseResult">$0.00</h4>
+                    <p class="text-xs text-gray-500 mt-2">Total Lifecycle Out-of-Pocket:<br><strong class="text-indigo-800" id="autoLeaseTotal">$0.00</strong></p>
+                </div>
+            </div>
+
+            <button onclick="openContactModal()" class="w-full bg-cyan-700 hover:bg-cyan-800 text-white font-bold py-3 rounded-lg transition-colors mt-6 shadow-md">
+                Map Out My Car Budget with a Fiduciary
+            </button>
+        </div>
+    </div>
+
+    <div id="mortgageAppModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[95%] max-w-lg max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden no-print">
+        <div class="p-6 md:p-8">
+            <div class="flex justify-between items-center mb-6 border-b pb-4">
+                <button onclick="openCalculatorsMenu()" class="text-blue-600 hover:text-blue-800 text-xl font-bold flex items-center gap-2"><i class="fas fa-arrow-left"></i> Back</button>
+                <div class="flex items-center gap-3">
+                    <img src="CFLN.png" class="h-8 w-8 object-contain">
+                    <h2 class="text-lg md:text-2xl font-bold text-gray-800">Mortgage App</h2>
+                </div>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-red-600 text-2xl transition"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="space-y-4">
+                <div><label class="block text-sm font-medium text-gray-700 mb-1">Home Price ($)</label><input type="number" id="mortgagePrice" class="w-full border rounded-lg p-3 outline-none" value="400000" oninput="calculateNativeMortgage()"></div>
+                <div><label class="block text-sm font-medium text-gray-700 mb-1">Down Payment ($)</label><input type="number" id="mortgageDown" class="w-full border rounded-lg p-3 outline-none" value="80000" oninput="calculateNativeMortgage()"></div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div><label class="block text-sm font-medium text-gray-700 mb-1">Interest Rate (%)</label><input type="number" step="0.01" id="mortgageRate" class="w-full border rounded-lg p-3 outline-none" value="6.5" oninput="calculateNativeMortgage()"></div>
+                    <div><label class="block text-sm font-medium text-gray-700 mb-1">Loan Term (Years)</label><select id="mortgageTerm" class="w-full border rounded-lg p-3 outline-none" onchange="calculateNativeMortgage()"><option value="30">30 Years</option><option value="15">15 Years</option></select></div>
+                </div>
+                <div class="bg-purple-50 p-6 rounded-xl mt-6 text-center"><p class="text-gray-600 mb-1">Estimated Monthly Payment (P&I)</p><h3 class="text-4xl font-extrabold text-purple-700" id="mortgageResult">$0.00</h3></div>
+                <button onclick="openContactModal()" class="w-full bg-purple-600 text-white font-bold py-3 rounded-lg shadow-md">Discuss My Options with a Fiduciary</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="loanAppModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[95%] max-w-lg max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden no-print">
+        <div class="p-6 md:p-8">
+            <div class="flex justify-between items-center mb-6 border-b pb-4">
+                <button onclick="openCalculatorsMenu()" class="text-blue-600 hover:text-blue-800 text-xl font-bold flex items-center gap-2"><i class="fas fa-arrow-left"></i> Back</button>
+                <div class="flex items-center gap-3">
+                    <img src="CFLN.png" class="h-8 w-8 object-contain">
+                    <h2 class="text-lg md:text-2xl font-bold text-gray-800">Cost of Borrowing App</h2>
+                </div>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-red-600 text-2xl transition"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="space-y-4">
+                <div><label class="block text-sm font-medium text-gray-700 mb-1">Loan Amount ($)</label><input type="number" id="loanAmount" class="w-full border rounded-lg p-3 outline-none" value="10000" oninput="calculateNativeLoan()"></div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div><label class="block text-sm font-medium text-gray-700 mb-1">Interest Rate (%)</label><input type="number" step="0.1" id="loanRate" class="w-full border rounded-lg p-3 outline-none" value="8.5" oninput="calculateNativeLoan()"></div>
+                    <div><label class="block text-sm font-medium text-gray-700 mb-1">Term (Months)</label><input type="number" id="loanTerm" class="w-full border rounded-lg p-3 outline-none" value="36" oninput="calculateNativeLoan()"></div>
+                </div>
+                <div class="bg-emerald-50 p-6 rounded-xl mt-6 border border-emerald-100 text-center">
+                    <p class="text-gray-600 font-medium mb-1">Estimated Monthly Payment</p>
+                    <h3 class="text-4xl font-extrabold text-emerald-700" id="loanResult">$0.00</h3>
+                    <p class="text-sm mt-3 text-gray-500 font-medium">Total Interest Paid over life of loan:<br><strong class="text-emerald-800 text-lg" id="loanTotalInterest">$0.00</strong></p>
+                </div>
+                <button onclick="openContactModal()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-lg shadow-md transition-colors mt-4">Review Your Debt Strategy with a Fiduciary</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="contactModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[95%] max-w-lg max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden no-print">
+        <div class="p-6 md:p-8">
+            <div class="flex justify-between items-center mb-6 border-b pb-4">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800">Talk to a Fiduciary</h2>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-red-600 text-2xl transition"><i class="fas fa-times"></i></button>
+            </div>
+            <form id="fiduciaryForm" action="https://script.google.com/macros/s/AKfycbzGamtc28859ePWNMIHT391MuHDEE4lGwrUkJSVygqOSQSubUnibkoQYlTosQZGJxOy5Q/exec" class="space-y-4">
+                <div><label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label><input type="text" name="name" required class="w-full border rounded-lg p-2"></div>
+                <div><label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label><input type="email" name="email" required class="w-full border rounded-lg p-2"></div>
+                <div><label class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label><input type="tel" name="phone" required class="w-full border rounded-lg p-2"></div>
+                <div><label class="block text-sm font-medium text-gray-700 mb-1">Financial Concerns</label><textarea name="concerns" rows="4" required class="w-full border rounded-lg p-2"></textarea></div>
+                <button type="submit" id="submitBtn" class="w-full bg-green-700 text-white font-bold py-3 rounded-lg shadow-md">Send Request</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="successModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-md bg-white rounded-2xl shadow-2xl z-50 hidden no-print text-center p-8 border-t-8 border-green-700">
+        <img src="AIP_Logo.png" alt="Alpha Innovation Partners" class="mx-auto h-24 object-contain mb-6">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Message Sent</h2>
+        <p class="text-gray-600 mb-8 font-medium">Your Information has Securely been forwarded to Alpha Innovation Partners. A Financial Fiduciary will contact you within 24 hours. Thank you.</p>
+        <button onclick="closeModal()" class="bg-green-700 text-white font-bold py-3 px-8 rounded-lg w-full">Done</button>
+    </div>
+
+    <script>
+        const formatCurrency = (num) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(num);
+        let currentCategory = '';
+        let currentAppUrl = '';
+
+        // Safely show or hide elements
+        function showEl(id) {
+            const el = document.getElementById(id);
+            if (el) el.classList.remove('hidden');
+        }
+        function hideEl(id) {
+            const el = document.getElementById(id);
+            if (el) el.classList.add('hidden');
+        }
+
+        function openContactModal() {
+            showEl('contactModal');
+            hideEl('mortgageAppModal');
+            hideEl('autoAppModal');
+            hideEl('loanAppModal');
+            hideEl('litBusinessModal');
+            const overlay = document.getElementById('modalOverlay');
+            if (overlay && overlay.classList.contains('hidden')) {
+                overlay.classList.remove('hidden');
+            }
+        }
+
+        function toggleBtn(id, allowedCats, currentCat) {
+            const btn = document.getElementById(id);
+            if(btn) {
+                if (allowedCats.includes(currentCat)) btn.classList.remove('hidden');
+                else btn.classList.add('hidden');
+            }
+        }
+
+        function openMenuModal(category) {
+            currentCategory = category;
+            
+            // Hide all other menus to reset state
+            hideEl('calculatorsMenuModal');
+            hideEl('specialNeedsMenuModal');
+            hideEl('litYoungAdultsModal');
+            hideEl('litYoungFamiliesModal');
+            hideEl('litMidCareerModal');
+            hideEl('litBusinessModal');
+            hideEl('litPreRetirementModal');
+            hideEl('litRetiredModal');
+            
+            // Show main overlay and menu
+            showEl('modalOverlay');
+            showEl('stageMenuModal');
+            
+            const titleEl = document.getElementById('menuTitle');
+            if (titleEl) titleEl.innerText = category + " Resources";
+            
+            const calcBtnEl = document.getElementById('calcBtnText');
+            if (calcBtnEl) calcBtnEl.innerText = "Financial Calculators for " + category;
+
+            const auditBtnTextEl = document.getElementById('btnMenuAuditText');
+            if (category === 'Young Adults' || category === 'Young Families') {
+                currentAppUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfIKhaLiUhQuadHvx0JVW2HVv3rL69bdysHwSUNr-iqhq6HNw/viewform?usp=header';
+                if (auditBtnTextEl) auditBtnTextEl.innerText = 'Financial Foundations Audit';
+            } else {
+                currentAppUrl = 'https://sites.google.com/craneandassociates.net/alphainnovationpartnersretire/home';
+                if (auditBtnTextEl) auditBtnTextEl.innerText = 'Retirement Readiness App';
+            }
+
+            // Show folder / direct links conditionally
+            toggleBtn('btnMainSpecialNeeds', ['Young Families'], category);
+            toggleBtn('btnMainLitYoungAdults', ['Young Adults'], category);
+            toggleBtn('btnMainLitYoungFamilies', ['Young Families'], category);
+            toggleBtn('btnMainLitMidCareer', ['Mid Career'], category);
+            toggleBtn('btnMainLitBusiness', ['Business Owners'], category);
+            toggleBtn('btnMainLitPreRetirement', ['Pre-Retirement'], category);
+            toggleBtn('btnMainLitRetired', ['Retired'], category);
+        }
+
+        function openCalculatorsMenu() {
+            hideEl('stageMenuModal');
+            showEl('calculatorsMenuModal');
+            
+            const titleEl = document.getElementById('calcMenuTitle');
+            if (titleEl) titleEl.innerText = "Calculators: " + currentCategory;
+            
+            const wkTextEl = document.getElementById('btnMenuWorksheetText');
+            if (wkTextEl) wkTextEl.innerText = (currentCategory === 'Business Owners') ? "Business Balance Sheet" : "Budget Worksheet";
+
+            toggleBtn('btnRetirement', ['Young Adults', 'Young Families', 'Mid Career', 'Pre-Retirement'], currentCategory);
+            toggleBtn('btnAuto', ['Young Adults', 'Young Families', 'Mid Career', 'Pre-Retirement', 'Retired'], currentCategory);
+            toggleBtn('btnHome', ['Young Families', 'Mid Career', 'Pre-Retirement'], currentCategory);
+            toggleBtn('btnLoan', ['Young Adults', 'Young Families', 'Mid Career', 'Pre-Retirement'], currentCategory);
+            toggleBtn('btnRental', ['Business Owners'], currentCategory);
+            toggleBtn('btnReverse', ['Retired'], currentCategory);
+            toggleBtn('btnCapGains', ['Mid Career', 'Pre-Retirement', 'Retired'], currentCategory);
+            toggleBtn('btnSEC', ['Young Adults', 'Young Families', 'Mid Career', 'Business Owners', 'Pre-Retirement', 'Retired'], currentCategory);
+        }
+
+        function openSpecialNeedsMenu() {
+            hideEl('stageMenuModal');
+            showEl('specialNeedsMenuModal');
+        }
+
+        function openLitYoungAdultsMenu() {
+            hideEl('stageMenuModal');
+            showEl('litYoungAdultsModal');
+        }
+
+        function openLitYoungFamiliesMenu() {
+            hideEl('stageMenuModal');
+            showEl('litYoungFamiliesModal');
+        }
+        
+        function openLitMidCareerMenu() {
+            hideEl('stageMenuModal');
+            showEl('litMidCareerModal');
+        }
+
+        function openLitBusinessMenu() {
+            hideEl('stageMenuModal');
+            showEl('litBusinessModal');
+        }
+
+        function openLitPreRetirementMenu() {
+            hideEl('stageMenuModal');
+            showEl('litPreRetirementModal');
+        }
+
+        function openLitRetiredMenu() {
+            hideEl('stageMenuModal');
+            showEl('litRetiredModal');
+        }
+
+        function goBackToMenu() {
+            openMenuModal(currentCategory);
+        }
+
+        function openAuditFromMenu() { window.open(currentAppUrl, '_blank'); }
+
+        function openWorksheetFromMenu() {
+            hideEl('calculatorsMenuModal');
+            if (currentCategory === 'Business Owners') {
+                showEl('businessModal');
+                calcBusiness();
+            } else {
+                showEl('budgetModal');
+                const titleEl = document.getElementById('budgetTitle');
+                if (titleEl) titleEl.innerText = currentCategory + " Budget Worksheet";
+                applyDynamicLabels(currentCategory);
+                calcBudget();
+            }
+        }
+
+        function openNativeMortgageApp() {
+            hideEl('calculatorsMenuModal');
+            showEl('mortgageAppModal');
+            calculateNativeMortgage();
+        }
+
+        function openNativeAutoApp() {
+            hideEl('calculatorsMenuModal');
+            showEl('autoAppModal');
+            calculateNativeAuto();
+        }
+
+        function openNativeLoanApp() {
+            hideEl('calculatorsMenuModal');
+            showEl('loanAppModal');
+            calculateNativeLoan();
+        }
+
+        function calculateNativeMortgage() {
+            const priceEl = document.getElementById('mortgagePrice');
+            const downEl = document.getElementById('mortgageDown');
+            const rateEl = document.getElementById('mortgageRate');
+            const termEl = document.getElementById('mortgageTerm');
+            const resultEl = document.getElementById('mortgageResult');
+            
+            if(!priceEl || !downEl || !rateEl || !termEl || !resultEl) return;
+
+            let price = Number(priceEl.value) || 0;
+            let down = Number(downEl.value) || 0;
+            let rate = Number(rateEl.value) || 0;
+            let term = Number(termEl.value) || 30;
+
+            let principal = price - down;
+            let monthlyRate = (rate / 100) / 12;
+            let numberOfPayments = term * 12;
+            let monthlyPayment = 0;
+            if (monthlyRate === 0) monthlyPayment = principal / numberOfPayments;
+            else if (principal > 0) monthlyPayment = principal * monthlyRate * (Math.pow(1 + monthlyRate, numberOfPayments)) / (Math.pow(1 + monthlyRate, numberOfPayments) - 1);
+
+            resultEl.innerText = formatCurrency(monthlyPayment);
+        }
+
+        function calculateNativeAuto() {
+            const autoPriceEl = document.getElementById('autoPrice');
+            const autoDownEl = document.getElementById('autoDown');
+            const autoRateEl = document.getElementById('autoRate');
+            const autoLoanTermEl = document.getElementById('autoLoanTerm');
+            
+            const leaseMonthlyEl = document.getElementById('leaseMonthly');
+            const leaseSigningEl = document.getElementById('leaseSigning');
+            const leaseTermEl = document.getElementById('leaseTerm');
+            
+            const autoLoanResultEl = document.getElementById('autoLoanResult');
+            const autoLoanTotalEl = document.getElementById('autoLoanTotal');
+            const autoLeaseResultEl = document.getElementById('autoLeaseResult');
+            const autoLeaseTotalEl = document.getElementById('autoLeaseTotal');
+
+            if(!autoPriceEl) return;
+
+            let price = Number(autoPriceEl.value) || 0;
+            let down = Number(autoDownEl.value) || 0;
+            let rate = Number(autoRateEl.value) || 0;
+            let months = Number(autoLoanTermEl.value) || 60;
+
+            let principal = price - down;
+            let monthlyRate = (rate / 100) / 12;
+            let loanPayment = 0;
+            if (monthlyRate === 0) loanPayment = principal / months;
+            else if (principal > 0) loanPayment = principal * monthlyRate * (Math.pow(1 + monthlyRate, months)) / (Math.pow(1 + monthlyRate, months) - 1);
+
+            let loanTotalCost = (loanPayment * months) + down;
+
+            let leasePayment = Number(leaseMonthlyEl.value) || 0;
+            let signing = Number(leaseSigningEl.value) || 0;
+            let leaseMonths = Number(leaseTermEl.value) || 36;
+
+            let leaseTotalCost = (leasePayment * leaseMonths) + signing;
+
+            if(autoLoanResultEl) autoLoanResultEl.innerText = formatCurrency(loanPayment);
+            if(autoLoanTotalEl) autoLoanTotalEl.innerText = formatCurrency(loanTotalCost);
+            if(autoLeaseResultEl) autoLeaseResultEl.innerText = formatCurrency(leasePayment);
+            if(autoLeaseTotalEl) autoLeaseTotalEl.innerText = formatCurrency(leaseTotalCost);
+        }
+
+        function calculateNativeLoan() {
+            const loanAmountEl = document.getElementById('loanAmount');
+            const loanRateEl = document.getElementById('loanRate');
+            const loanTermEl = document.getElementById('loanTerm');
+            const loanResultEl = document.getElementById('loanResult');
+            const loanTotalInterestEl = document.getElementById('loanTotalInterest');
+
+            if(!loanAmountEl) return;
+
+            let amount = Number(loanAmountEl.value) || 0;
+            let rate = Number(loanRateEl.value) || 0;
+            let months = Number(loanTermEl.value) || 36;
+
+            let monthlyRate = (rate / 100) / 12;
+            let payment = 0;
+            
+            if (monthlyRate === 0) {
+                payment = amount / months;
+            } else if (amount > 0 && months > 0) {
+                payment = amount * monthlyRate * (Math.pow(1 + monthlyRate, months)) / (Math.pow(1 + monthlyRate, months) - 1);
+            }
+
+            let totalCost = payment * months;
+            let totalInterest = totalCost - amount;
+
+            if(loanResultEl) loanResultEl.innerText = formatCurrency(payment);
+            if(loanTotalInterestEl) loanTotalInterestEl.innerText = formatCurrency(totalInterest > 0 ? totalInterest : 0);
+        }
+
+        function closeModal() {
+            hideEl('modalOverlay');
+            hideEl('stageMenuModal');
+            hideEl('calculatorsMenuModal');
+            hideEl('specialNeedsMenuModal');
+            hideEl('litYoungAdultsModal');
+            hideEl('litYoungFamiliesModal');
+            hideEl('litMidCareerModal');
+            hideEl('litPreRetirementModal');
+            hideEl('litRetiredModal');
+            hideEl('mortgageAppModal');
+            hideEl('autoAppModal');
+            hideEl('loanAppModal');
+            hideEl('budgetModal');
+            hideEl('businessModal');
+            hideEl('contactModal');
+            hideEl('successModal');
+        }
+
+        const form = document.getElementById('fiduciaryForm');
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault(); 
+                const data = new FormData(form);
+                const action = form.action;
+                const btn = document.getElementById('submitBtn');
+                if(btn) {
+                    btn.innerText = "Sending Request...";
+                    btn.disabled = true;
+                }
+
+                fetch(action, { method: 'POST', body: data, mode: 'no-cors' })
+                .then(() => {
+                    form.reset(); 
+                    hideEl('contactModal');
+                    showEl('successModal');
+                    if(btn) {
+                        btn.innerText = "Send Request";
+                        btn.disabled = false;
+                    }
+                }).catch(() => {
+                    alert("Error sending request.");
+                    if(btn) {
+                        btn.innerText = "Send Request";
+                        btn.disabled = false;
+                    }
+                });
+            });
+        }
+
+        function applyDynamicLabels(category) {
+            const lblInc1 = document.getElementById('lbl-income-1');
+            const lblInc2 = document.getElementById('lbl-income-2');
+            const lblInc3 = document.getElementById('lbl-income-3');
+            const lblChild = document.getElementById('lbl-expense-child');
+            const lblOffice = document.getElementById('lbl-expense-office');
+
+            if (!lblInc1) return;
+
+            if (category === 'Retired' || category === 'Pre-Retirement') {
+                lblInc1.innerText = "Spouse 1 Social Security";
+                lblInc2.innerText = "Spouse 2 Social Security";
+                lblInc3.innerText = "Annuity / Pension";
+                lblChild.innerText = "Grandchildren (Gifts)";
+                lblOffice.innerText = "HOA / Property Fees";
+            } else {
+                lblInc1.innerText = "Take-Home Income #1";
+                lblInc2.innerText = "Take-Home Income #2";
+                lblInc3.innerText = "Bonuses / Other";
+                lblChild.innerText = "Child Care";
+                lblOffice.innerText = "Office / Storage Rent";
+            }
+        }
+
+        function calcBudget() {
+            let incomeTotal = 0;
+            let expenseTotal = 0;
+
+            document.querySelectorAll('.income-input').forEach(input => {
+                incomeTotal += Number(input.value) || 0;
+            });
+
+            document.querySelectorAll('.expense-input').forEach(input => {
+                expenseTotal += Number(input.value) || 0;
+            });
+            
+            const totalIncEl = document.getElementById('budgetTotalIncome');
+            const totalExpEl = document.getElementById('budgetTotalExpenses');
+            const netCashEl = document.getElementById('budgetNetCash');
+
+            if(totalIncEl) totalIncEl.innerText = formatCurrency(incomeTotal);
+            if(totalExpEl) totalExpEl.innerText = formatCurrency(expenseTotal);
+            
+            const netCash = incomeTotal - expenseTotal;
+            if(netCashEl) {
+                netCashEl.innerText = formatCurrency(netCash);
+                netCashEl.className = netCash >= 0 ? "text-xl md:text-3xl font-extrabold text-green-400" : "text-xl md:text-3xl font-extrabold text-red-400";
+            }
+        }
+
+        function calcBusiness() {
+            let assetsTotal = 0;
+            let liabTotal = 0;
+
+            document.querySelectorAll('.asset-input').forEach(input => {
+                assetsTotal += Number(input.value) || 0;
+            });
+
+            document.querySelectorAll('.liab-input').forEach(input => {
+                liabTotal += Number(input.value) || 0;
+            });
+
+            const bizAssetsEl = document.getElementById('bizTotalAssets');
+            const bizLiabEl = document.getElementById('bizTotalLiab');
+            const bizNetEl = document.getElementById('bizNetWorth');
+
+            if(bizAssetsEl) bizAssetsEl.innerText = formatCurrency(assetsTotal);
+            if(bizLiabEl) bizLiabEl.innerText = formatCurrency(liabTotal);
+            
+            const netWorth = assetsTotal - liabTotal;
+            if(bizNetEl) {
+                bizNetEl.innerText = formatCurrency(netWorth);
+                bizNetEl.className = netWorth >= 0 ? "text-xl md:text-3xl font-extrabold text-blue-400" : "text-xl md:text-3xl font-extrabold text-red-400";
+            }
+        }
+    </script>
+</body>
+</html>
