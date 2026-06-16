@@ -1,43 +1,41 @@
-function doPost(e) {
-  try {
-    // 1. BACKEND ANTI-SPAM CHECK (The Bouncer)
-    // If the hidden answer isn't exactly '9', drop the request completely.
-    if (e.parameter.spamAnswer !== '9') {
-      return ContentService.createTextOutput(JSON.stringify({ "result": "error", "error": "Spam blocked" })).setMimeType(ContentService.MimeType.JSON);
-    }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Crane Financial Literacy Network</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @media print {
+            body * { visibility: hidden; }
+            .print-area, .print-area * { visibility: visible; }
+            .print-area { position: absolute; left: 0; top: 0; width: 100%; }
+            .no-print { display: none !important; }
+            .print-invert { background-color: #fff !important; color: #000 !important; border: 1px solid #ccc; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
 
-    // 2. OPEN THE GOOGLE SHEET
-    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    <nav class="bg-white shadow-sm py-2 no-print">
+        <div class="max-w-[100rem] mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center gap-2 md:gap-4">
+                <img src="CFLN.png" alt="Crane Logo" class="w-32 h-32 md:w-40 md:h-40 object-contain shrink-0">
+                <h1 class="text-xl md:text-3xl font-extrabold text-red-600 leading-tight">Crane <br class="sm:hidden"><span class="text-green-700 text-sm sm:text-xl md:text-3xl">Financial Literacy Network</span></h1>
+            </div>
+            
+            <div class="flex items-center gap-2 md:gap-4">
+                <button onclick="window.open('https://www.youtube.com/@crane_financial_literacy', '_blank')" class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-3 md:px-4 rounded-full text-xs md:text-sm transition-colors flex items-center gap-2 shadow-md whitespace-nowrap">
+                    <i class="fab fa-youtube text-base md:text-lg"></i> <span class="hidden sm:inline">YouTube Channel</span>
+                </button>
 
-    // 3. GET THE DATA FROM THE FORM
-    var timestamp = new Date();
-    var name = e.parameter.name || "No Name";
-    var email = e.parameter.email || "No Email";
-    var phone = e.parameter.phone || "No Phone";
-    var concerns = e.parameter.concerns || "None";
+                <button onclick="openContactModal()" class="bg-green-700 hover:bg-green-800 text-white font-semibold py-2 px-3 md:px-4 rounded-full text-xs md:text-sm transition-colors flex items-center gap-2 shadow-md whitespace-nowrap">
+                    <i class="fas fa-user-tie"></i> <span class="hidden lg:inline">Talk to a Financial Fiduciary</span><span class="lg:hidden">Contact</span>
+                </button>
+            </div>
+        </div>
+    </nav>
 
-    // 4. ADD ROW TO THE SHEET
-    sheet.appendRow([timestamp, name, email, phone, concerns]);
-
-    // 5. SEND THE EMAIL NOTIFICATION
-    var adminEmail = "avi@craneandassociates.net";
-    var subject = "New Fiduciary Request from " + name;
-    var body = "You have a new request from the website.\n\n" +
-               "Name: " + name + "\n" +
-               "Email: " + email + "\n" +
-               "Phone: " + phone + "\n" +
-               "Concerns: " + concerns;
-
-    MailApp.sendEmail({
-      to: adminEmail,
-      subject: subject,
-      body: body
-    });
-
-    // 6. RETURN SUCCESS TO THE WEBSITE
-    return ContentService.createTextOutput(JSON.stringify({ "result": "success" })).setMimeType(ContentService.MimeType.JSON);
-
-  } catch (error) {
-    return ContentService.createTextOutput(JSON.stringify({ "result": "error", "error": error.toString() })).setMimeType(ContentService.MimeType.JSON);
-  }
-}
+    <header class="bg-gradient-to-r from-blue-500 to-green-400 py-12 text-center shadow-inner no-print">
+        <div class="max-w-4xl
