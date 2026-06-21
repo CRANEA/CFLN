@@ -153,7 +153,6 @@
                     <i class="fas fa-chevron-right ml-auto"></i>
                 </button>
 
-                <!-- Restored Pre-Retirement Submenu Button -->
                 <button id="btnMainLitPreRetirement" onclick="openLitPreRetirementMenu()" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg hidden">
                     <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-book-open"></i></div>
                     <span>Financial Literacy for Preparing for Your Retirement</span>
@@ -383,10 +382,6 @@
                 <button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScWHc1RJQn8ZLeH6ZROUnDc6LAMyr030fG9BE-DLnRRGvb0xQ/viewform?usp=header', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
                     <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-clipboard-list"></i></div>
                     <span>Wealth Protection - Maximizing the FAFSA Grant (Form)</span>
-                </button>
-                <button onclick="openBizWorkbookMenu()" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
-                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-table"></i></div>
-                    <span>Business Financial Statements (Workbook)</span>
                 </button>
             </div>
         </div>
@@ -1251,8 +1246,17 @@
         }
 
         function openCalculatorsMenu() {
+            // Fix: Hide all currently open apps before showing the calculators menu again
             hideEl('stageMenuModal');
             hideEl('bizWorkbookMenuModal');
+            hideEl('autoAppModal');
+            hideEl('mortgageAppModal');
+            hideEl('loanAppModal');
+            hideEl('capGainsAppModal');
+            hideEl('rentalAppModal');
+            hideEl('401kAppModal');
+            hideEl('reverseAppModal');
+            
             showEl('calculatorsMenuModal');
             
             const titleEl = document.getElementById('calcMenuTitle');
