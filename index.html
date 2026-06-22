@@ -362,6 +362,36 @@
             </div>
             <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">Financial Literacy for Business Owners</h3>
             <div class="flex flex-col gap-3">
+                <!-- Grouped Retirement Plans Button -->
+                <button onclick="openBizRetirementMenu()" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-piggy-bank"></i></div>
+                    <span>Retirement Plans for Your Business</span>
+                    <i class="fas fa-chevron-right ml-auto"></i>
+                </button>
+                
+                <!-- Remaining Original Items -->
+                <button onclick="window.open('https://youtu.be/M_yAEFLtSjU', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-video"></i></div>
+                    <span>Mastering Business Cash Flow & Taxes (Video 4:48 Min)</span>
+                </button>
+                <button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScWHc1RJQn8ZLeH6ZROUnDc6LAMyr030fG9BE-DLnRRGvb0xQ/viewform?usp=header', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-clipboard-list"></i></div>
+                    <span>Wealth Protection - Maximizing the FAFSA Grant (Form)</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- BUSINESS RETIREMENT PLANS SUBMENU FOLDER -->
+    <div id="bizRetirementMenuModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-lg max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden no-print">
+        <div class="p-6 md:p-8">
+            <div class="flex justify-between items-center mb-6 border-b pb-4">
+                <button onclick="openLitBusinessMenu()" class="text-blue-600 hover:text-blue-800 text-xl font-bold flex items-center gap-2"><i class="fas fa-arrow-left"></i> Back</button>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-red-600 text-2xl transition"><i class="fas fa-times"></i></button>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">Retirement Plans for Your Business</h3>
+            <div class="flex flex-col gap-3">
+                <!-- Original 4 Items -->
                 <button onclick="window.open('https://drive.google.com/file/d/1ecWbFj371p0OBo-909u5M0HxiaEBATI8/view?usp=sharing', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
                     <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-file-pdf"></i></div>
                     <span>Retirement Plans (PDF)</span>
@@ -378,13 +408,19 @@
                     <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-file-pdf"></i></div>
                     <span>California Mandated Retirement Plan (PDF)</span>
                 </button>
-                <button onclick="window.open('https://youtu.be/M_yAEFLtSjU', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
-                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-video"></i></div>
-                    <span>Mastering Business Cash Flow & Taxes (Video 4:48 Min)</span>
+                
+                <!-- 3 New Items -->
+                <button onclick="window.open('https://drive.google.com/file/d/1wjr5ZNZ5Laj44ia9XCWWxPlJ-uVsv6v_/view?usp=sharing', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-chart-pie"></i></div>
+                    <span>Infographic</span>
                 </button>
-                <button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScWHc1RJQn8ZLeH6ZROUnDc6LAMyr030fG9BE-DLnRRGvb0xQ/viewform?usp=header', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
-                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-clipboard-list"></i></div>
-                    <span>Wealth Protection - Maximizing the FAFSA Grant (Form)</span>
+                <button onclick="window.open('https://drive.google.com/file/d/1JgnqyQt__rEKCjVn4FV3ZSAb_omd2_8g/view?usp=sharing', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-desktop"></i></div>
+                    <span>Slide Deck</span>
+                </button>
+                <button onclick="window.open('https://youtu.be/Y50n3xBsEM4', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-video"></i></div>
+                    <span>Video</span>
                 </button>
             </div>
         </div>
@@ -1136,6 +1172,7 @@
             hideEl('401kAppModal');
             hideEl('reverseAppModal');
             hideEl('litBusinessModal');
+            hideEl('bizRetirementMenuModal');
             hideEl('bizWorkbookMenuModal');
             hideEl('businessModal');
             hideEl('bizCashFlowModal');
@@ -1165,6 +1202,7 @@
             hideEl('litYoungFamiliesModal');
             hideEl('litMidCareerModal');
             hideEl('litBusinessModal');
+            hideEl('bizRetirementMenuModal');
             hideEl('litPreRetirementModal');
             hideEl('litRetiredModal');
             
@@ -1250,7 +1288,13 @@
 
         function openLitBusinessMenu() {
             hideEl('stageMenuModal');
+            hideEl('bizRetirementMenuModal');
             showEl('litBusinessModal');
+        }
+        
+        function openBizRetirementMenu() {
+            hideEl('litBusinessModal');
+            showEl('bizRetirementMenuModal');
         }
 
         function openLitPreRetirementMenu() {
@@ -1626,6 +1670,7 @@
             hideEl('litYoungFamiliesModal');
             hideEl('litMidCareerModal');
             hideEl('litBusinessModal');
+            hideEl('bizRetirementMenuModal');
             hideEl('litPreRetirementModal');
             hideEl('litRetiredModal');
             hideEl('mortgageAppModal');
