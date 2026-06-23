@@ -278,6 +278,39 @@
             </div>
         </div>
     </div>
+    
+    <!-- RETIREMENT READINESS SUBMENU FOLDER (NEW) -->
+    <div id="litRetirementReadinessModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-lg max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden no-print">
+        <div class="p-6 md:p-8">
+            <div class="flex justify-between items-center mb-6 border-b pb-4">
+                <button onclick="goBackFromRetRead()" class="text-blue-600 hover:text-blue-800 text-xl font-bold flex items-center gap-2"><i class="fas fa-arrow-left"></i> Back</button>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-red-600 text-2xl transition"><i class="fas fa-times"></i></button>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">Retirement Readiness</h3>
+            <div class="flex flex-col gap-3">
+                <button onclick="window.open('https://drive.google.com/file/d/1Rskdz8KQ_HLDz9IkFXndZBnbdz1I9fe5/view?usp=sharing', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-map"></i></div>
+                    <span>Your Road Map to a Successful Retirement (PDF)</span>
+                </button>
+                <button onclick="window.open('https://drive.google.com/file/d/1AHJvPpA4-StjaZUCtZlAamhTK9Aj-7Az/view?usp=sharing', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-file-pdf"></i></div>
+                    <span>Navigating Your Social Security (PDF)</span>
+                </button>
+                <button onclick="window.open('https://youtu.be/A1zhR8MLgVY', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-video"></i></div>
+                    <span>Navigating Your Social Security (Video 05:35min)</span>
+                </button>
+                <button onclick="window.open('https://youtu.be/0sOGmM1onaE', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-video"></i></div>
+                    <span>Cash Flow Challenges in Retirement (Video 07:35min)</span>
+                </button>
+                <button onclick="window.open('https://youtu.be/HJc2utx1M-M', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-video"></i></div>
+                    <span>The Tax Buckets and Your Retirement Cash Flow (Video 04:52min)</span>
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- YOUNG ADULTS LITERACY SUBMENU FOLDER -->
     <div id="litYoungAdultsModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-lg max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-50 hidden no-print">
@@ -293,7 +326,6 @@
                     <span>How Money Works</span>
                     <i class="fas fa-chevron-right ml-auto"></i>
                 </button>
-                <!-- CORRECTED Young Adults URL -->
                 <button onclick="window.open('https://drive.google.com/file/d/1-RADcm-hyJGQf-yZR9gyrr2ZolOQokvA/view?usp=sharing', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
                     <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-heart-pulse"></i></div>
                     <span>Why Should I consider Life Insurance</span>
@@ -324,7 +356,6 @@
                     <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-file-pdf"></i></div>
                     <span>It’s Never too Early Get on the Road to Retirement Planning (PDF)</span>
                 </button>
-                <!-- CORRECTED Parents URL -->
                 <button onclick="window.open('https://drive.google.com/file/d/1fnzCtGRNCWxfzNHoMWwAVWraBkfBLeEF/view?usp=sharing', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
                     <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-heart-pulse"></i></div>
                     <span>Why Should I consider Life Insurance</span>
@@ -346,39 +377,25 @@
                     <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-shield-halved"></i></div>
                     <span>Asset Protection (Guide)</span>
                 </button>
-                <button onclick="window.open('https://drive.google.com/file/d/1AHJvPpA4-StjaZUCtZlAamhTK9Aj-7Az/view?usp=sharing', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
-                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-file-pdf"></i></div>
-                    <span>Navigating Your Social Security (PDF)</span>
-                </button>
-                <button onclick="window.open('https://youtu.be/A1zhR8MLgVY', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
-                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-video"></i></div>
-                    <span>Navigating Your Social Security (Video 05:35min)</span>
-                </button>
-                <button onclick="window.open('https://youtu.be/0sOGmM1onaE', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
-                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-video"></i></div>
-                    <span>Cash Flow Challenges in Retirement (Video 07:35min)</span>
-                </button>
-                <button onclick="window.open('https://youtu.be/HJc2utx1M-M', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
-                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-video"></i></div>
-                    <span>The Tax Buckets and Your Retirement Cash Flow (Video 04:52min)</span>
-                </button>
                 <button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScWHc1RJQn8ZLeH6ZROUnDc6LAMyr030fG9BE-DLnRRGvb0xQ/viewform?usp=header', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
                     <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-clipboard-list"></i></div>
                     <span>FAFSA Grant Maximization Audit</span>
-                </button>
-                <button onclick="window.open('https://drive.google.com/file/d/1Rskdz8KQ_HLDz9IkFXndZBnbdz1I9fe5/view?usp=sharing', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
-                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-file-pdf"></i></div>
-                    <span>Your Road Map to a Successful Retirement (PDF)</span>
                 </button>
                 <button onclick="openHowMoneyWorksMenu('Mid Career')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
                     <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-coins"></i></div>
                     <span>How Money Works</span>
                     <i class="fas fa-chevron-right ml-auto"></i>
                 </button>
-                <!-- CORRECTED Mid Career URL -->
                 <button onclick="window.open('https://drive.google.com/file/d/1j_cpYQboNkYqq-1CHTJp56YyHLtr6C9L/view?usp=sharing', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
                     <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-heart-pulse"></i></div>
                     <span>Why Should I consider Life Insurance</span>
+                </button>
+                
+                <!-- NEW Grouped Retirement Readiness Button -->
+                <button onclick="openRetReadMenu('Mid Career')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-compass"></i></div>
+                    <span>Retirement Readiness</span>
+                    <i class="fas fa-chevron-right ml-auto"></i>
                 </button>
             </div>
         </div>
@@ -398,23 +415,16 @@
                     <span>How Money Works</span>
                     <i class="fas fa-chevron-right ml-auto"></i>
                 </button>
-                <!-- CORRECTED Pre-Retirees URL -->
                 <button onclick="window.open('https://drive.google.com/file/d/1xp73ytWitu3bVDyWQgpHIhYduLdeWQHT/view?usp=sharing', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
                     <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-heart-pulse"></i></div>
                     <span>Why Should I consider Life Insurance</span>
                 </button>
-                <!-- Standard Retirement Prep Links restored from existing components -->
-                <button onclick="window.open('https://drive.google.com/file/d/1AHJvPpA4-StjaZUCtZlAamhTK9Aj-7Az/view?usp=sharing', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
-                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-file-pdf"></i></div>
-                    <span>Navigating Your Social Security (PDF)</span>
-                </button>
-                <button onclick="window.open('https://youtu.be/A1zhR8MLgVY', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
-                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-video"></i></div>
-                    <span>Navigating Your Social Security (Video)</span>
-                </button>
-                <button onclick="window.open('https://drive.google.com/file/d/1Rskdz8KQ_HLDz9IkFXndZBnbdz1I9fe5/view?usp=sharing', '_blank')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
-                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-file-pdf"></i></div>
-                    <span>Your Road Map to a Successful Retirement (PDF)</span>
+
+                <!-- NEW Grouped Retirement Readiness Button -->
+                <button onclick="openRetReadMenu('Pre-Retirement')" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-4 px-4 rounded-xl transition shadow-md flex items-center justify-start text-left text-sm md:text-lg">
+                    <div class="bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center mr-4 shrink-0"><i class="fas fa-compass"></i></div>
+                    <span>Retirement Readiness</span>
+                    <i class="fas fa-chevron-right ml-auto"></i>
                 </button>
             </div>
         </div>
@@ -1259,6 +1269,7 @@
             hideEl('bizRetirementMenuModal');
             hideEl('bizLifeInsuranceMenuModal');
             hideEl('howMoneyWorksModal');
+            hideEl('litRetirementReadinessModal');
             hideEl('litPreRetirementModal');
             hideEl('bizWorkbookMenuModal');
             hideEl('businessModal');
@@ -1292,6 +1303,7 @@
             hideEl('bizRetirementMenuModal');
             hideEl('bizLifeInsuranceMenuModal');
             hideEl('howMoneyWorksModal');
+            hideEl('litRetirementReadinessModal');
             hideEl('litPreRetirementModal');
             hideEl('litRetiredModal');
             
@@ -1375,6 +1387,7 @@
         function openLitMidCareerMenu() {
             hideEl('stageMenuModal');
             hideEl('howMoneyWorksModal');
+            hideEl('litRetirementReadinessModal');
             showEl('litMidCareerModal');
         }
 
@@ -1413,9 +1426,24 @@
             else if (currentHmwParent === 'Pre-Retirement') showEl('litPreRetirementModal');
         }
 
+        // Shared Submenu Logic for Retirement Readiness
+        let currentRetReadParent = '';
+        function openRetReadMenu(parent) {
+            hideEl('litMidCareerModal');
+            hideEl('litPreRetirementModal');
+            currentRetReadParent = parent;
+            showEl('litRetirementReadinessModal');
+        }
+        function goBackFromRetRead() {
+            hideEl('litRetirementReadinessModal');
+            if (currentRetReadParent === 'Mid Career') showEl('litMidCareerModal');
+            else if (currentRetReadParent === 'Pre-Retirement') showEl('litPreRetirementModal');
+        }
+
         function openLitPreRetirementMenu() {
             hideEl('stageMenuModal');
             hideEl('howMoneyWorksModal');
+            hideEl('litRetirementReadinessModal');
             showEl('litPreRetirementModal');
         }
 
@@ -1790,6 +1818,7 @@
             hideEl('bizRetirementMenuModal');
             hideEl('bizLifeInsuranceMenuModal');
             hideEl('howMoneyWorksModal');
+            hideEl('litRetirementReadinessModal');
             hideEl('litPreRetirementModal');
             hideEl('litRetiredModal');
             hideEl('mortgageAppModal');
