@@ -14,6 +14,16 @@
             .no-print { display: none !important; }
             .print-invert { background-color: #fff !important; color: #000 !important; border: 1px solid #ccc; }
         }
+        /* Make the Google Translate dropdown blend in better */
+        .goog-te-gadget-simple {
+            background-color: #f9fafb !important;
+            border: 1px solid #e5e7eb !important;
+            border-radius: 0.5rem !important;
+            padding: 4px 8px !important;
+            font-size: 0.875rem !important;
+            font-family: inherit !important;
+        }
+        .goog-te-gadget-icon { display: none; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans">
@@ -26,6 +36,8 @@
             </div>
             
             <div class="flex items-center gap-2 md:gap-4">
+                <div id="google_translate_element" class="hidden sm:block mt-1"></div>
+
                 <button onclick="window.open('https://www.youtube.com/@crane_financial_literacy', '_blank')" class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-3 md:px-4 rounded-full text-xs md:text-sm transition-colors flex items-center gap-2 shadow-md whitespace-nowrap">
                     <i class="fab fa-youtube text-base md:text-lg"></i> <span class="hidden sm:inline">YouTube Channel</span>
                 </button>
@@ -36,6 +48,10 @@
             </div>
         </div>
     </nav>
+
+    <div class="sm:hidden bg-white text-center py-2 border-t no-print">
+        <div id="google_translate_element_mobile" class="inline-block"></div>
+    </div>
 
     <header class="bg-gradient-to-r from-blue-500 to-green-400 py-12 text-center shadow-inner no-print">
         <div class="max-w-4xl mx-auto px-4">
@@ -1975,5 +1991,28 @@
             }
         }
     </script>
+    
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            // Main Desktop Translator
+            if(document.getElementById('google_translate_element')) {
+                new google.translate.TranslateElement({
+                    pageLanguage: 'en',
+                    includedLanguages: 'es,tl,vi,zh-CN,zh-TW,ar,fa', 
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+                }, 'google_translate_element');
+            }
+            // Mobile Translator
+            if(document.getElementById('google_translate_element_mobile')) {
+                new google.translate.TranslateElement({
+                    pageLanguage: 'en',
+                    includedLanguages: 'es,tl,vi,zh-CN,zh-TW,ar,fa', 
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+                }, 'google_translate_element_mobile');
+            }
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 </body>
 </html>
