@@ -14,19 +14,19 @@
             .no-print { display: none !important; }
             .print-invert { background-color: #fff !important; color: #000 !important; border: 1px solid #ccc; }
         }
-        /* Make the Google Translate dropdown blend in better */
-        .goog-te-gadget-simple {
-            background-color: #f9fafb !important;
-            border: 1px solid #e5e7eb !important;
-            border-radius: 0.5rem !important;
-            padding: 4px 8px !important;
-            font-size: 0.875rem !important;
-            font-family: inherit !important;
-        }
-        .goog-te-gadget-icon { display: none; }
+        
+        /* Completely hide the native Google Translate widget and top banner */
+        #google_translate_element { display: none !important; }
+        .goog-te-banner-frame { display: none !important; }
+        body { top: 0 !important; }
+        .skiptranslate { display: none !important; }
+        body { position: relative !important; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans">
+
+    <!-- Hidden native element required for API to work -->
+    <div id="google_translate_element"></div>
 
     <nav class="bg-white shadow-sm py-2 no-print">
         <div class="max-w-[100rem] mx-auto px-4 flex justify-between items-center">
@@ -36,7 +36,23 @@
             </div>
             
             <div class="flex items-center gap-2 md:gap-4">
-                <div id="google_translate_element" class="hidden sm:block mt-1"></div>
+                
+                <!-- CUSTOM STYLED LANGUAGE DROPDOWN -->
+                <div class="relative group no-print z-50">
+                    <button class="bg-slate-600 hover:bg-slate-700 text-white font-semibold py-2 px-3 md:px-4 rounded-full text-xs md:text-sm transition-colors flex items-center gap-2 shadow-md whitespace-nowrap cursor-pointer">
+                        <i class="fas fa-globe"></i> <span id="desktopLangText" class="hidden sm:inline">Language</span> <i class="fas fa-chevron-down text-xs"></i>
+                    </button>
+                    <!-- Dropdown Menu -->
+                    <div class="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 overflow-hidden border border-gray-100">
+                        <button onclick="changeLang('en', 'English')" class="block w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-slate-50 hover:text-slate-800 font-bold border-b border-gray-100">English (Original)</button>
+                        <button onclick="changeLang('es', 'Español')" class="block w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-slate-50 hover:text-slate-800 border-b border-gray-100">Español (Spanish)</button>
+                        <button onclick="changeLang('tl', 'Tagalog')" class="block w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-slate-50 hover:text-slate-800 border-b border-gray-100">Tagalog</button>
+                        <button onclick="changeLang('vi', 'Tiếng Việt')" class="block w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-slate-50 hover:text-slate-800 border-b border-gray-100">Tiếng Việt (Vietnamese)</button>
+                        <button onclick="changeLang('zh-CN', '中文')" class="block w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-slate-50 hover:text-slate-800 border-b border-gray-100">中文 (Chinese)</button>
+                        <button onclick="changeLang('ar', 'العربية')" class="block w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-slate-50 hover:text-slate-800 border-b border-gray-100">العربية (Arabic)</button>
+                        <button onclick="changeLang('fa', 'فارسی')" class="block w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-slate-50 hover:text-slate-800">فارسی (Persian)</button>
+                    </div>
+                </div>
 
                 <button onclick="window.open('https://www.youtube.com/@crane_financial_literacy', '_blank')" class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-3 md:px-4 rounded-full text-xs md:text-sm transition-colors flex items-center gap-2 shadow-md whitespace-nowrap">
                     <i class="fab fa-youtube text-base md:text-lg"></i> <span class="hidden sm:inline">YouTube Channel</span>
@@ -48,10 +64,6 @@
             </div>
         </div>
     </nav>
-
-    <div class="sm:hidden bg-white text-center py-2 border-t no-print">
-        <div id="google_translate_element_mobile" class="inline-block"></div>
-    </div>
 
     <header class="bg-gradient-to-r from-blue-500 to-green-400 py-12 text-center shadow-inner no-print">
         <div class="max-w-4xl mx-auto px-4">
@@ -1992,23 +2004,34 @@
         }
     </script>
     
+    <!-- GOOGLE TRANSLATE LOGIC -->
     <script type="text/javascript">
         function googleTranslateElementInit() {
-            // Main Desktop Translator
-            if(document.getElementById('google_translate_element')) {
-                new google.translate.TranslateElement({
-                    pageLanguage: 'en',
-                    includedLanguages: 'es,tl,vi,zh-CN,zh-TW,ar,fa', 
-                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-                }, 'google_translate_element');
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'es,tl,vi,zh-CN,zh-TW,ar,fa', 
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+
+        // Custom function to trigger the hidden dropdown
+        function changeLang(langCode, langName) {
+            // Update the button text
+            document.getElementById('desktopLangText').innerText = langName;
+            
+            // If English is selected, clear the Google Translate cookie and reload the page
+            if (langCode === 'en') {
+                document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + window.location.hostname;
+                window.location.reload();
+                return;
             }
-            // Mobile Translator
-            if(document.getElementById('google_translate_element_mobile')) {
-                new google.translate.TranslateElement({
-                    pageLanguage: 'en',
-                    includedLanguages: 'es,tl,vi,zh-CN,zh-TW,ar,fa', 
-                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-                }, 'google_translate_element_mobile');
+
+            // For all other languages, find the hidden Google dropdown and force a change
+            const selectField = document.querySelector(".goog-te-combo");
+            if (selectField) {
+                selectField.value = langCode;
+                selectField.dispatchEvent(new Event('change'));
             }
         }
     </script>
