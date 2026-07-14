@@ -37,8 +37,8 @@
             
             <div class="flex items-center gap-2 md:gap-4">
                 
-                <!-- CUSTOM STYLED LANGUAGE DROPDOWN -->
-                <div class="relative group no-print z-50">
+                <!-- CUSTOM STYLED LANGUAGE DROPDOWN (Added 'notranslate' class so the menu stays readable) -->
+                <div class="relative group no-print z-50 notranslate">
                     <button class="bg-slate-600 hover:bg-slate-700 text-white font-semibold py-2 px-3 md:px-4 rounded-full text-xs md:text-sm transition-colors flex items-center gap-2 shadow-md whitespace-nowrap cursor-pointer">
                         <i class="fas fa-globe"></i> <span id="desktopLangText" class="hidden sm:inline">Language</span> <i class="fas fa-chevron-down text-xs"></i>
                     </button>
@@ -2007,21 +2007,12 @@
     <!-- GOOGLE TRANSLATE LOGIC -->
     <script type="text/javascript">
         function googleTranslateElementInit() {
-            // Main Desktop Translator
             if(document.getElementById('google_translate_element')) {
                 new google.translate.TranslateElement({
                     pageLanguage: 'en',
                     includedLanguages: 'es,tl,vi,zh-CN,zh-TW,ar,fa', 
                     autoDisplay: false
                 }, 'google_translate_element');
-            }
-            // Mobile Translator
-            if(document.getElementById('google_translate_element_mobile')) {
-                new google.translate.TranslateElement({
-                    pageLanguage: 'en',
-                    includedLanguages: 'es,tl,vi,zh-CN,zh-TW,ar,fa', 
-                    autoDisplay: false
-                }, 'google_translate_element_mobile');
             }
         }
 
@@ -2031,10 +2022,11 @@
             const desktopText = document.getElementById('desktopLangText');
             if (desktopText) desktopText.innerText = langName;
             
-            // If English is selected, clear the Google Translate cookie and reload the page
+            // If English is selected, clear the Google Translate cookies very aggressively and reload
             if (langCode === 'en') {
                 document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
                 document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + window.location.hostname;
+                document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=." + window.location.hostname;
                 window.location.reload();
                 return;
             }
