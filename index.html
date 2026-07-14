@@ -2007,17 +2007,29 @@
     <!-- GOOGLE TRANSLATE LOGIC -->
     <script type="text/javascript">
         function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'en',
-                includedLanguages: 'es,tl,vi,zh-CN,zh-TW,ar,fa', 
-                autoDisplay: false
-            }, 'google_translate_element');
+            // Main Desktop Translator
+            if(document.getElementById('google_translate_element')) {
+                new google.translate.TranslateElement({
+                    pageLanguage: 'en',
+                    includedLanguages: 'es,tl,vi,zh-CN,zh-TW,ar,fa', 
+                    autoDisplay: false
+                }, 'google_translate_element');
+            }
+            // Mobile Translator
+            if(document.getElementById('google_translate_element_mobile')) {
+                new google.translate.TranslateElement({
+                    pageLanguage: 'en',
+                    includedLanguages: 'es,tl,vi,zh-CN,zh-TW,ar,fa', 
+                    autoDisplay: false
+                }, 'google_translate_element_mobile');
+            }
         }
 
         // Custom function to trigger the hidden dropdown
         function changeLang(langCode, langName) {
             // Update the button text
-            document.getElementById('desktopLangText').innerText = langName;
+            const desktopText = document.getElementById('desktopLangText');
+            if (desktopText) desktopText.innerText = langName;
             
             // If English is selected, clear the Google Translate cookie and reload the page
             if (langCode === 'en') {
